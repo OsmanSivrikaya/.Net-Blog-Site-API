@@ -1,5 +1,5 @@
 # Blog Sitesi API - .NET 8
-
+Dikkat!! Proje daha geliştirme aşamasındadır.
 Bu proje, .NET 8 kullanılarak geliştirilen, blog gönderilerini yönetmenizi sağlayan bir API'dir. Proje geliştirme aşamasında olup, yeni özellikler eklenmekte ve mevcut özellikler iyileştirilmektedir.
 
 ## İçindekiler
