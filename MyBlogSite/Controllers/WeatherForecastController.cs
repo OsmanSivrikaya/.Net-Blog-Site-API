@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using MyBlogSite.Attributes;
+using MyBlogSite.Entity;
+using MyBlogSite.Repository.IRepository;
 
 namespace MyBlogSite.Controllers
 {
@@ -12,14 +15,16 @@ namespace MyBlogSite.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IBlogRepository _blogRepository;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IBlogRepository blogRepository)
         {
             _logger = logger;
+            _blogRepository = blogRepository;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

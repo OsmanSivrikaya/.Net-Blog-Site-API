@@ -6,7 +6,8 @@ namespace MyBlogSite.Context
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseSqlServer("Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;"));
+            string connectionString = "Server=analizgaraj.com\\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;";
+            services.AddDbContext<ContextDb>(options => options.UseSqlServer(connectionString));
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IUnitofwork : IDisposable
     {
-        bool Commit(bool state = true);
+        Task<bool> CommitAsync(bool state = true);
     }
 }

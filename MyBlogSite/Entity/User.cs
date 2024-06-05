@@ -1,6 +1,8 @@
-﻿namespace MyBlogSite.Entity
+﻿using MyBlogSite.Entity.Abstract;
+
+namespace MyBlogSite.Entity
 {
-    public class User
+    public class User : BaseEntity
     {
     }
 }

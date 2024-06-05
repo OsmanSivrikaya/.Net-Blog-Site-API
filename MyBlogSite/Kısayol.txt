@@ -1,0 +1,7 @@
+Ctrl + D kelimeyi seçer
+Ctrl + L Satırı seçer
+
+VS-Code içerisinde mig eklemek için 
+dotnet tool install --global dotnet-ef
+dotnet ef migrations add yourMigrationName
+dotnet ef database update
