@@ -23,5 +23,6 @@ namespace MyBlogSite.Entity
         [Required]
         [Column("is_it_approved")]
         public bool IsItApproved { get; set; }
+        public Blog Blog { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace MyBlogSite.Entity
         [Column("title", TypeName = "nvarchar(255)")]
         public required string Title { get; set; }
         [Required]
-        [Column("text", TypeName = "nvarchar(10000)")]
+        [Column("text", TypeName = "nvarchar(4000)")]
         public required string Text { get; set; }
         [Required]
         [Column("type_id")]

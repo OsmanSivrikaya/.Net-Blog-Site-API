@@ -35,7 +35,7 @@ namespace MyBlogSite.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10000)")
+                        .HasColumnType("nvarchar(4000)")
                         .HasColumnName("text");
 
                     b.Property<string>("Title")
@@ -260,20 +260,24 @@ namespace MyBlogSite.Migrations
 
             modelBuilder.Entity("MyBlogSite.Entity.BlogComment", b =>
                 {
-                    b.HasOne("MyBlogSite.Entity.Blog", null)
+                    b.HasOne("MyBlogSite.Entity.Blog", "Blog")
                         .WithMany("BlogComments")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("MyBlogSite.Entity.BlogLike", b =>
                 {
-                    b.HasOne("MyBlogSite.Entity.Blog", null)
+                    b.HasOne("MyBlogSite.Entity.Blog", "Blog")
                         .WithMany("BlogLikes")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("MyBlogSite.Entity.BlogProperty", b =>

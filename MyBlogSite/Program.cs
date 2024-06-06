@@ -1,13 +1,16 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using MyBlogSite.Attributes;
 using MyBlogSite.Context;
 using MyBlogSite.DependencyResolvers.Autofac;
+using MyBlogSite.Repository.UnitofWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Autofac'i ekliyoruz
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-.ConfigureContainer<ContainerBuilder>((container) => {
+.ConfigureContainer<ContainerBuilder>((container) =>
+{
     container.RegisterModule(new AutofacBusinessModule());
 });
 
@@ -18,6 +21,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IUnitofwork, UnitOfWork>();
+// Custom Exception Filter'ı ekleyin
+builder.Services.AddScoped<TransactionAttribute>();
 //builder.UseServiceProviderFactory()
 
 var app = builder.Build();
@@ -29,6 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 

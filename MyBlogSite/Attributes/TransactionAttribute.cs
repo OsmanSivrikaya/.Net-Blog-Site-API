@@ -1,42 +1,101 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using MyBlogSite.Context;
 using MyBlogSite.Repository.UnitofWork;
 
 namespace MyBlogSite.Attributes
 {
-    // Bu attribute, bir metot çağrıldığında otomatik olarak transaction yönetimini sağlar.
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class TransactionAttribute : Attribute, IAsyncActionFilter
+    /// <summary>
+    /// TransactionAttribute sınıfı, method'da bir hata durumda yapılan sql işlemlerinde rollback yapar.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
+    public class TransactionAttribute : TypeFilterAttribute
     {
-        // Metot çağrıldığında bu metot çalışır.
-        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+        /// <summary>
+        /// TransactionAttribute sınıfının yapıcı metodu.
+        /// </summary>
+        public TransactionAttribute() : base(typeof(TransactionFilter))
         {
-            // Unit of Work, dependency injection ile alınır.
-            var unitOfWork = (IUnitofwork)context.HttpContext.RequestServices.GetService(typeof(IUnitofwork));
+        }
 
-            try
+        private class TransactionFilter : IAsyncActionFilter
+        {
+            private readonly IUnitofwork _unitOfWork;
+            private bool _transactionStarted = false;
+
+            /// <summary>
+            /// TransactionFilter sınıfının yapıcı metodu.
+            /// </summary>
+            /// <param name="unitOfWork">UnitOfWork nesnesi.</param>
+            public TransactionFilter(IUnitofwork unitOfWork)
             {
-                // Metot çağrısını gerçekleştirir.
-                var resultContext = await next();
-
-                // Eğer bir hata olmazsa veya hata işlenirse, işlemi commit et.
-                if (resultContext.Exception == null || resultContext.ExceptionHandled)
-                    await unitOfWork.CommitAsync(true);
-                else
-                    await unitOfWork.CommitAsync(false);
+                _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             }
-            catch
-            {
-                // Hata olması durumunda işlemi rollback et.
-                await unitOfWork.CommitAsync(false);
 
-                // 500 hata kodu ile bir hata mesajı döndür.
-                context.Result = new ObjectResult("İşlem sırasında bir hata oluştu.")
+            /// <summary>
+            /// Bir HTTP isteği yapıldığında çalıştırılır.
+            /// </summary>
+            /// <param name="context">Aksiyonun çalıştırıldığı bağlam.</param>
+            /// <param name="next">Sonraki aksiyon adımı.</param>
+            /// <returns></returns>
+            public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+            {
+                try
                 {
-                    StatusCode = 500
+                    // Transaction başlatma
+                    if (!_transactionStarted)
+                    {
+                        await _unitOfWork.BeginTransactionAsync();
+                        _transactionStarted = true;
+                    }
+
+                    var resultContext = await next();
+
+                    // Eğer bir hata varsa ve henüz işlenmemişse
+                    if (resultContext.Exception != null && !resultContext.ExceptionHandled)
+                    {
+                        // Transaction'ı geri alma
+                        await _unitOfWork.RollbackAsync();
+
+                        // Hata işleme
+                        HandleException(resultContext);
+
+                        // Hata işlendi olarak işaretleme
+                        resultContext.ExceptionHandled = true;
+                    }
+                    else
+                    {
+                        // Hata yoksa veya işlenmişse, Transaction'ı tamamlama
+                        await _unitOfWork.CommitAsync();
+                    }
+                }
+                finally
+                {
+                    // Kaynakları temizleme
+                    if (_transactionStarted)
+                    {
+                        _unitOfWork.Dispose();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Bir hata durumunda işlenmemiş bir hata oluşturur.
+            /// </summary>
+            /// <param name="context">Aksiyonun çalıştırıldığı bağlam.</param>
+            private void HandleException(ActionExecutedContext context)
+            {
+                var exception = context.Exception;
+
+                // Hata bilgilerini JSON formatında dönme
+                context.Result = new JsonResult(new
+                {
+                    error = true,
+                    message = exception?.Message,
+                    stackTrace = exception?.StackTrace // Daha detaylı hata mesajı için
+                })
+                {
+                    StatusCode = 500 // Internal Server Error
                 };
-                return;
             }
         }
     }

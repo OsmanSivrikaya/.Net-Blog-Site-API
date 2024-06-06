@@ -12,5 +12,6 @@ namespace MyBlogSite.Entity
         [Required]
         [Column("blog_id")]
         public Guid BlogId { get; set; }
+        public Blog Blog { get; set; }
     }
 }
