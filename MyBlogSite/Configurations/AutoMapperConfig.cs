@@ -3,11 +3,18 @@ using MyBlogSite.AutoMapper;
 namespace MyBlogSite.Configurations
 {
     /// <summary>
-    /// Auto mapper ayarlamalarının yapıldığı method
+    /// AutoMapper yapılandırmalarını sağlayan sınıf.
     /// </summary>
     public static class AutoMapperConfig
     {
-        public static IServiceCollection AddAutoMapper(this IServiceCollection services){
+        /// <summary>
+        /// IServiceCollection'a AutoMapper yapılandırmasını ekler.
+        /// </summary>
+        /// <param name="services">AutoMapper yapılandırmasının ekleneceği IServiceCollection.</param>
+        /// <returns>AutoMapper yapılandırması eklenmiş IServiceCollection.</returns>
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+        {
+            // AutoMapper yapılandırmasını IServiceCollection'a ekle
             services.AddAutoMapper(typeof(MappingProfile));
             return services;
         }

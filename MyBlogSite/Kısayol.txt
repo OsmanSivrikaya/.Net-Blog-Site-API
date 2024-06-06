@@ -9,9 +9,9 @@ dotnet ef database update
 projeyi ayaklandırmak için
 
 dev ortamında:
-dotnet run --launch-profile "Development" --BASE_URL="http://localhost" --PORT="7071" --SQL_CONNECTION="Server=analizgaraj.com\\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;"
+dotnet run --launch-profile "Development" --BASE_URL="http://localhost" --PORT="7071" --SQL_CONNECTION="Server=analizgaraj.com\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;"
 test ortamında:
-dotnet run --launch-profile "Staging" --BASE_URL="http://localhost" --PORT="8081" --SQL_CONNECTION="Server=analizgaraj.com\\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;"
+dotnet run --launch-profile "Staging" --BASE_URL="http://localhost" --PORT="8081" --SQL_CONNECTION="Server=analizgaraj.com\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;"
 production ortamında: 
-dotnet run --launch-profile "Production" --BASE_URL="http://localhost" --PORT="9091" --SQL_CONNECTION="Server=analizgaraj.com\\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;"
+dotnet run --launch-profile "Production" --BASE_URL="http://localhost" --PORT="9091" --SQL_CONNECTION="Server=analizgaraj.com\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;"
 

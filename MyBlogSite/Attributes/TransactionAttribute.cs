@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MyBlogSite.Repository.UnitofWork;
+using Serilog;
 
 namespace MyBlogSite.Attributes
 {
@@ -86,6 +87,9 @@ namespace MyBlogSite.Attributes
             {
                 var exception = context.Exception;
 
+                // hata durumunda serilog ile db'ye kayıt ediyor
+                Log.Warning(exception, "Transaction Filter Error");
+                
                 // Hata bilgilerini JSON formatında dönme
                 context.Result = new JsonResult(new
                 {

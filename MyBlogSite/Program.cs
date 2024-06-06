@@ -1,29 +1,35 @@
-using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using MyBlogSite.Attributes;
-using MyBlogSite.DependencyResolvers.Autofac;
 using MyBlogSite.Repository.UnitofWork;
 using MyBlogSite.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Autofac'i ekliyoruz
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-.ConfigureContainer<ContainerBuilder>((container) =>
-{
-    container.RegisterModule(new AutofacBusinessModule());
-});
+// derlendiği environment'i çekiyoruz
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
-builder.Services.AddPersistenceServices(builder.Configuration);
+// derlendiği environment'a göre configuration oluşturuyoruz
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .Build();
 
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// autofac'i ekliyoruz
+builder.Host.AddAutofac();
+// serilog ekliyoruz
+builder.Services.AddSerilogConfig(configuration);
+// context configini ekiyoruz
+builder.Services.AddPersistenceServices(configuration);
 // cors politikasını ekliyoruz
-builder.Services.AddCorsPolicy(builder.Configuration);
-//auto mapper ekleniyor
+builder.Services.AddCorsPolicy(configuration);
+// auto mapper ekleniyor
 builder.Services.AddAutoMapper();
 
 builder.Services.AddScoped<IUnitofwork, UnitOfWork>();
@@ -32,7 +38,7 @@ builder.Services.AddScoped<TransactionAttribute>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -45,6 +51,5 @@ app.MapControllers();
 
 var url = app.Configuration["BASE_URL"];
 var port = app.Configuration["PORT"];
-Console.WriteLine($"Uygulama {app.Configuration["ASPNETCORE_ENVIRONMENT"]} ortamında çalıştırıldı.");
 var baseUrl = url is not null && port is not null ? $"{url}:{port}" : "http://localhost:5288";
 app.Run(baseUrl);
