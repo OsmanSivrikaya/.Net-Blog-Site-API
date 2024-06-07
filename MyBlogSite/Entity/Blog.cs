@@ -8,10 +8,10 @@ namespace MyBlogSite.Entity
     {
         [Required]
         [Column("title", TypeName = "nvarchar(255)")]
-        public required string Title { get; set; }
+        public string Title { get; set; }
         [Required]
         [Column("text", TypeName = "nvarchar(4000)")]
-        public required string Text { get; set; }
+        public string Text { get; set; }
         [Required]
         [Column("type_id")]
         public Guid TypeId { get; set; }

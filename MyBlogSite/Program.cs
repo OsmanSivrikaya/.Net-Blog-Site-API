@@ -1,8 +1,8 @@
 using Autofac.Extensions.DependencyInjection;
-using MyBlogSite.Attributes;
 using Serilog;
 using MyBlogSite.WebFramework.Configurations;
 using MyBlogSite.Data.Repository.UnitofWork;
+using MyBlogSite.WebFramework.Attributes;
 
 var builder = WebApplication.CreateBuilder(args);
 

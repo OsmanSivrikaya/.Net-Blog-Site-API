@@ -8,7 +8,7 @@ namespace MyBlogSite.Entity
     {
         [Required]
         [Column("email", TypeName = "nvarchar(255)")]
-        public required string Email { get; set; }
+        public string Email { get; set; }
         [Required]
         [Column("blog_id")]
         public Guid BlogId { get; set; }
