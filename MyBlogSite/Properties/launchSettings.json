@@ -14,9 +14,10 @@
       "dotnetRunMessages": true,
       "launchBrowser": false,
       "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5288",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "BASE_URL": "http://0.0.0.0;",
+        "BASE_URL": "http://localhost",
         "SQL_CONNECTION":"Server=analizgaraj.com\\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;",
         "PORT": "7071",
       }
@@ -28,7 +29,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Staging",
-        "BASE_URL": "http://0.0.0.0;",
+        "BASE_URL": "http://localhost",
         "SQL_CONNECTION":"Server=analizgaraj.com\\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;",
         "PORT": "8081",
       }
@@ -40,7 +41,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
-        "BASE_URL": "http://0.0.0.0;",
+        "BASE_URL": "http://localhost",
         "SQL_CONNECTION":"Server=analizgaraj.com\\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;",
         "PORT": "9091",
       }

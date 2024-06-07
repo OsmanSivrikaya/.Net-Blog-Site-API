@@ -1,5 +1,8 @@
 Ctrl + D kelimeyi seçer
 Ctrl + L Satırı seçer
+CRTL + Ö Bulunduğu satırı yorum satırı yapar
+CTRL + K + U yorum satırını kaldırır
+CTRL + K + C yorum satırına alır
 
 VS-Code içerisinde mig eklemek için 
 dotnet tool install --global dotnet-ef

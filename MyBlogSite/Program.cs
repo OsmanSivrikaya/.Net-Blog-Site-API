@@ -1,7 +1,8 @@
 using Autofac.Extensions.DependencyInjection;
 using MyBlogSite.Attributes;
-using MyBlogSite.Repository.UnitofWork;
-using MyBlogSite.Configurations;
+using Serilog;
+using MyBlogSite.WebFramework.Configurations;
+using MyBlogSite.Data.Repository.UnitofWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,22 +17,26 @@ var configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
 
+
+
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+// api versiyonlama config'ini ekliyoruz
+builder.Services.AddCustomApiVersioning();
 builder.Services.AddSwaggerGen();
-// autofac'i ekliyoruz
-builder.Host.AddAutofac();
 // serilog ekliyoruz
 builder.Services.AddSerilogConfig(configuration);
-// context configini ekiyoruz
+// context config'ini ekiyoruz
 builder.Services.AddPersistenceServices(configuration);
 // cors politikasını ekliyoruz
 builder.Services.AddCorsPolicy(configuration);
+// autofac'i ekliyoruz
+builder.Host.AddAutofac();
 // auto mapper ekleniyor
 builder.Services.AddAutoMapper();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUnitofwork, UnitOfWork>();
 builder.Services.AddScoped<TransactionAttribute>();
 
@@ -45,11 +50,12 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 }
 
 app.UseHttpsRedirection();
-app.AddCorsPolicy();
 app.UseAuthorization();
+app.UseCorsPolicy();
 app.MapControllers();
 
 var url = app.Configuration["BASE_URL"];
 var port = app.Configuration["PORT"];
 var baseUrl = url is not null && port is not null ? $"{url}:{port}" : "http://localhost:5288";
+Log.Information($"Base Url: {baseUrl}");
 app.Run(baseUrl);

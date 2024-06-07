@@ -6,5 +6,7 @@ namespace MyBlogSite.Services.IServices
     public interface IBlogTypeService
     {
         Task<BlogType> CreateAsync(BlogTypeCreateDto entity);
+        Task<BlogType?> GetBlogTypeAsync(Guid id);
+        Task<List<BlogType>> GetAllBlogTypeAsync();
     }
 }
