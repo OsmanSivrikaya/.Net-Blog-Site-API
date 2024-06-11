@@ -1,6 +1,8 @@
+using Azure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MyBlogSite.Data.Repository.UnitofWork;
+using MyBlogSite.Dtos.Response;
 using Serilog;
 
 namespace MyBlogSite.WebFramework.Attributes
@@ -79,6 +81,7 @@ namespace MyBlogSite.WebFramework.Attributes
                 }
             }
 
+            // TODO : Yapılan exception middleware'a yönlendir
             /// <summary>
             /// Bir hata durumunda işlenmemiş bir hata oluşturur.
             /// </summary>
@@ -91,15 +94,7 @@ namespace MyBlogSite.WebFramework.Attributes
                 Log.Warning(exception, "Transaction Filter Error");
                 
                 // Hata bilgilerini JSON formatında dönme
-                context.Result = new JsonResult(new
-                {
-                    error = true,
-                    message = exception?.Message,
-                    stackTrace = exception?.StackTrace // Daha detaylı hata mesajı için
-                })
-                {
-                    StatusCode = 500 // Internal Server Error
-                };
+                context.Result = ResponseDto.BadRequest(exception?.Message, null, null, exception?.StackTrace);
             }
         }
     }

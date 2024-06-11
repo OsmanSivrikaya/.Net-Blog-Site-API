@@ -1,5 +1,3 @@
-using System.Net;
-using Microsoft.AspNetCore.Mvc;
 using MyBlogSite.Common.Exceptions;
 using MyBlogSite.Dtos.Response;
 using Serilog;
@@ -17,25 +15,14 @@ namespace MyBlogSite.WebFramework.Middlewares
             catch (AppException exception)
             {
                 Log.Error(exception, exception.Message);
-                switch (exception.StatusCode)
+                context.Response.StatusCode = (int)exception.StatusCode;
+                await context.Response.WriteAsJsonAsync(new ResponseDto
                 {
-                    case HttpStatusCode.BadRequest:
-                        await context.Response.WriteAsJsonAsync(new BadRequestObjectResult(new ResponseDto
-                        {
-                            Message = exception.Message,
-                            Data = exception.Data is not null ? exception.Data : null,
-                            ErrorCode = exception.ErrorCode
-                        }));
-                        break;
-                    case HttpStatusCode.NotFound:
-                        await context.Response.WriteAsJsonAsync(new NotFoundObjectResult(new ResponseDto
-                        {
-                            Message = exception.Message,
-                            Data = exception.Data is not null ? exception.Data : null,
-                            ErrorCode = exception.ErrorCode
-                        }));
-                        break;
-                }
+                    Message = exception.Message,
+                    Data = exception.Data is not null ? exception.Data : null,
+                    ErrorCode = exception.ErrorCode,
+                    StatusCode = (int)exception.StatusCode
+                });
             }
         }
     }

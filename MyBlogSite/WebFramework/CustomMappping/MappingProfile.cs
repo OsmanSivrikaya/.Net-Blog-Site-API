@@ -1,5 +1,6 @@
 using AutoMapper;
 using MyBlogSite.Dtos.BlogType;
+using MyBlogSite.Dtos.User;
 using MyBlogSite.Entity;
 
 namespace MyBlogSite.WebFramework.CustomMapping
@@ -8,6 +9,8 @@ namespace MyBlogSite.WebFramework.CustomMapping
     {
         public MappingProfile(){
             CreateMap<BlogType, BlogTypeCreateDto>().ReverseMap();
+            CreateMap<UserCreateDto, User>().ReverseMap();
+            CreateMap<UserViewDto, User>().ReverseMap();
         }
     }
 }

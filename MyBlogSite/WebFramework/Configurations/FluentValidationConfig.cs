@@ -1,5 +1,4 @@
 using FluentValidation;
-using FluentValidation.AspNetCore;
 
 namespace MyBlogSite.WebFramework.Configurations
 {
@@ -7,9 +6,6 @@ namespace MyBlogSite.WebFramework.Configurations
     {
         public static IServiceCollection AddFluentValidation(this IServiceCollection services)
         {
-            services.AddFluentValidationAutoValidation()
-                .AddFluentValidationClientsideAdapters();
-
             // Validatörlerinizi burada belirtebilirsiniz
             services.AddValidatorsFromAssemblyContaining<Program>();
             return services;

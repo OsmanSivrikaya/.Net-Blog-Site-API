@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using MyBlogSite.Common.Const;
-using MyBlogSite.Common.Exceptions;
 using MyBlogSite.Dtos.Response;
 using MyBlogSite.Services.IServices;
 using MyBlogSite.WebFramework.Api;
@@ -13,11 +11,10 @@ namespace MyBlogSite.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            throw new BadRequestException(ErrorCodeConst.UserCreateEC.ErrorMessage, ErrorCodeConst.UserCreateEC.ErrorCode);
             var result = _blogTypeService.GetAllBlogTypeAsync().Result;
             if (result is not null)
                 return ResponseDto.Ok(null, result);
-            return ResponseDto.NotFound();
+            return ResponseDto.NotFound(null);
         }
 
         [HttpGet("{id}")]
@@ -26,7 +23,7 @@ namespace MyBlogSite.Controllers
             var result = _blogTypeService.GetBlogTypeAsync(id).Result;
             if (result is not null)
                 return ResponseDto.Ok(null, result);
-            return ResponseDto.BadRequest();
+            return ResponseDto.BadRequest(null);
         }
     }
 }

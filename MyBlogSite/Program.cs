@@ -34,6 +34,8 @@ builder.Services.AddCorsPolicy(configuration);
 builder.Host.AddAutofac();
 // auto mapper ekleniyor
 builder.Services.AddAutoMapper();
+// fluent validation ekliyoruz
+builder.Services.AddFluentValidation();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUnitofwork, UnitOfWork>();
 builder.Services.AddScoped<TransactionAttribute>();
