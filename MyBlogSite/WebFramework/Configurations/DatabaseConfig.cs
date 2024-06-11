@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using MyBlogSite.Data;
-using Serilog;
 
 namespace MyBlogSite.WebFramework.Configurations
 {
@@ -18,10 +17,6 @@ namespace MyBlogSite.WebFramework.Configurations
         {
             // Bağlantı dizesini al
             var connectionString = configuration["SQL_CONNECTION"];
-
-            // Serilog ile bağlantı bilgisini logla
-            Log.Information($"Sql Bilgisi: {connectionString}");
-
             // DbContext'i ekleyin
             services.AddDbContext<ContextDb>(options => options.UseSqlServer(connectionString));
         }

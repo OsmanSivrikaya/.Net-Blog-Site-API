@@ -5,7 +5,7 @@ namespace MyBlogSite.Data
 {
     public class ContextDb : DbContext
     {
-        public ContextDb(DbContextOptions options) : base(options)
+        public ContextDb(DbContextOptions<ContextDb> options) : base(options)
         { }
 
         public DbSet<Blog> blogs { get; set; } 

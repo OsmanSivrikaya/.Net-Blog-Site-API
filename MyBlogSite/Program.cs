@@ -17,8 +17,6 @@ var configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
 
-
-
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,10 +24,10 @@ builder.Services.AddEndpointsApiExplorer();
 // api versiyonlama config'ini ekliyoruz
 builder.Services.AddCustomApiVersioning();
 builder.Services.AddSwaggerGen();
-// serilog ekliyoruz
-builder.Services.AddSerilogConfig(configuration);
 // context config'ini ekiyoruz
 builder.Services.AddPersistenceServices(configuration);
+// serilog ekliyoruz
+builder.Services.AddSerilogConfig(configuration);
 // cors politikasını ekliyoruz
 builder.Services.AddCorsPolicy(configuration);
 // autofac'i ekliyoruz
@@ -53,6 +51,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCorsPolicy();
 app.MapControllers();
+// Middlewares'leri ekliyoruz
+app.AddMiddlewares();
 
 var url = app.Configuration["BASE_URL"];
 var port = app.Configuration["PORT"];

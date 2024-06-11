@@ -11,6 +11,9 @@ dotnet ef database update
 
 projeyi ayaklandırmak için
 
+ef için connection string tanımlama 
+$env:SQL_CONNECTION="Server=analizgaraj.com\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True
+
 dev ortamında:
 dotnet run --launch-profile "Development" --BASE_URL="http://localhost" --PORT="7071" --SQL_CONNECTION="Server=analizgaraj.com\MSSQLSERVER2019;Database=analizga_blog;User Id=analizga_pollify;Password=tq0m5E7~1;TrustServerCertificate=True;"
 test ortamında:

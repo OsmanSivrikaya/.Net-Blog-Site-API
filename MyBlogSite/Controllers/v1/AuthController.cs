@@ -16,7 +16,7 @@ namespace MyBlogSite.Controllers.v1
             var result = await _authService.LoginUserAsycn(request);
             if(result is null)
                 return ResponseDto.NotFound("Kullanıcı bulunamadı!");
-            return ResponseDto.Ok(result);
+            return ResponseDto.Ok(null, result);
         }
     }
 }

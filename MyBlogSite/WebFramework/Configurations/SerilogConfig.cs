@@ -21,13 +21,13 @@ namespace MyBlogSite.WebFramework.Configurations
             services.AddSerilog(options =>
             {
                 // IConfiguration'dan Serilog yapılandırmasını oku
-                options.ReadFrom.Configuration(configuration)
+                options.ReadFrom.Configuration(configuration);
                 // Log olaylarını MSSQL Server'a yaz
-                .WriteTo.MSSqlServer(connectionString, new MSSqlServerSinkOptions
-                {
-                    TableName = "log_events", // Olayların saklanacağı tablonun adını belirle
-                    AutoCreateSqlTable = true // Tablo otomatik olarak oluşturulsun mu?
-                });
+                // .WriteTo.MSSqlServer(connectionString, new MSSqlServerSinkOptions
+                // {
+                //     TableName = "log_events", // Olayların saklanacağı tablonun adını belirle
+                //     AutoCreateSqlTable = true // Tablo otomatik olarak oluşturulsun mu?
+                // });
             });
         }
     }
