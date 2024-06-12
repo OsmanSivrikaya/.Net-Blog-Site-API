@@ -7,6 +7,6 @@ namespace MyBlogSite.Services.IServices
     {
         Task<BlogType> CreateAsync(BlogTypeCreateDto entity);
         Task<BlogType?> GetBlogTypeAsync(Guid id);
-        Task<List<BlogType>> GetAllBlogTypeAsync();
+        Task<List<BlogType>> GetBlogTypesAsync(int pageNumber, int pageSize);
     }
 }

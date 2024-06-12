@@ -30,7 +30,7 @@ namespace MyBlogSite.WebFramework.Configurations
                 options.AddPolicy("CorsPolicy",
                     builder =>
                     {
-                        builder.WithOrigins(origin)
+                        builder.SetIsOriginAllowed(_ => true)
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });
