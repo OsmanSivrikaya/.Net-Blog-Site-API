@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBlogSite.Dtos.Response;
 using MyBlogSite.Dtos.User;
@@ -16,6 +17,7 @@ namespace MyBlogSite.Controllers.v1
         /// <summary>
         /// Tüm kullanıcıları getiren endpoint.
         /// </summary>
+        [Authorize]
         [HttpGet]
         public IActionResult GetAll() => ResponseDto.Ok(_userService.GetAllUsers().Result);
         

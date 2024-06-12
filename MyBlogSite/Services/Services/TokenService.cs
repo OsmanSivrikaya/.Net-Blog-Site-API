@@ -11,24 +11,33 @@ namespace MyBlogSite.Services.Services
     {
         public Task<GenerateTokenResponseDto> GenerateToken(GenerateTokenRequestDto request)
         {
-            SymmetricSecurityKey symmetricSecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["AppSettings:Secret"]!));
+            var secretKey = _configuration["AppSettings:Secret"];
+            var issuer = _configuration["AppSettings:ValidIssuer"];
+            var audience = _configuration["AppSettings:ValidAudience"];
+
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+
+            var claims = new List<Claim>
+            {
+                new Claim("userName", request.Username)
+            };
 
             var dateTimeNow = DateTime.UtcNow;
 
-            JwtSecurityToken jwt = new JwtSecurityToken(
-                    issuer: _configuration["AppSettings:ValidIssuer"],
-                    audience: _configuration["AppSettings:ValidAudience"],
-                    claims: new List<Claim> {
-                        new Claim("userName", request.Username)
-                    },
-                    notBefore: dateTimeNow,
-                    expires: dateTimeNow.Add(TimeSpan.FromMinutes(500)),
-                    signingCredentials: new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256)
-                );
+            var jwt = new JwtSecurityToken(
+                issuer: issuer,
+                audience: audience,
+                claims: claims,
+                notBefore: dateTimeNow,
+                expires: dateTimeNow.Add(TimeSpan.FromMinutes(500)),
+                signingCredentials: new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256)
+            );
+
+            var token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
             return Task.FromResult(new GenerateTokenResponseDto
             {
-                Token = new JwtSecurityTokenHandler().WriteToken(jwt),
+                Token = token,
                 TokenExpireDate = dateTimeNow.Add(TimeSpan.FromMinutes(500))
             });
         }

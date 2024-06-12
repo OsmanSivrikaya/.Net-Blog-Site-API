@@ -146,5 +146,22 @@ namespace MyBlogSite.Dtos.Response
                 StatusCode = (int)HttpStatusCode.NotFound
             });
         }
+
+        /// <summary>
+        /// Hatalı bir 401 Not Found yanıtı döner.
+        /// </summary>
+        /// <returns>JsonResult ile dönen 401 Unauthorized yanıtı.</returns>
+        public static IActionResult Unauthorized()
+        {
+            return new JsonResult(new ResponseDto
+            {
+                Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized",
+                Success = false,
+                Message = "İzin Verme hatası: Geçersiz yetkilendirme bilgileri.",
+                Data = null,
+                ErrorCode = null,
+                StatusCode = (int)HttpStatusCode.Unauthorized
+            });
+        }
     }
 }
