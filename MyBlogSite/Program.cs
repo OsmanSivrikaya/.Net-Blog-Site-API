@@ -10,12 +10,13 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var environmentx = builder.Environment.EnvironmentName;
 // derlendiği environment'i çekiyoruz
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
 // derlendiği environment'a göre configuration oluşturuyoruz
 var configuration = new ConfigurationBuilder()
-    .SetBasePath(builder.Environment.ContentRootPath)
+    .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables()
