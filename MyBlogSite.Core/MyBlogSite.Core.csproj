@@ -7,7 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.5-develop.2174" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Dtos\RabbitMQ\" />
     </ItemGroup>
 
 </Project>

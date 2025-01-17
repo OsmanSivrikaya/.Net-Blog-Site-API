@@ -6,6 +6,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
+using MyBlogSite.Core.Producers;
+using MyBlogSite.Core.Producers.Interface;
 using MyBlogSite.Dal.Repository.UnitofWork;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,7 @@ var configuration = new ConfigurationBuilder()
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddSettings(configuration);
+builder.Services.AddRabbitMassTransit(configuration);
 // Authentication'u ekliyoruz
 builder.Services.AddAuthenticationJWT(configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -54,6 +57,7 @@ builder.Services.AddFluentValidation();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUnitofwork, UnitOfWork>();
+builder.Services.AddScoped<IEmailProducer, EmailProducer>();
 builder.Services.AddScoped<TransactionAttribute>();
 
 var app = builder.Build();

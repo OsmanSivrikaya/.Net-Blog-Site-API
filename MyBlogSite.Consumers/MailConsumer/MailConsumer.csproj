@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\MyBlogSite.APIs\Base\Base.csproj" />
       <ProjectReference Include="..\..\MyBlogSite.Business\MyBlogSite.Business.csproj" />
     </ItemGroup>
 

@@ -9,6 +9,9 @@ public static class SettingsConfig
         var smsSettings = configuration.GetSection("AppSettings");
         services.Configure<TokenSettings>(smsSettings);
         
+        var rabbitMqSettings = configuration.GetSection("RabbitMQ");
+        services.Configure<RabbitMqSettingDto>(rabbitMqSettings);
+        
         services.AddSingleton<IConfiguration>(configuration);
         
         return services;

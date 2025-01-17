@@ -1,6 +1,9 @@
 using System.Text;
+using MailConsumer.Configurations;
 using Microsoft.Extensions.Options;
-using MyBlogSite.Core.Dtos.RabbitMQ;
+using MyBlogSite.Core.Dtos.Settings;
+using MyBlogSite.Core.Producers;
+using MyBlogSite.Core.Producers.Interface;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -18,57 +21,16 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 builder.Services.AddOpenApi();
+builder.Services.AddScoped<IEmailProducer, EmailProducer>();
 
-builder.Services.Configure<RabbitMqSettingDto>(configuration.GetSection("RabbitMQ"));
+var rabbitMqSettings = configuration.GetSection("RabbitMQ").Get<RabbitMqSettingDto>();
+if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqSettings);
 
 #region App
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
 app.UseHttpsRedirection();
-
-app.MapGet("/email-consumer", async (IOptions<RabbitMqSettingDto> rabbitMqOptions) =>
-    {
-        var rabbitMqSettings = rabbitMqOptions.Value;
-        ConnectionFactory factory = new()
-        {
-            Uri = new Uri(rabbitMqSettings.Url)
-        };
-
-        await using IConnection connection = await factory.CreateConnectionAsync();
-        await using IChannel channel = await connection.CreateChannelAsync();
-
-        // Kuyruğu tanımlayın (varsa)
-        await channel.QueueDeclareAsync(queue: "email-queue", durable: true, exclusive: false, autoDelete: false);
-
-        AsyncEventingBasicConsumer consumer = new(channel);
-
-        consumer.ReceivedAsync += async (sender, e) =>
-        {
-            try
-            {
-                var message = Encoding.UTF8.GetString(e.Body.Span);
-                Console.WriteLine($"Received message: {message}");
-
-                // Mesaj işlendi olarak işaretle
-                await channel.BasicAckAsync(e.DeliveryTag, multiple: false);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error processing message: {ex.Message}");
-                // Gerekirse mesajı tekrar kuyruğa ekleyebilirsiniz
-                await channel.BasicNackAsync(e.DeliveryTag, multiple: false, requeue: true);
-            }
-        };
-
-        await channel.BasicConsumeAsync(queue: "example-1-queue", autoAck: false, consumer);
-    });
 
 app.Run();
 
