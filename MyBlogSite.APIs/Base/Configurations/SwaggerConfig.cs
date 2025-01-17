@@ -16,7 +16,7 @@ namespace Base.Configurations
         /// </summary>
         /// <param name="services">IServiceCollection nesnesi</param>
         /// <returns>IServiceCollection nesnesi</returns>
-        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        public static IServiceCollection AddSwagger(this IServiceCollection services, string xmlPath)
         {
             // ConfigureSwaggerOptions sınıfının SwaggerGenOptions yapılandırma seçeneklerini ayarlamak için kullanıldığını belirten bir kayıt işlemidir.
             // Bu adımın amacı, Swagger yapılandırmasını merkezi bir yerden yönetmek ve API versiyonlaması gibi gelişmiş ayarları kolayca uygulamaktır.
@@ -50,10 +50,7 @@ namespace Base.Configurations
                     new string[] { }
                 }
                 });
-
-                // XML yorum dosyasını yükler. Bu dosya, API belgeleri için yorumları içerir.
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                
                 options.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
 

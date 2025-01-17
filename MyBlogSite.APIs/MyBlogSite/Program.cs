@@ -1,3 +1,4 @@
+using System.Reflection;
 using Base.Attributes;
 using Base.Configurations;
 using Serilog;
@@ -29,8 +30,13 @@ builder.Services.AddAuthenticationJWT(configuration);
 builder.Services.AddEndpointsApiExplorer();
 // api versiyonlama config'ini ekliyoruz
 builder.Services.AddCustomApiVersioning();
+
 // swagger config'ini ekliyoruz
-builder.Services.AddSwagger();
+// XML yorum dosyasını yükler. Bu dosya, API belgeleri için yorumları içerir.
+var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+builder.Services.AddSwagger(xmlPath);
+
 // context config'ini ekiyoruz
 builder.Services.AddPersistenceServices(configuration);
 // serilog ekliyoruz
@@ -53,7 +59,7 @@ builder.Services.AddScoped<TransactionAttribute>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerConfig();
 }
