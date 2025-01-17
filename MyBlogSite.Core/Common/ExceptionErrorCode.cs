@@ -1,4 +1,4 @@
-namespace MyBlogSite.Common
+namespace MyBlogSite.Core.Common
 {
     public class ExceptionErrorCode
     {

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite", "MyBlogSite.AP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyBlogSite.Consumers", "MyBlogSite.Consumers", "{6DB7E4F2-9E8A-485E-9895-000D6284614A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailConsumer", "MailConsumer\MailConsumer.csproj", "{D14D3A0E-23B8-4201-9427-133AA30DE98A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailConsumer", "MyBlogSite.Consumers\MailConsumer\MailConsumer.csproj", "{D14D3A0E-23B8-4201-9427-133AA30DE98A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite.Core", "MyBlogSite.Core\MyBlogSite.Core.csproj", "{BCD5D2F9-6944-439C-9A62-2739C42970A8}"
 EndProject
