@@ -12,11 +12,10 @@ public class EmailProducer(ISendEndpointProvider sendEndpointProvider, IOptions<
     : IEmailProducer
 {
     private readonly RabbitMqSettingDto _rabbitMqSettings = rabbitMqSettings.Value;
-
     public async Task SendEmailAsync(EmailMessageDto message)
     {
         var fromEmail = "deneme@gmail.com"; // Gönderen e-posta adresi
-        var fromPassword = "deneme"; // Gönderen e-posta adresinin şifresi
+        var fromPassword = "password"; // App Password
 
         var smtpClient = new SmtpClient("smtp.gmail.com")
         {
@@ -32,7 +31,7 @@ public class EmailProducer(ISendEndpointProvider sendEndpointProvider, IOptions<
             Body = message.Body,
             IsBodyHtml = true,
         };
-    
+
         // Alıcı e-posta adreslerini ekliyoruz
         foreach (var toEmail in message.ToEmails)
         {
@@ -48,6 +47,7 @@ public class EmailProducer(ISendEndpointProvider sendEndpointProvider, IOptions<
             Console.WriteLine($"E-posta gönderme hatası: {ex.Message}");
         }
     }
+    
     public async Task SendEmailQueueAsync(EmailMessageDto message)
     {
         try
