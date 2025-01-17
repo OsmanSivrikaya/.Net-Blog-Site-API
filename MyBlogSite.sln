@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite", "MyBlogSite\MyBlogSite.csproj", "{AA654997-E397-4A34-A45E-4ED490CDA296}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite", "MyBlogSite.APIs\MyBlogSite\MyBlogSite.csproj", "{AA654997-E397-4A34-A45E-4ED490CDA296}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyBlogSite.Consumers", "MyBlogSite.Consumers", "{6DB7E4F2-9E8A-485E-9895-000D6284614A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailConsumer", "MailConsumer\MailConsumer.csproj", "{D14D3A0E-23B8-4201-9427-133AA30DE98A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite.Core", "MyBlogSite.Core\MyBlogSite.Core.csproj", "{BCD5D2F9-6944-439C-9A62-2739C42970A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite.Business", "MyBlogSite.Business\MyBlogSite.Business.csproj", "{20CBEE8F-589A-473F-AA27-3A6DB468E302}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyBlogSite.APIs", "MyBlogSite.APIs", "{DEED74A5-2440-47DE-AD32-F5E36CEB1E19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "MyBlogSite.APIs\Base\Base.csproj", "{EE6E0453-ADFC-4C2E-B68E-4B6C35782391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite.Dal", "MyBlogSite.Dal\MyBlogSite.Dal.csproj", "{3B2C89B8-8915-455B-BD6F-B4535FE667E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +29,36 @@ Global
 		{AA654997-E397-4A34-A45E-4ED490CDA296}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA654997-E397-4A34-A45E-4ED490CDA296}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA654997-E397-4A34-A45E-4ED490CDA296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D14D3A0E-23B8-4201-9427-133AA30DE98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14D3A0E-23B8-4201-9427-133AA30DE98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14D3A0E-23B8-4201-9427-133AA30DE98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14D3A0E-23B8-4201-9427-133AA30DE98A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCD5D2F9-6944-439C-9A62-2739C42970A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCD5D2F9-6944-439C-9A62-2739C42970A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCD5D2F9-6944-439C-9A62-2739C42970A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCD5D2F9-6944-439C-9A62-2739C42970A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20CBEE8F-589A-473F-AA27-3A6DB468E302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20CBEE8F-589A-473F-AA27-3A6DB468E302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20CBEE8F-589A-473F-AA27-3A6DB468E302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20CBEE8F-589A-473F-AA27-3A6DB468E302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6E0453-ADFC-4C2E-B68E-4B6C35782391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6E0453-ADFC-4C2E-B68E-4B6C35782391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6E0453-ADFC-4C2E-B68E-4B6C35782391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6E0453-ADFC-4C2E-B68E-4B6C35782391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2C89B8-8915-455B-BD6F-B4535FE667E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2C89B8-8915-455B-BD6F-B4535FE667E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2C89B8-8915-455B-BD6F-B4535FE667E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2C89B8-8915-455B-BD6F-B4535FE667E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E98D92E5-57FE-4299-8F31-3E0AF8083322}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D14D3A0E-23B8-4201-9427-133AA30DE98A} = {6DB7E4F2-9E8A-485E-9895-000D6284614A}
+		{EE6E0453-ADFC-4C2E-B68E-4B6C35782391} = {DEED74A5-2440-47DE-AD32-F5E36CEB1E19}
+		{AA654997-E397-4A34-A45E-4ED490CDA296} = {DEED74A5-2440-47DE-AD32-F5E36CEB1E19}
 	EndGlobalSection
 EndGlobal
