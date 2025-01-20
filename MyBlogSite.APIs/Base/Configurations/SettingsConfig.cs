@@ -12,6 +12,9 @@ public static class SettingsConfig
         var rabbitMqSettings = configuration.GetSection("RabbitMQ");
         services.Configure<RabbitMqSettingDto>(rabbitMqSettings);
         
+        var mailSettings = configuration.GetSection("MAIL_CONNECTION");
+        services.Configure<MailSettings>(mailSettings);
+        
         services.AddSingleton<IConfiguration>(configuration);
         
         return services;

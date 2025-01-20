@@ -15,29 +15,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88236b3a-5aa0-446f-900f-a87fc6b71278" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Configurations/MassTransitConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/Configurations/MasTransitConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/MailConsumer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Producers/EmailProducer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Producers/Interface/IEmailProducer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+    <list default="true" id="88236b3a-5aa0-446f-900f-a87fc6b71278" name="Changes" comment="bug fixed">
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Settings/MailSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Configurations/SettingsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Configurations/SettingsConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Production.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/EMailServices/EmailService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/EMailServices/IEmailService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/MailConsumer.http" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/EmailMessageDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/EmailMessageDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/RabbitMQ/RabbitMqSettingDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Settings/RabbitMqSettingDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/MyBlogSite.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/MyBlogSite.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Producers/EmailProducer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Producers/EmailProducer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Repository/IRepository/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Repository/IRepository/IRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,24 +39,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "OsmanSivrikaya"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;OsmanSivrikaya&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/OsmanSivrikaya/.Net-Blog-Site-API.git",
-    "accountId": "6b965338-8fba-48a1-bcea-714a9a3e8efe"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/OsmanSivrikaya/.Net-Blog-Site-API.git&quot;,
+    &quot;accountId&quot;: &quot;6b965338-8fba-48a1-bcea-714a9a3e8efe&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e12e9626bf2c484b9582ee5e092b4e2f69938/91/3fadb22f/MailMessage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/16a8916fa6cc91647d6084cf3358697be586439df3f5ddca6aa969c5169bb8bc/SmtpClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6140fb726658b1d31e544e8f4a652dc4897f0375a30a2402287854d4eed1a20/SmtpClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2rl1kAVGqBijleJlivXptWK3iXT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -222,7 +219,10 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
   </component>
@@ -234,47 +234,57 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737118988107</updated>
-      <workItem from="1737118989190" duration="3822000" />
+      <workItem from="1737118989190" duration="5518000" />
+      <workItem from="1737353364239" duration="2094000" />
     </task>
+    <task id="LOCAL-00001" summary="Mail consumer and mail producer added">
+      <option name="closed" value="true" />
+      <created>1737122941817</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737122941817</updated>
+    </task>
+    <task id="LOCAL-00002" summary="updated">
+      <option name="closed" value="true" />
+      <created>1737122951821</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737122951821</updated>
+    </task>
+    <task id="LOCAL-00003" summary="bug fixed">
+      <option name="closed" value="true" />
+      <created>1737123580002</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737123580002</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/MyBlogSite.Core/Producers/EmailProducer.cs</url>
-          <line>17</line>
-          <properties documentPath="C:\Users\OSIVRIKAYA\RiderProjects\.Net-Blog-Site-API\MyBlogSite.Core\Producers\EmailProducer.cs" containingFunctionPresentation="Method 'SendEmailAsync'">
-            <startOffsets>
-              <option value="545" />
-            </startOffsets>
-            <endOffsets>
-              <option value="584" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/MyBlogSite.Core/Producers/EmailProducer.cs</url>
-          <line>54</line>
-          <properties documentPath="C:\Users\OSIVRIKAYA\RiderProjects\.Net-Blog-Site-API\MyBlogSite.Core\Producers\EmailProducer.cs" containingFunctionPresentation="Method 'SendEmailQueueAsync'">
-            <startOffsets>
-              <option value="1618" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1729" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Mail consumer and mail producer added" />
+    <MESSAGE value="updated" />
+    <MESSAGE value="bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixed" />
   </component>
 </project>

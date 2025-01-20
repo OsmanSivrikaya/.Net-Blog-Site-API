@@ -23,6 +23,9 @@ var configuration = new ConfigurationBuilder()
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IEmailProducer, EmailProducer>();
 
+var mailSettings = configuration.GetSection("MAIL_CONNECTION");
+builder.Services.Configure<MailSettings>(mailSettings);
+
 var rabbitMqSettings = configuration.GetSection("RabbitMQ").Get<RabbitMqSettingDto>();
 if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqSettings);
 

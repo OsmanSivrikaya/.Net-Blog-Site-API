@@ -8,39 +8,38 @@ using MyBlogSite.Core.Producers.Interface;
 
 namespace MyBlogSite.Core.Producers;
 
-public class EmailProducer(ISendEndpointProvider sendEndpointProvider, IOptions<RabbitMqSettingDto> rabbitMqSettings)
+public class EmailProducer(ISendEndpointProvider sendEndpointProvider, 
+                           IOptions<RabbitMqSettingDto> rabbitMqSettings,
+                           IOptions<MailSettings> mailSettings)
     : IEmailProducer
 {
     private readonly RabbitMqSettingDto _rabbitMqSettings = rabbitMqSettings.Value;
+    private readonly MailSettings _mailSettings = mailSettings.Value;
     public async Task SendEmailAsync(EmailMessageDto message)
     {
-        var fromEmail = "deneme@gmail.com"; // Gönderen e-posta adresi
-        var fromPassword = "password"; // App Password
-
-        var smtpClient = new SmtpClient("smtp.gmail.com")
+        var smtpClient = new SmtpClient
         {
-            Port = 587,
-            Credentials = new NetworkCredential(fromEmail, fromPassword),
-            EnableSsl = true,
+            Host = _mailSettings.Host,
+            Port = _mailSettings.Port,
+            Credentials = new NetworkCredential(_mailSettings.Mail, _mailSettings.AppPass),
+            EnableSsl = _mailSettings.IsSsl,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false 
         };
 
         var mailMessage = new MailMessage
         {
-            From = new MailAddress(fromEmail),
+            From = new MailAddress(_mailSettings.Mail),
             Subject = message.Subject,
             Body = message.Body,
             IsBodyHtml = true,
         };
-
-        // Alıcı e-posta adreslerini ekliyoruz
-        foreach (var toEmail in message.ToEmails)
-        {
-            mailMessage.To.Add(toEmail);
-        }
-
+        
+        message.ToEmails.ForEach(x=> mailMessage.To.Add(x));
+        
         try
         {
-            await Task.Run(() => smtpClient.Send(mailMessage)); 
+            await smtpClient.SendMailAsync(mailMessage, CancellationToken.None); 
         }
         catch (Exception ex)
         {
