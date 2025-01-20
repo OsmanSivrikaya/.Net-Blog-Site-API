@@ -26,6 +26,8 @@ var configuration = new ConfigurationBuilder()
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddSettings(configuration);
+// file storage manager DI yapılandırması
+builder.Services.AddFileStoreageSettings(configuration);
 builder.Services.AddRabbitMassTransit(configuration);
 // Authentication'u ekliyoruz
 builder.Services.AddAuthenticationJWT(configuration);
