@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MyBlogSite.Data;
+using MyBlogSite.Dal;
 
 namespace Base.Configurations
 {

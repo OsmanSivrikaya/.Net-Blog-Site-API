@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore.Storage;
-using MyBlogSite.Data;
 
 namespace MyBlogSite.Dal.Repository.UnitofWork
 {

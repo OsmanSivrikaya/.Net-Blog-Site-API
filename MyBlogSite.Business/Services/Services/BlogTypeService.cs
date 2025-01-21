@@ -7,22 +7,22 @@ using MyBlogSite.Dtos.BlogType;
 
 namespace MyBlogSite.Business.Services.Services
 {
-    public class BlogTypeService(IBlogTypeRepository _blogTypeRepository, IMapper _mapper) : IBlogTypeService
+    public class BlogTypeService(IPostTypeRepository postTypeRepository, IMapper _mapper) : IBlogTypeService
     {
-        public async Task<BlogType> CreateAsync(BlogTypeCreateDto entity)
+        public async Task<PostType> CreateAsync(BlogTypeCreateDto entity)
         {
-            var blogType = _mapper.Map<BlogType>(entity);
-            return await _blogTypeRepository.CreateAsync(blogType);
+            var blogType = _mapper.Map<PostType>(entity);
+            return await postTypeRepository.CreateAsync(blogType);
         }
-        public async Task<BlogType?> GetBlogTypeAsync(Guid id)
+        public async Task<PostType?> GetBlogTypeAsync(Guid id)
         {
-            return await _blogTypeRepository.GetByIdAsync(id);
+            return await postTypeRepository.GetByIdAsync(id);
         }
-        public async Task<List<BlogType>> GetBlogTypesAsync(int pageNumber, int pageSize)
+        public async Task<List<PostType>> GetBlogTypesAsync(int pageNumber, int pageSize)
         {
             var skipAmount = pageSize * (pageNumber - 1); // Sayfalamaya başlanacak kayıtın indisini hesaplar
 
-            return await _blogTypeRepository.GetAll()
+            return await postTypeRepository.GetAll()
                                             .Skip(skipAmount)
                                             .Take(pageSize)
                                             .ToListAsync();

@@ -2,31 +2,57 @@ using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MyBlogSite.Business.Services.IServices;
+using MyBlogSite.Business.Services.SlugServices.Interface;
+using MyBlogSite.Core.Dtos;
 using MyBlogSite.Core.Dtos.User;
-using MyBlogSite.Core.Utilities;
+using MyBlogSite.Core.Helpers;
+using MyBlogSite.Core.Producers.Interface;
+using MyBlogSite.Dal;
 using MyBlogSite.Dal.Entity;
 using MyBlogSite.Dal.Repository.IRepository;
 
-namespace MyBlogSite.Business.Services.Services
+namespace MyBlogSite.Business.Services.Services;
+
+public class UserService(IUserRepository userRepository, IMapper mapper, ISlugService slugService, IEmailProducer emailProducer) : IUserService
 {
-    public class UserService(IUserRepository _userRepository, IMapper _mapper) : IUserService
+    public async Task<UserViewDto> CreateAsync(UserCreateDto userCreateDto)
     {
-        public async Task<UserViewDto> CreateAsync(UserCreateDto userCreateDto)
-        {
-            var user = _mapper.Map<User>(userCreateDto);
-            user.Password = HashHelper.ComputeSha256Hash(user.Password);
-            return _mapper.Map<UserViewDto>(await _userRepository.CreateAsync(user));
-        }
+        var user = mapper.Map<User>(userCreateDto);
+        user.Password = HashHelper.ComputeSha256Hash(user.Password);
+        user.Blog.Slug = await slugService.GenerateUniqueBlogSlugAsync(userCreateDto.Blog.BlogName);
 
-        public async Task<List<UserViewDto>> GetAllUsers()
+        user = await userRepository.CreateAsync(user);
+        
+        await emailProducer.SendEmailQueueAsync(new EmailMessageDto
         {
-            var users = await _userRepository.GetAll().ToListAsync();
-            return _mapper.Map<List<UserViewDto>>(users);
-        }
+            Subject = "Hoş Geldiniz!",
+            Body = MailTemplateHelper.WelcomeMessage(user.Name + " " + user.Surname.ToUpper()),
+            ToEmails = [user.Email]
+        });
+        
+        return mapper.Map<UserViewDto>(user);
+    }
+    
+    public async Task<List<UserViewDto>> GetAllUsers()
+    {
+        var users = await userRepository.GetAll().ToListAsync();
+        return mapper.Map<List<UserViewDto>>(users);
+    }
 
-        public async Task<User?> GetFirstAsync(Expression<Func<User, bool>> method)
-        {
-            return await _userRepository.GetFirstAsync(method);
-        }
+    public async Task<User?> GetFirstAsync(Expression<Func<User, bool>> method)
+    {
+        return await userRepository.GetFirstAsync(method);
+    }
+    
+    public async Task<bool> BeExistingUsername(string? username, CancellationToken cancellationToken = default)
+    {
+        var result = !await userRepository.GetWhere(x => x.Username == username && x.IsActive).AnyAsync(cancellationToken);
+        return result;
+    }
+
+    public async Task<bool> BeExistingEmail(string? username, CancellationToken cancellationToken = default)
+    {
+        var result = !await userRepository.GetWhere(x => x.Username == username && x.IsActive).AnyAsync(cancellationToken);
+        return result;
     }
 }

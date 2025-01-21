@@ -4,51 +4,96 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using MyBlogSite.Core.Constants;
 using MyBlogSite.Core.Dtos.Response;
 
-namespace Base.Attributes
+namespace Base.Attributes;
+
+/// <summary>
+/// Model validasyonu için kullanılan action filter.
+/// </summary>
+public class ValidateModelAttribute : ActionFilterAttribute
 {
     /// <summary>
-    /// Model validasyonu için kullanılan action filter.
+    /// Action methodu çalışmadan önce model validasyonu yapılır.
     /// </summary>
-    public class ValidateModelAttribute : ActionFilterAttribute
+    /// <param name="context">ActionExecutingContext.</param>
+    public override void OnActionExecuting(ActionExecutingContext context)
     {
-        /// <summary>
-        /// Action methodu çalışmadan önce model validasyonu yapılır.
-        /// </summary>
-        /// <param name="context">ActionExecutingContext.</param>
-        public override void OnActionExecuting(ActionExecutingContext context)
+        // Action'a geçirilen argümanları alır ve null olmayanları filtreler.
+        var arguments = context.ActionArguments.Values.Where(argument => argument != null);
+
+        // Her bir argüman için validator bulur ve validasyon yapar.
+        var validationErrors = arguments
+            .Select(argument =>
+            {
+                var validatorType = typeof(IValidator<>).MakeGenericType(argument!.GetType());
+                var validator = context.HttpContext.RequestServices.GetService(validatorType) as IValidator;
+
+                return validator?.Validate(new ValidationContext<object>(argument));
+            })
+            .Where(validationResult => validationResult != null && !validationResult.IsValid)
+            .SelectMany(validationResult => validationResult!.Errors)
+            .GroupBy(error => error.PropertyName)
+            .ToDictionary(group => group.Key, group => group.Select(error => error.ErrorMessage).ToList());
+
+        // Eğer validasyon hataları varsa hata yanıtı oluşturur.
+        if (validationErrors.Any())
         {
-            // Action'a geçirilen argümanları alır ve null olmayanları filtreler.
-            var arguments = context.ActionArguments.Values.Where(argument => argument != null);
+            var response = Result.BadRequest("Validation Error", new { Errors = validationErrors },
+                ErrorConstants.ValidationError);
 
-            // Her bir argüman için validator bulur ve validasyon yapar.
-            var validationErrors = arguments
-                .Select(argument =>
+            context.Result = new JsonResult(response)
+            {
+                StatusCode = response.StatusCode // Yanıt kodunu JsonResult'a set ediyoruz
+            };
+
+            return;
+        }
+
+        // Validasyon başarılı ise işlem devam ettirilir.
+        base.OnActionExecuting(context);
+    }
+
+    public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+    {
+        // Action'a geçirilen argümanları alır ve null olmayanları filtreler.
+        var arguments = context.ActionArguments.Values.Where(argument => argument != null);
+
+        // Her bir argüman için validator bulur ve validasyon yapar.
+        var validationErrors = new List<FluentValidation.Results.ValidationFailure>();
+
+        foreach (var argument in arguments)
+        {
+            var validatorType = typeof(IValidator<>).MakeGenericType(argument!.GetType());
+            var validator = context.HttpContext.RequestServices.GetService(validatorType) as IValidator;
+
+            if (validator != null)
+            {
+                var validationResult = await validator.ValidateAsync(new ValidationContext<object>(argument));
+                if (!validationResult.IsValid)
                 {
-                    var validatorType = typeof(IValidator<>).MakeGenericType(argument!.GetType());
-                    var validator = context.HttpContext.RequestServices.GetService(validatorType) as IValidator;
+                    validationErrors.AddRange(validationResult.Errors);
+                }
+            }
+        }
 
-                    return validator?.Validate(new ValidationContext<object>(argument));
-                })
-                .Where(validationResult => validationResult != null && !validationResult.IsValid)
-                .SelectMany(validationResult => validationResult!.Errors)
+        // Eğer validasyon hataları varsa hata yanıtı oluşturur.
+        if (validationErrors.Any())
+        {
+            var groupedErrors = validationErrors
                 .GroupBy(error => error.PropertyName)
                 .ToDictionary(group => group.Key, group => group.Select(error => error.ErrorMessage).ToList());
 
-            // Eğer validasyon hataları varsa hata yanıtı oluşturur.
-            if (validationErrors.Any())
+            var response = Result.BadRequest("Validation Error", new { Errors = groupedErrors }, ErrorConstants.ValidationError);
+
+            context.Result = new JsonResult(response)
             {
-                var response = Result.BadRequest("Validation Error", new { Errors = validationErrors }, ErrorConstants.ValidationError);
+                StatusCode = response.StatusCode // Yanıt kodunu JsonResult'a set ediyoruz
+            };
 
-                context.Result = new JsonResult(response)
-                {
-                    StatusCode = response.StatusCode // Yanıt kodunu JsonResult'a set ediyoruz
-                };
-
-                return;
-            }
-
-            // Validasyon başarılı ise işlem devam ettirilir.
-            base.OnActionExecuting(context);
+            return;
         }
+
+        // Validasyon başarılı ise işlem devam ettirilir.
+        await next(); // Bu satır ile aksiyon çalıştırılmaya devam eder
     }
+
 }

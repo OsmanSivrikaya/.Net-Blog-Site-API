@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyBlogSite.WebFramework.Api
+namespace Base.Api
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]// api/v1/[controller]
+    [Route("api/v{version:apiVersion}")]
     public class BaseController : ControllerBase
     {
     }

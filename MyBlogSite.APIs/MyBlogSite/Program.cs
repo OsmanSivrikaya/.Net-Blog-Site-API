@@ -1,7 +1,6 @@
 using System.Reflection;
 using Base.Attributes;
 using Base.Configurations;
-using Serilog;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -63,13 +62,11 @@ builder.Services.AddScoped<IEmailProducer, EmailProducer>();
 builder.Services.AddScoped<TransactionAttribute>();
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerConfig();
 }
-
 app.UseHttpsRedirection();
 // Authentication'u ekliyoruz
 app.UseAuthenticationJWT();
@@ -79,15 +76,6 @@ app.MapControllers();
 // Middlewares'leri ekliyoruz
 app.AddMiddlewares();
 
-// URL'yi UseUrls ile ayarlama
-var url = app.Configuration["BASE_URL"];
-var port = app.Configuration["PORT"];
-var baseUrl = url is not null && port is not null ? $"{url}:{port}" : "http://localhost:5288";
-
-app.Urls.Add(baseUrl); // UseUrls() ile URL ve port ayarı yapılıyor
-
-// Uygulama başlatılıyor
-Log.Information($"Base Url: {baseUrl}");
 app.Run();
 
 public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>

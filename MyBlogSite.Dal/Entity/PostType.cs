@@ -4,10 +4,13 @@ using MyBlogSite.Dal.Entity.Abstract;
 
 namespace MyBlogSite.Dal.Entity
 {
-    public class BlogType : BaseEntity
+    public class PostType : BaseEntity
     {
         [Required]
         [Column("type_name", TypeName = "nvarchar(255)")]
         public required string TypeName { get; set; }
+        
+        [Column("slag", TypeName = "nvarchar(4000)")]
+        public required string Slug { get; set; }
     }
 }

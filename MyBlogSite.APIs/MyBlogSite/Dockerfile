@@ -1,17 +1,20 @@
-﻿# .NET 8 SDK'sını içeren bir temel imaj kullan
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+﻿# MyBlogSite API Dockerfile'ı
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as base
 WORKDIR /app
+EXPOSE 5001
 
-# Proje dosyalarını kopyala
-COPY . ./
+COPY . . 
 
-# Bağımlılıkları yükle ve projeyi yayınla
-RUN dotnet publish -c Release -o out
+WORKDIR /app/MyBlogSite.APIs/MyBlogSite
 
-# .NET 8 ASP.NET Core runtime'ını içeren bir temel imaj kullan
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+RUN dotnet restore
+
+RUN dotnet publish --no-restore -c Release -o /app/MyBlogSite
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+FROM runtime AS final
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=base /app/MyBlogSite .
 
-# Uygulamanı çalıştır
 ENTRYPOINT ["dotnet", "MyBlogSite.dll"]

@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MyBlogSite.Core.Utilities
+namespace MyBlogSite.Core.Helpers
 {
     /// <summary>
     /// Utility class for computing SHA-256 hash values.

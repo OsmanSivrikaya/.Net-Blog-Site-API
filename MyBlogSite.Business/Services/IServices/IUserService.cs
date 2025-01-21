@@ -9,5 +9,7 @@ namespace MyBlogSite.Business.Services.IServices
         Task<List<UserViewDto>> GetAllUsers();
         Task<User?> GetFirstAsync(Expression<Func<User, bool>> method);
         Task<UserViewDto> CreateAsync(UserCreateDto userCreateDto);
+        Task<bool> BeExistingUsername(string? username, CancellationToken cancellationToken);
+        Task<bool> BeExistingEmail(string? username, CancellationToken cancellationToken);
     }
 }

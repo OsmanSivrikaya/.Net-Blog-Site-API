@@ -1,27 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using MyBlogSite.Dal.Entity.Abstract;
 
-namespace MyBlogSite.Dal.Entity
+namespace MyBlogSite.Dal.Entity;
+
+public class Blog : BaseEntity
 {
-    public class Blog : BaseEntity
-    {
-        [Required]
-        [Column("title", TypeName = "nvarchar(255)")]
-        public string Title { get; set; }
-        [Required]
-        [Column("text", TypeName = "nvarchar(4000)")]
-        public string Text { get; set; }
-        [Required]
-        [Column("type_id")]
-        public Guid TypeId { get; set; }
-        [Required]
-        [Column("user_id")]
-        [ForeignKey("user_id")]
-        public Guid UserId { get; set; }
-        public User User { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
-        public ICollection<BlogLike> BlogLikes { get; set; } = new List<BlogLike>();
-        public ICollection<BlogComment> BlogComments { get; set; } = new List<BlogComment>();
-    }
+    [Column("blog_name", TypeName = "nvarchar(150)")]
+    public required string BlogName { get; set; }
+
+    [Column("slag", TypeName = "nvarchar(4000)")]
+    public required string Slug { get; set; }
+
+    [Column("blog_description", TypeName = "nvarchar(4000)")]
+    public string? Description { get; set; }
+
+    public List<User> Users { get; set; }
 }

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  base-api:
+    image: base-api-image:latest
+    container_name: base-api-container
+    build:
+      context: .
+      dockerfile: MyBlogSite.APIs/Base/Dockerfile
+    ports:
+      - "5000:80"
+    networks:
+      - app-network
+    environment:
+      - ASPNETCORE_URLS=http://*:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      retries: 3
+
+  blog-site-api:
+    image: blog-site-api-image:latest
+    container_name: blog-site-api-container
+    build:
+      context: .
+      dockerfile: MyBlogSite.APIs/MyBlogSite/Dockerfile
+    ports:
+      - "5001:80"
+    networks:
+      - app-network
+    environment:
+      - ASPNETCORE_URLS=http://*:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - base-api
+
+networks:
+  app-network:
+    driver: bridge
