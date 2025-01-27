@@ -283,7 +283,7 @@ namespace MyBlogSite.Dal.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
 
-                    b.Property<Guid>("BlogId")
+                    b.Property<Guid?>("BlogId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("blog_id");
 
@@ -412,8 +412,7 @@ namespace MyBlogSite.Dal.Migrations
                     b.HasOne("MyBlogSite.Dal.Entity.Blog", "Blog")
                         .WithMany("Users")
                         .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Blog");
                 });
