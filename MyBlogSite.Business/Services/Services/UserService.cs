@@ -1,19 +1,25 @@
 using System.Linq.Expressions;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using MyBlogSite.Business.Extensions;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Business.Services.SlugServices.Interface;
 using MyBlogSite.Core.Dtos;
+using MyBlogSite.Core.Dtos.Response;
 using MyBlogSite.Core.Dtos.User;
 using MyBlogSite.Core.Helpers;
 using MyBlogSite.Core.Producers.Interface;
-using MyBlogSite.Dal;
 using MyBlogSite.Dal.Entity;
 using MyBlogSite.Dal.Repository.IRepository;
 
 namespace MyBlogSite.Business.Services.Services;
 
-public class UserService(IUserRepository userRepository, IMapper mapper, ISlugService slugService, IEmailProducer emailProducer) : IUserService
+public class UserService(
+    IUserRepository userRepository,
+    IMapper mapper,
+    ISlugService slugService,
+    IEmailProducer emailProducer) : IUserService
 {
     public async Task<UserViewDto> CreateAsync(UserCreateDto userCreateDto)
     {
@@ -22,37 +28,49 @@ public class UserService(IUserRepository userRepository, IMapper mapper, ISlugSe
         user.Blog.Slug = await slugService.GenerateUniqueBlogSlugAsync(userCreateDto.Blog.BlogName);
 
         user = await userRepository.CreateAsync(user);
-        
+
         await emailProducer.SendEmailQueueAsync(new EmailMessageDto
         {
             Subject = "Hoş Geldiniz!",
             Body = MailTemplateHelper.WelcomeMessage(user.Name + " " + user.Surname.ToUpper()),
             ToEmails = [user.Email]
         });
-        
+
         return mapper.Map<UserViewDto>(user);
     }
     
-    public async Task<List<UserViewDto>> GetAllUsers()
+    public UserUpdateDto Update(UserUpdateDto userUpdateDto)
     {
-        var users = await userRepository.GetAll().ToListAsync();
-        return mapper.Map<List<UserViewDto>>(users);
+        var user = mapper.Map<User>(userUpdateDto);
+        user = userRepository.Update(user);
+        return userUpdateDto;
+    }
+
+    public async Task<PaginationResult<UserViewDto>> GetAllUsersPagination(int pageNumber, int pageSize)
+    {
+        var users = await userRepository
+            .GetAll()
+            .ProjectTo<UserViewDto>(mapper.ConfigurationProvider)
+            .ToPaginationAsync(pageNumber, pageSize);
+        return users;
     }
 
     public async Task<User?> GetFirstAsync(Expression<Func<User, bool>> method)
     {
         return await userRepository.GetFirstAsync(method);
     }
-    
+
     public async Task<bool> BeExistingUsername(string? username, CancellationToken cancellationToken = default)
     {
-        var result = !await userRepository.GetWhere(x => x.Username == username && x.IsActive).AnyAsync(cancellationToken);
+        var result = !await userRepository.GetWhere(x => x.Username == username && x.IsActive)
+            .AnyAsync(cancellationToken);
         return result;
     }
 
     public async Task<bool> BeExistingEmail(string? username, CancellationToken cancellationToken = default)
     {
-        var result = !await userRepository.GetWhere(x => x.Username == username && x.IsActive).AnyAsync(cancellationToken);
+        var result = !await userRepository.GetWhere(x => x.Username == username && x.IsActive)
+            .AnyAsync(cancellationToken);
         return result;
     }
 }

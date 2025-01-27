@@ -20,7 +20,7 @@ public class UserController(IUserService userService) : BaseController
     /// </summary>
     [Authorize]
     [HttpGet]
-    public async Task<Result> GetAll() => Result.Ok(await userService.GetAllUsers());
+    public async Task<PaginationResult<UserViewDto>> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10) => await userService.GetAllUsersPagination(pageNumber, pageSize);
 
     /// <summary>
     /// Yeni kullanıcı oluşturan endpoint.

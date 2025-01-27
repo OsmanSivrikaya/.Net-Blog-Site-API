@@ -25,8 +25,8 @@ namespace Base.Configurations
                 x.ReportApiVersions = true;
                 // API sürümünün nasıl okunacağını belirler. Bu örnekte, sorgu dizesi, HTTP başlığı ve URL segmenti üzerinden sürüm bilgisinin okunması birleştirilmiştir.
                 x.ApiVersionReader = ApiVersionReader.Combine(
-                    new QueryStringApiVersionReader("api-version"),
-                    new HeaderApiVersionReader("api-version"),
+                    // new QueryStringApiVersionReader("api-version"),
+                    // new HeaderApiVersionReader("api-version"),
                     new UrlSegmentApiVersionReader()
                     );
             }).AddVersionedApiExplorer(x =>

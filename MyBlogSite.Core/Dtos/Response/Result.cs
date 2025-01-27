@@ -43,6 +43,22 @@ namespace MyBlogSite.Core.Dtos.Response
         public string? StackTrace { get; set; }
 
         /// <summary>
+        /// Başarılı bir 200 OK yanıtı döner
+        /// </summary>
+        /// <returns></returns>
+        public static Result Ok()
+        {
+            return new Result
+            {
+                Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-200-ok",
+                IsSuccess = true,
+                Message = "Success",
+                Data = null,
+                StatusCode = (int)HttpStatusCode.OK
+            };
+        }
+        
+        /// <summary>
         /// Başarılı bir 200 OK yanıtı döner.
         /// </summary>
         /// <param name="data">Yanıtla birlikte dönen veri.</param>

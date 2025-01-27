@@ -89,4 +89,38 @@ public static class MailTemplateHelper
 
         return message;
     }
+    public static string PasswordResetMessage(string fullName, string resetUrl)
+    {
+        var message = $@"
+                <!DOCTYPE html>
+                <html lang=""tr"">
+                <head>
+                    <meta charset=""UTF-8"">
+                    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                    <title>Şifre Sıfırlama Talebi</title>
+                    {style}
+                </head>
+                <body>
+                
+                    <div class=""container"">
+                        <div class=""header"">
+                            <h1>Şifre Sıfırlama Talebi</h1>
+                        </div>
+                        <div class=""content"">
+                            <h2>Merhaba {fullName},</h2>
+                            <p>Hesabınız için şifre sıfırlama talebi aldık. Şifrenizi sıfırlamak için aşağıdaki bağlantıya tıklayın:</p>
+                            <a href=""{resetUrl}"" class=""btn"">Şifremi Sıfırla</a>
+                            <p>Bağlantıya tıkladığınızda, şifrenizi güvenli bir şekilde değiştirebileceksiniz.</p>
+                            <p>Bu işlemi yapmadıysanız, e-postayı göz ardı edebilirsiniz.</p>
+                        </div>
+                        <div class=""footer"">
+                            <p>&copy; 2025 Blogumuz. Tüm hakları saklıdır.</p>
+                        </div>
+                    </div>
+                
+                </body>
+                </html>";
+
+        return message;
+    }
 }

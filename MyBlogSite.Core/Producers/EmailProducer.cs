@@ -29,7 +29,7 @@ public class EmailProducer(ISendEndpointProvider sendEndpointProvider,
 
         var mailMessage = new MailMessage
         {
-            From = new MailAddress(_mailSettings.Mail),
+            From = new MailAddress(_mailSettings.Mail, "Blog Sitesi"),
             Subject = message.Subject,
             Body = message.Body,
             IsBodyHtml = true,

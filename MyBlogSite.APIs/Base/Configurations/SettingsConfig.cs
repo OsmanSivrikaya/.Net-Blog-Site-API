@@ -15,6 +15,9 @@ public static class SettingsConfig
         var mailSettings = configuration.GetSection("MAIL_CONNECTION");
         services.Configure<MailSettings>(mailSettings);
         
+        var aesSettings = configuration.GetSection("AES_CONFIG");
+        services.Configure<AesSettings>(aesSettings);
+        
         services.AddSingleton<IConfiguration>(configuration);
         
         return services;

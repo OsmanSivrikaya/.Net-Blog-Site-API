@@ -1,4 +1,5 @@
 using AutoMapper;
+using MyBlogSite.Core.Dtos.Response;
 using MyBlogSite.Core.Dtos.User;
 using MyBlogSite.Dal.Entity;
 using MyBlogSite.Dtos.BlogType;
@@ -17,6 +18,7 @@ namespace MyBlogSite.Business.CustomMappping
                     Description = src.Blog.Description,
                     Slug = null
                 })).ReverseMap();
+            CreateMap<UserUpdateDto, User>().ReverseMap();
             CreateMap<UserViewDto, User>().ReverseMap();
         }
     }
