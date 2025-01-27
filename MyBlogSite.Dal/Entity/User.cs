@@ -33,7 +33,7 @@ public class User : BaseEntity
     // BlogId ile Blog ilişkisini netleştirdik
     [ForeignKey("blog_id")]
     [Column("blog_id")]
-    public required Guid BlogId { get; set; }
+    public required Guid? BlogId { get; set; }
 
-    public Blog Blog { get; set; }
+    public Blog? Blog { get; set; }
 }

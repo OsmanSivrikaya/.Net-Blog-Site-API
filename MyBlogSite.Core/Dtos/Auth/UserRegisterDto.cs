@@ -1,17 +1,16 @@
 namespace MyBlogSite.Core.Dtos.User
 {
-    public class UserCreateDto
+    public class UserRegisterDto
     {
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? Username { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
-        public string? IsActive { get; set; }
-        public CreateBlogDto Blog { get; set; } = new CreateBlogDto();
+        public RegisterBlogDto? Blog { get; set; } = null;
     }
 
-    public class CreateBlogDto
+    public class RegisterBlogDto
     {
         public string? BlogName { get; set; }
         public string? Description { get; set; }

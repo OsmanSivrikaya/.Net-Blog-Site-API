@@ -19,44 +19,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88236b3a-5aa0-446f-900f-a87fc6b71278" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/Auth/UserLoginRequestDtoValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/Auth/UserResetPasswordApproveRequestDtoValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/Auth/UserResetPasswordRequestDtoValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Business/Extensions/PaginationExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Constants/RegexConst.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Auth/ResetPasswordTokenDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Auth/UserResetPasswordApproveRequestDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Auth/UserResetPasswordRequestDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Response/PaginationResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Settings/AesSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserUpdateDto.cs" afterDir="false" />
+    <list default="true" id="88236b3a-5aa0-446f-900f-a87fc6b71278" name="Changes" comment="user şifre sıfırlaması için gerekli methodlar eklendi.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Configurations/ApiVersioningConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Configurations/ApiVersioningConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Configurations/SettingsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Configurations/SettingsConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Exceptions/AppException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Exceptions/AppException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Exceptions/BadRequestException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Exceptions/BadRequestException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Exceptions/NotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Exceptions/NotFoundException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Base.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Base.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/User/UserCreateDtoValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/Auth/UserRegisterDtoValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/MyBlogSite.Business.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/MyBlogSite.Business.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IAuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/ITokenService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/ITokenService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/TokenService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/TokenService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Constants/ValidationMessagesConst.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Constants/ValidationMessagesConst.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Auth/UserLoginRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Auth/UserLoginRequestDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Response/ResponseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Response/Result.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Token/GenerateTokenRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Token/GenerateTokenRequestDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserViewDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserViewDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Helpers/MailTemplateHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Helpers/MailTemplateHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Producers/EmailProducer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Producers/EmailProducer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserCreateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Auth/UserRegisterDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" afterDir="false" />
+    </list>
+    <list id="b0d0f3c7-19b8-498e-88b2-19a7f5aeffc4" name="NotCommit" comment="">
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +74,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a136bc2293edfee659531dbdbc2eae59c4f5f89592df17da75de5fec24a4/DateTime.Windows.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b86cdfe19de105ff2eab7d5d4c613fd91b9adfe4f95bd82e2d6db593e6d3ca3/TaskContinuation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dfaa75884de49723ff8467db04967516826ca3fd9bfdf785351b819b15053/DefaultValidatorOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fb367341658aaedd7de424d4c9189db33c4387e268dcc4011918569442ab12/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/OSIVRIKAYA/RiderProjects/.Net-Blog-Site-API/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyBlogSite.Core/Dtos/Settings/FileStorageSettings.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -116,7 +95,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.Base: http.executor": "Run",
-    ".NET Launch Settings Profile.MailConsumer: http.executor": "Debug",
+    ".NET Launch Settings Profile.MailConsumer: http.executor": "Run",
     ".NET Launch Settings Profile.MyBlogSite: http.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -329,6 +308,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="88236b3a-5aa0-446f-900f-a87fc6b71278" name="Changes" comment="" />
+      <changelist id="b0d0f3c7-19b8-498e-88b2-19a7f5aeffc4" name="NotCommit" comment="" />
       <created>1737118988107</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -341,7 +321,7 @@
       <workItem from="1737613114408" duration="15000" />
       <workItem from="1737615234117" duration="1616000" />
       <workItem from="1737619588950" duration="6441000" />
-      <workItem from="1737956121287" duration="14559000" />
+      <workItem from="1737956121287" duration="16424000" />
     </task>
     <task id="LOCAL-00001" summary="Mail consumer and mail producer added">
       <option name="closed" value="true" />
@@ -391,7 +371,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737469881130</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="user şifre sıfırlaması için gerekli methodlar eklendi.">
+      <option name="closed" value="true" />
+      <created>1737978729278</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737978729278</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,6 +406,26 @@
     <MESSAGE value="Send mail bug fixed" />
     <MESSAGE value="added file manager services" />
     <MESSAGE value="kullanici kayıt endpointi yapildi&#10;kayit olunduktan sonra mail göndermesi saglandi." />
-    <option name="LAST_COMMIT_MESSAGE" value="kullanici kayıt endpointi yapildi&#10;kayit olunduktan sonra mail göndermesi saglandi." />
+    <MESSAGE value="user şifre sıfırlaması için gerekli methodlar eklendi." />
+    <option name="LAST_COMMIT_MESSAGE" value="user şifre sıfırlaması için gerekli methodlar eklendi." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs</url>
+          <line>29</line>
+          <properties documentPath="C:\Users\OSIVRIKAYA\RiderProjects\.Net-Blog-Site-API\MyBlogSite.APIs\MyBlogSite\Controllers\v1\AuthController.cs" containingFunctionPresentation="Method 'UserRegister'">
+            <startOffsets>
+              <option value="951" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1015" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

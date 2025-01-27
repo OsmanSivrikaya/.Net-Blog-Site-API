@@ -21,17 +21,4 @@ public class UserController(IUserService userService) : BaseController
     [Authorize]
     [HttpGet]
     public async Task<PaginationResult<UserViewDto>> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10) => await userService.GetAllUsersPagination(pageNumber, pageSize);
-
-    /// <summary>
-    /// Yeni kullanıcı oluşturan endpoint.
-    /// </summary>
-    /// <param name="userCreateDto">Oluşturulacak kullanıcı veri transfer nesnesi.</param>
-    [HttpPost]
-    [ValidateModel]
-    [Transaction]
-    public async Task<Result> UserCreate(UserCreateDto userCreateDto)
-    {
-        var user = await userService.CreateAsync(userCreateDto);
-        return Result.Ok(user);
-    }
 }

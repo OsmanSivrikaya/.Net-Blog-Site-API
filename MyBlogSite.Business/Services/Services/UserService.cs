@@ -21,11 +21,14 @@ public class UserService(
     ISlugService slugService,
     IEmailProducer emailProducer) : IUserService
 {
-    public async Task<UserViewDto> CreateAsync(UserCreateDto userCreateDto)
+    public async Task<UserViewDto> RegisterUserAsync(UserRegisterDto userRegisterDto)
     {
-        var user = mapper.Map<User>(userCreateDto);
+        var user = mapper.Map<User>(userRegisterDto);
         user.Password = HashHelper.ComputeSha256Hash(user.Password);
-        user.Blog.Slug = await slugService.GenerateUniqueBlogSlugAsync(userCreateDto.Blog.BlogName);
+        user.IsActive = true;
+
+        if (user.Blog != null)
+            user.Blog.Slug = await slugService.GenerateUniqueBlogSlugAsync(userRegisterDto.Blog?.BlogName);
 
         user = await userRepository.CreateAsync(user);
 

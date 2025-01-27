@@ -3,11 +3,11 @@ using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Constants;
 using MyBlogSite.Core.Dtos.User;
 
-namespace Base.Validator.User;
+namespace Base.Validator.Auth;
 
-public class UserCreateDtoValidator : AbstractValidator<UserCreateDto>
+public class UserRegisterDtoValidator : AbstractValidator<UserRegisterDto>
 {
-    public UserCreateDtoValidator(IUserService userService, IBlogService blogService)
+    public UserRegisterDtoValidator(IUserService userService, IBlogService blogService)
     {
         RuleFor(x => x.Name)
             .Cascade(CascadeMode.Stop)
@@ -53,19 +53,15 @@ public class UserCreateDtoValidator : AbstractValidator<UserCreateDto>
             .Length(1, 300)
             .WithMessage(ValidationMessagesConst.LengthMessage);
 
-        RuleFor(x => x.IsActive)
-            .Cascade(CascadeMode.Stop)
-            .NotNull()
-            .WithMessage(ValidationMessagesConst.RequiredMessage);
-        
         RuleFor(x => x.Blog)
-            .SetValidator(new CreateBlogDtoValidator(blogService));
+            .SetValidator(new RegisterBlogDtoValidator(blogService))
+            .When(x => x.Blog is not null);
     }
 }
 
-public class CreateBlogDtoValidator : AbstractValidator<CreateBlogDto>
+public class RegisterBlogDtoValidator : AbstractValidator<RegisterBlogDto>
 {
-    public CreateBlogDtoValidator(IBlogService blogService)
+    public RegisterBlogDtoValidator(IBlogService blogService)
     {
         RuleFor(x => x.BlogName)
             .Cascade(CascadeMode.Stop)
