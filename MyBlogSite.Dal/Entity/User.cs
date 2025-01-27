@@ -27,10 +27,12 @@ public class User : BaseEntity
     [Column("role")]
     public RoleEnum Role { get; set; }
 
+    /// <summary>
+    /// Blog kurucu olduğunu temsil eder
+    /// </summary>
     [Column("is_executive")]
     public bool IsExecutive { get; set; }
     
-    // BlogId ile Blog ilişkisini netleştirdik
     [ForeignKey("blog_id")]
     [Column("blog_id")]
     public required Guid? BlogId { get; set; }
