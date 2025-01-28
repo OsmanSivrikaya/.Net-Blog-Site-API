@@ -135,6 +135,23 @@ namespace MyBlogSite.Core.Dtos.Response
         /// <summary>
         /// Hatalı bir 404 Not Found yanıtı döner.
         /// </summary>
+        /// <returns></returns>
+        public static Result NotFound()
+        {
+            return new Result
+            {
+                Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-404-not-found",
+                IsSuccess = false,
+                Message = "Error",
+                Data = null,
+                ErrorCode = null,
+                StatusCode = (int)HttpStatusCode.NotFound
+            };
+        }
+        
+        /// <summary>
+        /// Hatalı bir 404 Not Found yanıtı döner.
+        /// </summary>
         /// <param name="data">Yanıtla birlikte dönen veri.</param>
         /// <param name="errorCode">Hata kodu.</param>
         /// <returns>JsonResult ile dönen 404 Not Found yanıtı.</returns>

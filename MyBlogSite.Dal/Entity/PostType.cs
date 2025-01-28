@@ -12,5 +12,11 @@ namespace MyBlogSite.Dal.Entity
         
         [Column("slag", TypeName = "nvarchar(4000)")]
         public required string Slug { get; set; }
+        
+        [Column("is_active")]
+        public required bool IsActive { get; set; }
+        
+        [Column("is_deleted")]
+        public required bool IsDeleted { get; set; }
     }
 }

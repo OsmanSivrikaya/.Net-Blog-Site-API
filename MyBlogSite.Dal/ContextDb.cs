@@ -18,9 +18,9 @@ public class ContextDb(DbContextOptions<ContextDb> options) : DbContext(options)
     {
         modelBuilder.Entity<Blog>().ToTable("blogs");
         modelBuilder.Entity<Post>().ToTable("post");
-        modelBuilder.Entity<PostComment>().ToTable("blog_comments");
-        modelBuilder.Entity<PostLike>().ToTable("blog_likes");
-        modelBuilder.Entity<PostType>().ToTable("blog_types");
+        modelBuilder.Entity<PostComment>().ToTable("post_comments");
+        modelBuilder.Entity<PostLike>().ToTable("post_likes");
+        modelBuilder.Entity<PostType>().ToTable("post_types");
         modelBuilder.Entity<User>().ToTable("users");
         modelBuilder.Entity<PostTag>().ToTable("post_tags");
         modelBuilder.Entity<Tag>().ToTable("tags");

@@ -1,7 +1,7 @@
 using AutoMapper;
+using MyBlogSite.Core.Dtos.PostType;
 using MyBlogSite.Core.Dtos.User;
 using MyBlogSite.Dal.Entity;
-using MyBlogSite.Dtos.BlogType;
 
 namespace MyBlogSite.Business.CustomMappping
 {
@@ -9,9 +9,19 @@ namespace MyBlogSite.Business.CustomMappping
     {
         public MappingProfile()
         {
-            CreateMap<PostType, BlogTypeCreateDto>().ReverseMap();
+            #region PostType
+
+            CreateMap<PostType, PostTypeCreateDto>().ReverseMap();
+            CreateMap<PostType, PostTypeUpdateDto>().ReverseMap();
+            CreateMap<PostTypeViewDto, PostType>().ReverseMap();
+
+            #endregion
+
+            #region User
+
             CreateMap<UserRegisterDto, User>()
-                .ForMember(dest => dest.Blog, opt => opt.MapFrom(src => src.Blog != null ? new Blog
+                .ForMember(dest => dest.Blog, opt => opt.MapFrom(src => src.Blog != null
+                    ? new Blog
                     {
                         BlogName = src.Blog.BlogName,
                         Description = src.Blog.Description,
@@ -21,6 +31,8 @@ namespace MyBlogSite.Business.CustomMappping
                 .ReverseMap();
             CreateMap<UserUpdateDto, User>().ReverseMap();
             CreateMap<UserViewDto, User>().ReverseMap();
+
+            #endregion
         }
     }
 }

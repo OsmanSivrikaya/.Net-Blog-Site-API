@@ -19,10 +19,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88236b3a-5aa0-446f-900f-a87fc6b71278" name="Changes" comment="user table güncellendi blogId boş geçilebilir yapıldı">
+    <list default="true" id="88236b3a-5aa0-446f-900f-a87fc6b71278" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/PostType/PostTypeFilterDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/PostType/PostTypeUpdateDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/PostType/PostTypeViewDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/dataSources/d3873361-dc87-44e8-9e49-a83a0754f27d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/dataSources/d3873361-dc87-44e8-9e49-a83a0754f27d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/BlogTypeCreateDtoValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/PostType/BlogTypeCreateDtoValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/BlogTypeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/PostTypeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IBlogTypeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IPostTypeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/BlogTypeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/PostTypeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/SlugServices/Interface/ISlugService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/SlugServices/Interface/ISlugService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/SlugServices/SlagService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/SlugServices/SlagService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/BlogType/BlogTypeCreateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/PostType/PostTypeCreateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Response/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Response/Result.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/ContextDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/ContextDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/PostType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/PostType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" afterDir="false" />
     </list>
     <list id="b0d0f3c7-19b8-498e-88b2-19a7f5aeffc4" name="NotCommit" comment="">
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" afterDir="false" />
@@ -68,9 +82,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dfaa75884de49723ff8467db04967516826ca3fd9bfdf785351b819b15053/DefaultValidatorOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fb367341658aaedd7de424d4c9189db33c4387e268dcc4011918569442ab12/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/OSIVRIKAYA/RiderProjects/.Net-Blog-Site-API/MyBlogSite.APIs/MyBlogSite/Controllers/v1/UserController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/OSIVRIKAYA/RiderProjects/.Net-Blog-Site-API/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/OSIVRIKAYA/RiderProjects/.Net-Blog-Site-API/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyBlogSite.Core/Dtos/Settings/FileStorageSettings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/OSIVRIKAYA/RiderProjects/.Net-Blog-Site-API/MyBlogSite.Dal/Entity/User.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/OSIVRIKAYA/RiderProjects/.Net-Blog-Site-API/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -86,22 +102,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Base: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.MailConsumer: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.MyBlogSite: http.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Base: http.executor": "Run",
+    ".NET Launch Settings Profile.MailConsumer: http.executor": "Run",
+    ".NET Launch Settings Profile.MyBlogSite: http.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.MyBlogSite: http">
     <configuration name="Base: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MyBlogSite.APIs/Base/Base.csproj" />
@@ -315,7 +331,8 @@
       <workItem from="1737613114408" duration="15000" />
       <workItem from="1737615234117" duration="1616000" />
       <workItem from="1737619588950" duration="6441000" />
-      <workItem from="1737956121287" duration="21797000" />
+      <workItem from="1737956121287" duration="22820000" />
+      <workItem from="1738044369709" duration="7973000" />
     </task>
     <task id="LOCAL-00001" summary="Mail consumer and mail producer added">
       <option name="closed" value="true" />
@@ -389,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737980664157</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="bug fixed">
+      <option name="closed" value="true" />
+      <created>1737987352013</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737987352013</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,13 +437,13 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Mail consumer and mail producer added" />
     <MESSAGE value="updated" />
-    <MESSAGE value="bug fixed" />
     <MESSAGE value="Send mail bug fixed" />
     <MESSAGE value="added file manager services" />
     <MESSAGE value="kullanici kayıt endpointi yapildi&#10;kayit olunduktan sonra mail göndermesi saglandi." />
     <MESSAGE value="user şifre sıfırlaması için gerekli methodlar eklendi." />
     <MESSAGE value="User register güncellendi" />
     <MESSAGE value="user table güncellendi blogId boş geçilebilir yapıldı" />
-    <option name="LAST_COMMIT_MESSAGE" value="user table güncellendi blogId boş geçilebilir yapıldı" />
+    <MESSAGE value="bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixed" />
   </component>
 </project>

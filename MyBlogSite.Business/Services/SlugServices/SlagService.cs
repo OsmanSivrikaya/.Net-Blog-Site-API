@@ -1,12 +1,35 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Business.Services.SlugServices.Interface;
+using MyBlogSite.Dal.Repository.IRepository;
 
 namespace MyBlogSite.Business.Services.SlugServices;
 
-public class SlagService(IBlogService blogService) : ISlugService
+public class SlagService(IBlogRepository blogRepository, IPostTypeRepository postTypeRepository) : ISlugService
 {
+    /// <summary>
+    /// Post type için uniq bir slug oluşturur.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    public async Task<string> GenerateUniquePostTypeSlugAsync(string? input)
+    {
+        var baseSlug = GenerateSlug(input);
+        var slug = baseSlug;
+        var counter = 1;
+
+        // Benzersizlik kontrolü
+        while (await postTypeRepository.GetWhere(x => x.Slug == slug).AnyAsync())
+        {
+            slug = $"{baseSlug}-{counter}";
+            counter++;
+        }
+
+        return slug;
+    }
+
     /// <summary>
     /// Blog için uniq bir slug oluşturur
     /// </summary>
@@ -19,7 +42,7 @@ public class SlagService(IBlogService blogService) : ISlugService
         var counter = 1;
 
         // Benzersizlik kontrolü
-        while (await blogService.BeExistingSlug(slug))
+        while (await blogRepository.GetWhere(x => x.Slug == slug).AnyAsync())
         {
             slug = $"{baseSlug}-{counter}";
             counter++;
@@ -56,6 +79,7 @@ public class SlagService(IBlogService blogService) : ISlugService
         {
             stringBuilder.Append(replacements.TryGetValue(character, out var replacement) ? replacement : character);
         }
+
         return stringBuilder.ToString();
     }
 }
