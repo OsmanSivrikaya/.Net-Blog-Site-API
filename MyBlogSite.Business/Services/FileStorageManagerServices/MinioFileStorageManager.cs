@@ -1,19 +1,23 @@
-﻿using Minio;
+﻿using Microsoft.AspNetCore.Http;
+using Minio;
 using Minio.DataModel.Args;
 using MyBlogSite.Business.Services.FileStorageManagerServices.Interface;
 using MyBlogSite.Core.Dtos.Settings;
+using MyBlogSite.Core.Enums;
 
 namespace MyBlogSite.Business.Services.FileStorageManagerServices;
 
 public class MinioFileStorageManager(MinioClient _minioClient) : IFileStorageManager
 {
-    public async Task<string> UploadFileAsync(Stream fileStream, string fileName, string contentType)
+    public async Task<string> UploadFileAsync(IFormFile file, string folderName, string fileName)
     {
+        var contentType = FileHelper.GetContentType(file);
+        await using var stream = file.OpenReadStream();
         // PutObjectArgs ile yükleme işlemi yapılandırması
         var putObjectArgs = new PutObjectArgs()
             .WithObject(fileName)               // Yüklenen dosyanın adı
-            .WithStreamData(fileStream)           // Dosya verisi
-            .WithObjectSize(fileStream.Length)    // Dosyanın boyutu
+            .WithStreamData(stream)           // Dosya verisi
+            .WithObjectSize(stream.Length)    // Dosyanın boyutu
             .WithContentType(contentType);        // Dosya türü (MIME type)
 
         // Dosyayı MinIO'ya yükleyin

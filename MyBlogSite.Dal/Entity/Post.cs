@@ -8,15 +8,23 @@ public class Post : BaseEntity
     [Column("blog_id")]
     public required Guid BlogId { get; set; }
 
-    // Her post bir bloga bağlı olmalı
     public Blog Blog { get; set; }
 
+    /// <summary>
+    /// Post Başlık
+    /// </summary>
     [Column("title", TypeName = "nvarchar(255)")]
     public required string Title { get; set; }
-
+    
+    /// <summary>
+    /// Post İçerik
+    /// </summary>
     [Column("content", TypeName = "nvarchar(4000)")]
     public required string Content { get; set; }
 
+    /// <summary>
+    /// Post Uniq İsimlendirme
+    /// </summary>
     [Column("slag", TypeName = "nvarchar(4000)")]
     public required string Slug { get; set; }
 

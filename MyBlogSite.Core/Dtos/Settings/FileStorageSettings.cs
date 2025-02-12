@@ -4,6 +4,7 @@ public class FileStorageSettings
 {
     public FileStorageType Type { get; set; }
     public MinioSettings? MinioSettings { get; set; } 
+    public WasabiSettings? WasabiSettings { get; set; } 
 }
 
 public class MinioSettings
@@ -14,7 +15,17 @@ public class MinioSettings
     public string BucketName { get; set; } = string.Empty;
 }
 
+public class WasabiSettings
+{
+    public string Endpoint { get; set; } = string.Empty;
+    public string AccessKey { get; set; } = string.Empty;
+    public string SecretKey { get; set; } = string.Empty;
+    public string BucketName { get; set; } = string.Empty;
+}
+
+
 public enum FileStorageType
 {
     Minio,
+    Wasabi
 }

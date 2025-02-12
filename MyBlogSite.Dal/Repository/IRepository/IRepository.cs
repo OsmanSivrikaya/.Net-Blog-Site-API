@@ -47,6 +47,13 @@ public interface IRepository<T> where T : class
     Task<T> CreateAsync(T entity);
 
     /// <summary>
+    /// List olarak yeni bir varlık oluşturur ve veritabanına ekler.
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <returns></returns>
+    Task<List<T>> CreateRangeAsync(List<T> entities);
+    
+    /// <summary>
     /// Birden fazla varlık oluşturur ve veritabanına ekler.
     /// </summary>
     /// <param name="entities">Eklenecek varlıkların koleksiyonu.</param>
@@ -68,4 +75,11 @@ public interface IRepository<T> where T : class
     /// <param name="cancellationToken"></param>
     /// <returns>Güncellenen varlık.</returns>
     T Update(T entity);
+    
+    /// <summary>
+    /// list şeklindeki varlıkları günceller
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <returns></returns>
+    List<T> UpdateRange(List<T> entities);
 }

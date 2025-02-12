@@ -1,4 +1,8 @@
+using Base.Attributes;
 using FluentValidation;
+using MyBlogSite.Core.Producers;
+using MyBlogSite.Core.Producers.Interface;
+using MyBlogSite.Dal.Repository.UnitofWork;
 
 namespace Base.Configurations
 {
@@ -8,6 +12,9 @@ namespace Base.Configurations
         {
             // Validatörlerinizi burada belirtebilirsiniz
             services.AddValidatorsFromAssemblyContaining<Program>();
+            services.AddScoped<IUnitofwork, UnitOfWork>();
+            services.AddScoped<IEmailProducer, EmailProducer>();
+            services.AddScoped<TransactionAttribute>();
             return services;
         }
     }

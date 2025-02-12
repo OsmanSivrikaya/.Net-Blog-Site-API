@@ -1,4 +1,5 @@
 using AutoMapper;
+using MyBlogSite.Core.Dtos.Post;
 using MyBlogSite.Core.Dtos.PostType;
 using MyBlogSite.Core.Dtos.User;
 using MyBlogSite.Dal.Entity;
@@ -32,6 +33,12 @@ namespace MyBlogSite.Business.CustomMappping
             CreateMap<UserUpdateDto, User>().ReverseMap();
             CreateMap<UserViewDto, User>().ReverseMap();
 
+            #endregion
+            
+            #region Post
+            
+            CreateMap<PostCreateDto, Post>().ReverseMap();
+            
             #endregion
         }
     }

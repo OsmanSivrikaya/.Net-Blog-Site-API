@@ -24,6 +24,18 @@ public class Repository<T>(ContextDb context) : IRepository<T> where T : BaseEnt
         await _dbSet.AddAsync(entity);
         return entity;
     }
+    
+    /// <summary>
+    /// List olarak yeni bir varlık oluşturur ve veritabanına ekler.
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <returns></returns>
+    public async Task<List<T>> CreateRangeAsync(List<T> entities)
+    {
+        entities.ForEach(x=> x.CreatedDate = DateTime.UtcNow);
+        await _dbSet.AddRangeAsync(entities);
+        return entities;
+    }
 
     /// <summary>
     /// Birden fazla varlık oluşturur ve veritabanına ekler.
@@ -95,5 +107,19 @@ public class Repository<T>(ContextDb context) : IRepository<T> where T : BaseEnt
     {
         context.Entry(entity).State = EntityState.Modified;
         return entity;
+    }
+    
+    /// <summary>
+    /// list şeklindeki varlıkları günceller
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <returns></returns>
+    public List<T> UpdateRange(List<T> entities)
+    {
+        foreach (var entity in entities)
+        {
+            context.Entry(entity).State = EntityState.Modified;
+        }
+        return entities;
     }
 }

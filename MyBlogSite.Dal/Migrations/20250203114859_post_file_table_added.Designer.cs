@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBlogSite.Dal;
 
@@ -11,9 +12,11 @@ using MyBlogSite.Dal;
 namespace MyBlogSite.Dal.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20250203114859_post_file_table_added")]
+    partial class post_file_table_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,51 +154,6 @@ namespace MyBlogSite.Dal.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("post_comments", (string)null);
-                });
-
-            modelBuilder.Entity("MyBlogSite.Dal.Entity.PostFile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("id");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_date");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
-                        .HasColumnName("file_name");
-
-                    b.Property<string>("FileType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
-                        .HasColumnName("file_type");
-
-                    b.Property<string>("FileUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
-                        .HasColumnName("file_url");
-
-                    b.Property<bool>("IsMainFile")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_main_file");
-
-                    b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("post_id");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_date");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("post_files", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogSite.Dal.Entity.PostLike", b =>
@@ -431,17 +389,6 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.HasOne("MyBlogSite.Dal.Entity.Post", "Post")
                         .WithMany("BlogComments")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Post");
-                });
-
-            modelBuilder.Entity("MyBlogSite.Dal.Entity.PostFile", b =>
-                {
-                    b.HasOne("MyBlogSite.Dal.Entity.Post", "Post")
-                        .WithMany()
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
