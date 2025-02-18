@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using MyBlogSite.Core.Dtos;
+using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Producers.Interface;
 
 namespace MailConsumer;

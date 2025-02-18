@@ -3,6 +3,7 @@ using System.Net.Mail;
 using MassTransit;
 using Microsoft.Extensions.Options;
 using MyBlogSite.Core.Dtos;
+using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Dtos.Settings;
 using MyBlogSite.Core.Producers.Interface;
 

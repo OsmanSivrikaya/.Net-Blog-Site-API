@@ -2,14 +2,13 @@
 using Minio;
 using Minio.DataModel.Args;
 using MyBlogSite.Business.Services.FileStorageManagerServices.Interface;
-using MyBlogSite.Core.Dtos.Settings;
-using MyBlogSite.Core.Enums;
+using MyBlogSite.Core.Dtos.FileStoreManagerDtos;
 
 namespace MyBlogSite.Business.Services.FileStorageManagerServices;
 
 public class MinioFileStorageManager(MinioClient _minioClient) : IFileStorageManager
 {
-    public async Task<string> UploadFileAsync(IFormFile file, string folderName, string fileName)
+    public async Task<UploadResponseDto> UploadFileAsync(IFormFile file, string folderName, string fileName)
     {
         var contentType = FileHelper.GetContentType(file);
         await using var stream = file.OpenReadStream();
@@ -25,7 +24,7 @@ public class MinioFileStorageManager(MinioClient _minioClient) : IFileStorageMan
 
         // Dosya başarıyla yüklendikten sonra, URL döndürülür
         //var fileUrl = $"https://your-minio-endpoint/{_bucketName}/{fileName}";
-        return "";
+        return new UploadResponseDto();
     }
 
     public async Task<Stream> DownloadFileAsync(string fileName)

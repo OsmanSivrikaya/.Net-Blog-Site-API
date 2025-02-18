@@ -9,6 +9,7 @@ namespace MyBlogSite.Business.Services.IServices
     {
         Task<PaginationResult<UserViewDto>> GetAllUsersPagination(int pageNumber, int pageSize);
         Task<User?> GetFirstAsync(Expression<Func<User, bool>> method);
+        Task<List<Guid>> GetAllUserByBlogIdAsync(Guid blogId);
         Task<UserViewDto> RegisterUserAsync(UserRegisterDto userRegisterDto);
         UserUpdateDto Update(UserUpdateDto userUpdateDto);
         Task<bool> BeExistingUsername(string? username, CancellationToken cancellationToken);

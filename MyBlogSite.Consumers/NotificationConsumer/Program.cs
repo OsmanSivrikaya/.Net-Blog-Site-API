@@ -1,7 +1,7 @@
-using MailConsumer.Configurations;
+using Microsoft.AspNetCore.SignalR;
 using MyBlogSite.Core.Dtos.Settings;
-using MyBlogSite.Core.Producers;
-using MyBlogSite.Core.Producers.Interface;
+using NotificationConsumer;
+using NotificationConsumer.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +17,7 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 builder.Services.AddOpenApi();
-builder.Services.AddScoped<IEmailProducer, EmailProducer>();
-
-var mailSettings = configuration.GetSection("MAIL_CONNECTION");
-builder.Services.Configure<MailSettings>(mailSettings);
+builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
 var rabbitMqSettings = configuration.GetSection("RabbitMQ").Get<RabbitMqSettingDto>();
 if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqSettings);

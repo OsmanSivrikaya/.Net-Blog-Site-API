@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Dtos;
 using MyBlogSite.Core.Dtos.Auth;
+using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Dtos.Response;
 using MyBlogSite.Core.Dtos.Token;
 using MyBlogSite.Core.Dtos.User;

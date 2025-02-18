@@ -1,4 +1,4 @@
-﻿namespace MyBlogSite.Core.Dtos;
+﻿namespace MyBlogSite.Core.Dtos.ProducerDtos;
 
 public class EmailMessageDto
 {

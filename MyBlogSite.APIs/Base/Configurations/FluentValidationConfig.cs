@@ -14,6 +14,7 @@ namespace Base.Configurations
             services.AddValidatorsFromAssemblyContaining<Program>();
             services.AddScoped<IUnitofwork, UnitOfWork>();
             services.AddScoped<IEmailProducer, EmailProducer>();
+            services.AddScoped<INotificationProducer, NotificationProducer>();
             services.AddScoped<TransactionAttribute>();
             return services;
         }

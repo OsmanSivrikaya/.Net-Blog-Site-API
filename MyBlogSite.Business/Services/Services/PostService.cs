@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using MyBlogSite.Business.Services.FileStorageManagerServices.Interface;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Business.Services.SlugServices.Interface;
+using MyBlogSite.Core.Constants;
 using MyBlogSite.Core.Dtos.Post;
+using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Dtos.Response;
 using MyBlogSite.Core.Enums;
 using MyBlogSite.Dal.Entity;
@@ -17,10 +21,14 @@ public class PostService(
     IPostRepository postRepository,
     IMapper mapper,
     ITagService tagService,
-    ISlugService slugService) : IPostService
+    ISlugService slugService,
+    IFileStorageManager fileStorageManager,
+    IPostFileService postFileService,
+    INotificationService notificationService,
+    IUserService userService) : IPostService
 {
     #region Methods
-    
+
     /// <summary>
     /// Yeni bir blog gönderisi oluşturur ve etiketlerini ekler.
     /// </summary>
@@ -39,18 +47,39 @@ public class PostService(
         // Post'u veritabanına ekle
         post = await postRepository.CreateAsync(post);
         
+        var userIds = await userService.GetAllUserByBlogIdAsync(post.BlogId);
+        
+        // bildirim gönderiyoruz
+        await notificationService.SendNotificationQueueAsync(new NotificationMessageDto()
+        {
+            Type = NotificationTypeEnum.PostCreate,
+            Message = "Gönderiniz yayınlandı.",
+            PostSlug = post.Slug,
+            UserIds = userIds
+        });
+        
         return Result.Ok("Post has been created", post.Id);
     }
 
-    public async Task<Result> PostImageAddedAsync()
+    public async Task<Result> PostImageAddedAsync(IFormFile formFile, Guid postId, bool isMainFile)
     {
-        return null;
+        var response = await fileStorageManager.UploadFileAsync(formFile, FolderConst.BLOG_CONTENT, formFile.FileName);
+        await postFileService.CreateAsync(new PostFile
+        {
+            PostId = postId,
+            FileUrl = response.FileUrl,
+            IsMainFile = isMainFile,
+            FileType = response.FileType,
+            FileName = response.FileName,
+            FileDirectory = response.FileDirectory
+        });
+        return Result.Ok("Dosya ekleme başarılı.");
     }
 
     #endregion
-    
+
     #region Private Methods
-    
+
     /// <summary>
     /// Gönderiye ait etiketleri oluşturur ve ilişkilendirir.
     /// </summary>
@@ -60,16 +89,17 @@ public class PostService(
     private async Task<List<PostTag>> CreatePostTagListAsync(List<PostTagDto> postTags, Guid postId)
     {
         var postTagList = new List<PostTag>();
+
         #region Var olan etiketleri bağla
 
         // Var olan etiket ID'lerini al
         var tagIds = postTags.Select(x => x.TagId).Where(id => id.HasValue).Select(id => id.Value).ToList();
-    
+
         // Veritabanında bulunan etiketleri çek
         var existingTags = await tagService
             .GetWhere(x => tagIds.Contains(x.Id))
             .ToListAsync();
-    
+
         // Mevcut etiketleri PostTag nesnelerine ekleyerek listeye dahil et
         postTagList.AddRange(existingTags.Select(x => new PostTag
         {
@@ -107,15 +137,15 @@ public class PostService(
             .Select(x => x.Name)
             .Distinct()
             .ToList();
-    
+
         // Mevcut etiket isimlerini listeye ekleyerek karşılaştırma yap
         var existingTagNames = existingTags.Select(t => t.TagName)
             .Union(rejectedTags.Select(t => t.TagName))
             .ToHashSet();
-    
+
         // Sadece veritabanında olmayan etiketleri oluştur
         var newTags = newTagNames
-            .Where(name => !existingTagNames.Contains(name)) 
+            .Where(name => !existingTagNames.Contains(name))
             .Select(name => new Tag
             {
                 Id = Guid.NewGuid(),
@@ -139,6 +169,6 @@ public class PostService(
 
         return postTagList;
     }
-    
+
     #endregion
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MyBlogSite.Business.Extensions;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Business.Services.SlugServices.Interface;
-using MyBlogSite.Core.Dtos;
+using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Dtos.Response;
 using MyBlogSite.Core.Dtos.User;
 using MyBlogSite.Core.Helpers;
@@ -41,7 +41,7 @@ public class UserService(
 
         return mapper.Map<UserViewDto>(user);
     }
-    
+
     public UserUpdateDto Update(UserUpdateDto userUpdateDto)
     {
         var user = mapper.Map<User>(userUpdateDto);
@@ -56,6 +56,14 @@ public class UserService(
             .ProjectTo<UserViewDto>(mapper.ConfigurationProvider)
             .ToPaginationAsync(pageNumber, pageSize);
         return users;
+    }
+
+    public async Task<List<Guid>> GetAllUserByBlogIdAsync(Guid blogId)
+    {
+        return await userRepository
+            .GetWhere(x => x.BlogId == blogId && x.IsActive)
+            .Select(x => x.Id)
+            .ToListAsync();
     }
 
     public async Task<User?> GetFirstAsync(Expression<Func<User, bool>> method)

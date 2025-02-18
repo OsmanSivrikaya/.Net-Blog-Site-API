@@ -14,6 +14,7 @@ public class ContextDb(DbContextOptions<ContextDb> options) : DbContext(options)
     public DbSet<PostTag> PostTags { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<PostFile> PostFiles { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,6 +27,7 @@ public class ContextDb(DbContextOptions<ContextDb> options) : DbContext(options)
         modelBuilder.Entity<PostTag>().ToTable("post_tags");
         modelBuilder.Entity<Tag>().ToTable("tags");
         modelBuilder.Entity<PostFile>().ToTable("post_files");
+        modelBuilder.Entity<Notification>().ToTable("notifications");
         
         base.OnModelCreating(modelBuilder);
 

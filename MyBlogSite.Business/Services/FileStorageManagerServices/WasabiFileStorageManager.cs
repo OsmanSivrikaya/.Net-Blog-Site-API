@@ -4,6 +4,7 @@ using Amazon.S3.Transfer;
 using Base.Exceptions;
 using Microsoft.AspNetCore.Http;
 using MyBlogSite.Business.Services.FileStorageManagerServices.Interface;
+using MyBlogSite.Core.Dtos.FileStoreManagerDtos;
 using MyBlogSite.Core.Dtos.Settings;
 using MyBlogSite.Core.Enums;
 
@@ -14,7 +15,7 @@ namespace MyBlogSite.Business.Services.FileStorageManagerServices
     {
         private readonly TransferUtility _transferUtility = new TransferUtility(s3Client);
 
-        public async Task<string> UploadFileAsync(IFormFile file, string folderName, string fileName)
+        public async Task<UploadResponseDto> UploadFileAsync(IFormFile file, string folderName, string fileName)
         {
             if (file == null || file.Length == 0)
                 throw new ArgumentException("Geçersiz dosya!");
@@ -23,6 +24,9 @@ namespace MyBlogSite.Business.Services.FileStorageManagerServices
 
             try
             {
+                var uniqFileName = GetUniqueFileName(fileName);
+                var fileDirectory = $"{folderName}/{GetUniqueFileName(fileName)}";
+
                 var bucketExists = await CreateBucketAsync(bucketName);
                 if (!bucketExists)
                     throw new NotFoundException(fileName);
@@ -30,15 +34,21 @@ namespace MyBlogSite.Business.Services.FileStorageManagerServices
                 var uploadRequest = new PutObjectRequest()
                 {
                     BucketName = bucketName,
-                    Key = $"{folderName}/{GetUniqueFileName(fileName)}",
+                    Key = fileDirectory,
                     InputStream = file.OpenReadStream(),
                     ContentType = file.ContentType,
                     CannedACL = S3CannedACL.PublicRead
                 };
                 await s3Client.PutObjectAsync(uploadRequest);
-
-                return
+                var url =
                     $"https://{s3Client.Config.ServiceURL}/{fileStorageSettings.WasabiSettings?.BucketName}/{fileName}";
+                return new UploadResponseDto()
+                {
+                    FileType = file.ContentType,
+                    FileName = uniqFileName,
+                    FileUrl = url,
+                    FileDirectory = fileDirectory
+                };
             }
             catch (Exception ex)
             {

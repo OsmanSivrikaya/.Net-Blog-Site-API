@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignalR Bildirim Testi</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+</head>
+<body>
+
+<h2>SignalR Bildirim Testi</h2>
+<p>Bağlantı durumu: <span id="status">Bağlanıyor...</span></p>
+<ul id="notifications"></ul>
+
+<script>
+    // Backend'deki SignalR hub adresini buraya ekleyin
+    const hubUrl = "http://localhost:5000/notificationHub"; // API URL'ni buraya koy
+
+    // Kullanıcı token'ı (JWT token'ı backend'den aldıysan buraya ekle)
+    const userToken = "KULLANICININ_JWT_TOKENI";
+
+    // SignalR bağlantısını oluştur
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl(hubUrl, {
+            accessTokenFactory: () => userToken // JWT token ile bağlantı kur
+        })
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    // Bağlantıyı başlat
+    async function startConnection() {
+        try {
+            await connection.start();
+            document.getElementById("status").innerText = "Bağlandı!";
+            console.log("SignalR bağlantısı başarılı.");
+        } catch (err) {
+            console.error("Bağlantı hatası:", err);
+            setTimeout(startConnection, 5000); // Bağlantı koparsa 5 saniye sonra tekrar dene
+        }
+    }
+
+    connection.onclose(() => {
+        document.getElementById("status").innerText = "Bağlantı kapandı. Tekrar bağlanıyor...";
+        startConnection();
+    });
+
+    // Backend'den "ReceiveNotification" adlı event tetiklendiğinde çalışır
+    connection.on("ReceiveNotification", (message) => {
+        console.log("Yeni Bildirim:", message);
+
+        const notificationList = document.getElementById("notifications");
+        const listItem = document.createElement("li");
+        listItem.innerText = `📢 ${message.Message} - ${message.CreatedAt}`;
+        notificationList.appendChild(listItem);
+    });
+
+    // Bağlantıyı başlat
+    startConnection();
+</script>
+
+</body>
+</html>

@@ -20,6 +20,9 @@ public class PostFile : BaseEntity
     [Column("file_url", TypeName = "nvarchar(4000)")]
     public required string FileUrl { get; set; }
     
+    [Column("file_directory", TypeName = "nvarchar(4000)")]
+    public required string FileDirectory { get; set; }
+    
     [Column("is_main_file")]
     public required bool IsMainFile { get; set; }
 }

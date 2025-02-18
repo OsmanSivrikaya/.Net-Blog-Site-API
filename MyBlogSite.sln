@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "MyBlogSite.APIs\Bas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite.Dal", "MyBlogSite.Dal\MyBlogSite.Dal.csproj", "{3B2C89B8-8915-455B-BD6F-B4535FE667E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationConsumer", "MyBlogSite.Consumers\NotificationConsumer\NotificationConsumer.csproj", "{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{3B2C89B8-8915-455B-BD6F-B4535FE667E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B2C89B8-8915-455B-BD6F-B4535FE667E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B2C89B8-8915-455B-BD6F-B4535FE667E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +66,6 @@ Global
 		{D14D3A0E-23B8-4201-9427-133AA30DE98A} = {6DB7E4F2-9E8A-485E-9895-000D6284614A}
 		{EE6E0453-ADFC-4C2E-B68E-4B6C35782391} = {DEED74A5-2440-47DE-AD32-F5E36CEB1E19}
 		{AA654997-E397-4A34-A45E-4ED490CDA296} = {DEED74A5-2440-47DE-AD32-F5E36CEB1E19}
+		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5} = {6DB7E4F2-9E8A-485E-9895-000D6284614A}
 	EndGlobalSection
 EndGlobal
