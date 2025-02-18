@@ -17,8 +17,9 @@ public class CustomUserIdProvider : IUserIdProvider
     /// <returns>Kullanıcının ID'si (string olarak) veya null</returns>
     public string? GetUserId(HubConnectionContext connection)
     {
+        var userId = connection.User?.FindFirst("userId")?.Value;
         // Kullanıcı bilgilerini içeren JWT token'ındaki "NameIdentifier" (UserId) claim'ini bul
-        return connection.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        return userId;
         
         /*
          * ClaimTypes.NameIdentifier:

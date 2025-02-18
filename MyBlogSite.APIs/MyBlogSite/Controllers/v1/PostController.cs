@@ -3,7 +3,9 @@ using Base.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Dtos.Post;
+using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Dtos.Response;
+using MyBlogSite.Core.Enums;
 
 namespace MyBlogSite.Controllers.v1;
 

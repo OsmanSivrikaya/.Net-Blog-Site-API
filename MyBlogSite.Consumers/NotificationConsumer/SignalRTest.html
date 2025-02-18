@@ -14,43 +14,57 @@
 
 <script>
     // Backend'deki SignalR hub adresini buraya ekleyin
-    const hubUrl = "http://localhost:5000/notificationHub"; // API URL'ni buraya koy
+    const hubUrl = "http://localhost:5003/notificationHub"; // API URL'ni buraya koy
 
     // Kullanıcı token'ı (JWT token'ı backend'den aldıysan buraya ekle)
-    const userToken = "KULLANICININ_JWT_TOKENI";
+    const userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Im9zbWFuc2l2cmlrYXlhQG91dGxvb2suY29tIiwidXNlcklkIjoiYzc5YjRmZWMtNzBiOS00NDJjLTljMDEtMDhkZDNhMjdlY2IyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzM5ODgzNTIyLCJleHAiOjE3Mzk5MTM1MjIsImlzcyI6Iklzc3VlckluZm9ybWF0aW9uIiwiYXVkIjoiQXVkaWVuY2VJbmZvcm1hdGlvbiJ9.1mayLvNvhHbIlGMc1cGpbraMfLZaIVevcidgGNS8pek";
+
+    // Kullanıcı token'ı boşsa hata ver
+    if (!userToken || userToken.trim() === "") {
+        console.error("HATA: JWT token eksik!");
+        document.getElementById("status").innerText = "Token Eksik!";
+    }
 
     // SignalR bağlantısını oluştur
     const connection = new signalR.HubConnectionBuilder()
         .withUrl(hubUrl, {
-            accessTokenFactory: () => userToken // JWT token ile bağlantı kur
+            accessTokenFactory: () => {
+                return userToken;
+            },
+            transport: signalR.HttpTransportType.WebSockets |
+                signalR.HttpTransportType.ServerSentEvents |
+                signalR.HttpTransportType.LongPolling
         })
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    // Bağlantıyı başlat
+    // Bağlantıyı başlatma fonksiyonu
     async function startConnection() {
         try {
             await connection.start();
-            document.getElementById("status").innerText = "Bağlandı!";
-            console.log("SignalR bağlantısı başarılı.");
+            document.getElementById("status").innerText = "✅ Bağlandı!";
+            console.log("✅ SignalR bağlantısı başarılı.");
         } catch (err) {
-            console.error("Bağlantı hatası:", err);
+            console.error("❌ SignalR Bağlantı Hatası:", err);
+            document.getElementById("status").innerText = "Bağlantı hatası. 5 saniye sonra tekrar denenecek...";
             setTimeout(startConnection, 5000); // Bağlantı koparsa 5 saniye sonra tekrar dene
         }
     }
 
+    // Bağlantı kapandığında otomatik olarak tekrar bağlan
     connection.onclose(() => {
         document.getElementById("status").innerText = "Bağlantı kapandı. Tekrar bağlanıyor...";
+        console.warn("⚠ SignalR bağlantısı kapandı, tekrar bağlanıyor...");
         startConnection();
     });
 
     // Backend'den "ReceiveNotification" adlı event tetiklendiğinde çalışır
     connection.on("ReceiveNotification", (message) => {
-        console.log("Yeni Bildirim:", message);
+        console.log("🔔 Yeni Bildirim:", message);
 
         const notificationList = document.getElementById("notifications");
         const listItem = document.createElement("li");
-        listItem.innerText = `📢 ${message.Message} - ${message.CreatedAt}`;
+        listItem.innerText = `📢 ${message}`;
         notificationList.appendChild(listItem);
     });
 
