@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
+using MyBlogSite.Core.Helpers;
 using MyBlogSite.Core.Producers;
 using MyBlogSite.Core.Producers.Interface;
 using MyBlogSite.Dal;
@@ -58,6 +59,7 @@ builder.Services.AddAutoMapper();
 // fluent validation ekliyoruz
 builder.Services.AddFluentValidation();
 builder.Services.AddHttpContextAccessor();
+ClaimHelper.Configure(builder.Services.BuildServiceProvider().GetRequiredService<IHttpContextAccessor>());
 
 var app = builder.Build();
 

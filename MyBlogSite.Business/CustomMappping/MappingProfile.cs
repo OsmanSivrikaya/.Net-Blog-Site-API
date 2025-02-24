@@ -46,7 +46,8 @@ namespace MyBlogSite.Business.CustomMappping
             
             CreateMap<PostComment, PostCommentViewDto>()
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.Name + " " + src.User.Surname));
-            
+            CreateMap<PostCommentCreateDto, PostComment>().ReverseMap();
+
             #endregion
         }
     }

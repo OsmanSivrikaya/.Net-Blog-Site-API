@@ -27,10 +27,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/Post/PostCreateDtoValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/Comment/PostCommentCreateDtoValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/Comment/PostCommentUpdateDtoValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Comment/PostCommentCreateDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Comment/PostCommentUpdateDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Helpers/ClaimHelper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Post/PostCreateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Post/PostCreateDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Post.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Post.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/CommentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IPostCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IPostCommentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/PostCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/PostCommentService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,25 +93,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.FileStorage: http.executor": "Debug",
-    ".NET Launch Settings Profile.MyBlogSite: http.executor": "Debug",
-    ".NET Launch Settings Profile.NotificationConsumer: http.executor": "Debug",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.FileStorage: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.MyBlogSite: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.NotificationConsumer: http.executor&quot;: &quot;Debug&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.NotificationConsumer: http">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.MyBlogSite: http">
     <configuration name="Admin: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -422,6 +429,8 @@
       <workItem from="1739341375450" duration="430000" />
       <workItem from="1739533772641" duration="1030000" />
       <workItem from="1739867517976" duration="17379000" />
+      <workItem from="1740377842375" duration="8774000" />
+      <workItem from="1740393839265" duration="2147000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -439,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739886583852</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Post comment tablosu login olmadan yorum yapma kaldırıldı.&#10;GetAll endpointi eklendi.&#10;Post Create Validatorler eklendi.">
+      <option name="closed" value="true" />
+      <created>1740387316263</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1740387316263</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +468,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi." />
     <MESSAGE value="signalr hataları düzeltildi." />
-    <option name="LAST_COMMIT_MESSAGE" value="signalr hataları düzeltildi." />
+    <MESSAGE value="Post comment tablosu login olmadan yorum yapma kaldırıldı.&#10;GetAll endpointi eklendi.&#10;Post Create Validatorler eklendi." />
+    <option name="LAST_COMMIT_MESSAGE" value="Post comment tablosu login olmadan yorum yapma kaldırıldı.&#10;GetAll endpointi eklendi.&#10;Post Create Validatorler eklendi." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
