@@ -1,4 +1,5 @@
 using AutoMapper;
+using MyBlogSite.Core.Dtos.Comment;
 using MyBlogSite.Core.Dtos.Post;
 using MyBlogSite.Core.Dtos.PostType;
 using MyBlogSite.Core.Dtos.User;
@@ -38,6 +39,13 @@ namespace MyBlogSite.Business.CustomMappping
             #region Post
             
             CreateMap<PostCreateDto, Post>().ReverseMap();
+            
+            #endregion
+            
+            #region PostComments
+            
+            CreateMap<PostComment, PostCommentViewDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.Name + " " + src.User.Surname));
             
             #endregion
         }

@@ -37,5 +37,11 @@ public class ContextDb(DbContextOptions<ContextDb> options) : DbContext(options)
             .WithMany(b => b.Users)  // Bir Blog birden fazla User alabilir
             .HasForeignKey(u => u.BlogId)  // User'ın BlogId'si ile ilişkiyi kur
             .OnDelete(DeleteBehavior.Restrict);  // Silme sırasında kısıtlama yap
+        
+        modelBuilder.Entity<PostComment>()
+            .HasOne(pc => pc.User)             // Her yorum bir kullanıcıya ait.
+            .WithMany()                        // User entity'sinde yorumları tutan bir koleksiyon olmadığı için boş bırakıyoruz.
+            .HasForeignKey(pc => pc.UserId)    // Yorumdaki UserId sütunu ile ilişki kuruluyor.
+            .OnDelete(DeleteBehavior.Restrict); // Kullanıcıya ait yorumlar varsa, kullanıcı silinmek istenirse silmeyi engelliyor.
     }
 }

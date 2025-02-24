@@ -3,9 +3,7 @@ using Base.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Dtos.Post;
-using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Dtos.Response;
-using MyBlogSite.Core.Enums;
 
 namespace MyBlogSite.Controllers.v1;
 
@@ -24,17 +22,18 @@ public class PostController(IPostService postService) : BaseController
     [HttpPost]
     public async Task<Result> PostCreateAsync(PostCreateDto postCreateDto) =>
         await postService.PostCreateAsync(postCreateDto);
-    
+
     /// <summary>
     /// Eklenen blog'a dosyaları eklemek için kullanılır
     /// </summary>
     /// <param name="formFile"></param>
     /// <param name="postId"></param>
     /// <param name="isMainFile"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [ValidateModel]
     [Transaction]
     [HttpPost("add-file/{postId}")]
-    public async Task<Result> PostAddFileAsync(IFormFile formFile, [FromRoute]Guid postId, bool isMainFile) =>
-        await postService.PostImageAddedAsync(formFile, postId, isMainFile);
+    public async Task<Result> PostAddFileAsync(IFormFile formFile, [FromRoute]Guid postId, bool isMainFile, CancellationToken cancellationToken) =>
+        await postService.PostImageAddedAsync(formFile, postId, isMainFile, cancellationToken);
 }

@@ -13,5 +13,6 @@ namespace MyBlogSite.Business.Services.IServices
         Task<Result> GetBlogTypeAsync(Guid id);
         Task<Result> GetBlogTypesAsync(PostTypeFilterDto filterDto);
         Task<bool> BeExistingSlug(string slug);
+        Task<bool> BeExisting(Guid id, CancellationToken cancellationToken);
     }
 }

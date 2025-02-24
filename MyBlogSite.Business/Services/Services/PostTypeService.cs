@@ -77,7 +77,10 @@ namespace MyBlogSite.Business.Services.Services
 
             return Result.Ok(blogTypes);
         }
-
+        public async Task<bool> BeExisting(Guid id, CancellationToken cancellationToken)
+        {
+            return await postTypeRepository.GetWhere(x => x.Id == id).AnyAsync(cancellationToken);
+        }
         public async Task<bool> BeExistingSlug(string slug)
         {
             return await postTypeRepository.GetWhere(x => x.Slug == slug).AnyAsync();

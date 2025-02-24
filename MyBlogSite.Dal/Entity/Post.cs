@@ -37,6 +37,9 @@ public class Post : BaseEntity
 
     [Column("user_id")]
     public required Guid UserId { get; set; }
+    
+    [Column("is_visible")]
+    public required bool IsVisible { get; set; }
 
     // Post'un sahibi olan kullanıcı
     public User User { get; set; }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBlogSite.Dal;
 
@@ -11,9 +12,11 @@ using MyBlogSite.Dal;
 namespace MyBlogSite.Dal.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20250224081830_post_comment_entity_update")]
+    partial class post_comment_entity_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,10 +176,6 @@ namespace MyBlogSite.Dal.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_date");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_deleted");
-
                     b.Property<Guid?>("ParentCommentId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("parent_comment_id");
@@ -196,8 +195,6 @@ namespace MyBlogSite.Dal.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("post_comments", (string)null);
                 });
@@ -474,19 +471,13 @@ namespace MyBlogSite.Dal.Migrations
 
             modelBuilder.Entity("MyBlogSite.Dal.Entity.PostComment", b =>
                 {
-                    b.HasOne("MyBlogSite.Dal.Entity.Post", null)
+                    b.HasOne("MyBlogSite.Dal.Entity.Post", "Post")
                         .WithMany("BlogComments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyBlogSite.Dal.Entity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("MyBlogSite.Dal.Entity.PostFile", b =>

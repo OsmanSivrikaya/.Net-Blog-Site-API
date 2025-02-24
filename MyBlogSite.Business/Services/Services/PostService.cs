@@ -46,9 +46,9 @@ public class PostService(
 
         // Post'u veritabanına ekle
         post = await postRepository.CreateAsync(post);
-        
+
         var userIds = await userService.GetAllUserByBlogIdAsync(post.BlogId);
-        
+
         // bildirim gönderiyoruz
         await notificationService.SendNotificationQueueAsync(new NotificationMessageDto()
         {
@@ -57,12 +57,22 @@ public class PostService(
             PostSlug = post.Slug,
             UserIds = userIds
         });
-        
+
         return Result.Ok("Post has been created", post.Id);
     }
 
-    public async Task<Result> PostImageAddedAsync(IFormFile formFile, Guid postId, bool isMainFile)
+    public async Task<Result> PostUpdateAsync(PostCreateDto request)
     {
+        return null;
+    }
+
+    public async Task<bool> BeExistingPostAsync(Guid postId, CancellationToken cancellationToken) =>
+        await postRepository.GetWhere(x => x.Id == postId).AnyAsync(cancellationToken);
+
+    public async Task<Result> PostImageAddedAsync(IFormFile formFile, Guid postId, bool isMainFile,
+        CancellationToken cancellationToken)
+    {
+        await BeExistingPostAsync(postId, cancellationToken);
         var response = await fileStorageManager.UploadFileAsync(formFile, FolderConst.BLOG_CONTENT, formFile.FileName);
         await postFileService.CreateAsync(new PostFile
         {

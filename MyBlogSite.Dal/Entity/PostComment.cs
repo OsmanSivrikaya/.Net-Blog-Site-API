@@ -13,8 +13,6 @@ namespace MyBlogSite.Dal.Entity
         [Column("post_id")]
         public required Guid PostId { get; set; }
         
-        public Post? Post { get; set; }
-        
         /// <summary>
         /// Yorumun hangi yoruma cevap olduğu (ana yorumsa NULL)
         /// </summary>
@@ -24,19 +22,19 @@ namespace MyBlogSite.Dal.Entity
         /// <summary>
         /// Yorum yapan kişinin e-posta adresi
         /// </summary>
-        [Column("email", TypeName = "nvarchar(255)")]
-        public required string Email { get; set; }
+        [ForeignKey(nameof(User))]
+        [Column("user_id")]
+        public required Guid UserId { get; set; }
         
-        /// <summary>
-        /// Yorumu yapan kullanıcı üye değil ise ismi yer alır null ise üyedir
-        /// </summary>
-        [Column("full_name", TypeName = "nvarchar(255)")]
-        public string? FullName { get; set; }
+        public required User User { get; set; }
         
         /// <summary>
         /// Yorum içeriği
         /// </summary>
         [Column("content", TypeName = "nvarchar(4000)")]
         public required string Content { get; set; }
+        
+        [Column("is_deleted")]
+        public required bool IsDeleted { get; set; }
     }
 }
