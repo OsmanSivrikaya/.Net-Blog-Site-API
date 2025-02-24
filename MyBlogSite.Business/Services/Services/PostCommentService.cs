@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBlogSite.Business.Extensions;
 using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Dtos.Comment;
-using MyBlogSite.Core.Dtos.PostType;
+using MyBlogSite.Core.Dtos.ProducerDtos;
 using MyBlogSite.Core.Dtos.Response;
+using MyBlogSite.Core.Enums;
 using MyBlogSite.Core.Helpers;
 using MyBlogSite.Dal.Entity;
 using MyBlogSite.Dal.Repository.IRepository;
 
 namespace MyBlogSite.Business.Services.Services;
 
-public class PostCommentService(IPostCommentRepository postCommentRepository, IMapper mapper) : IPostCommentService
+public class PostCommentService(IPostCommentRepository postCommentRepository,INotificationService notificationService, IPostService postService, IMapper mapper) : IPostCommentService
 {
     public async Task<Result> GetAll(PostCommentFilterDto filterDto)
     {
@@ -45,6 +45,15 @@ public class PostCommentService(IPostCommentRepository postCommentRepository, IM
         }
         
         await postCommentRepository.CreateAsync(postComment);
+        
+        
+        await notificationService.SendNotificationQueueAsync(new NotificationMessageDto()
+        {
+            Type = NotificationTypeEnum.CommentCreate,
+            Message = "Gönderinize yorum yapıldı.",
+            //PostSlug = post.Slug,
+            //UserIds = userIds
+        });
         
         return Result.Ok();
     }

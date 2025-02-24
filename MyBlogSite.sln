@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogSite.Dal", "MyBlogSit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationConsumer", "MyBlogSite.Consumers\NotificationConsumer\NotificationConsumer.csproj", "{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "MyBlogSite.APIs\Admin\Admin.csproj", "{F0145809-4EC7-43F4-AD00-5B5706835DD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0145809-4EC7-43F4-AD00-5B5706835DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0145809-4EC7-43F4-AD00-5B5706835DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0145809-4EC7-43F4-AD00-5B5706835DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0145809-4EC7-43F4-AD00-5B5706835DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +73,6 @@ Global
 		{EE6E0453-ADFC-4C2E-B68E-4B6C35782391} = {DEED74A5-2440-47DE-AD32-F5E36CEB1E19}
 		{AA654997-E397-4A34-A45E-4ED490CDA296} = {DEED74A5-2440-47DE-AD32-F5E36CEB1E19}
 		{ECCDAE6C-EF1A-43FB-BD2A-E6EA0787F6F5} = {6DB7E4F2-9E8A-485E-9895-000D6284614A}
+		{F0145809-4EC7-43F4-AD00-5B5706835DD2} = {DEED74A5-2440-47DE-AD32-F5E36CEB1E19}
 	EndGlobalSection
 EndGlobal

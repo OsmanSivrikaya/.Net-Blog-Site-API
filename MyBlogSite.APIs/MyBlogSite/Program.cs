@@ -1,18 +1,12 @@
 using System.Reflection;
-using Amazon.S3;
-using Base.Attributes;
 using Base.Configurations;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
 using MyBlogSite.Core.Helpers;
-using MyBlogSite.Core.Producers;
-using MyBlogSite.Core.Producers.Interface;
 using MyBlogSite.Dal;
-using MyBlogSite.Dal.Repository.UnitofWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
