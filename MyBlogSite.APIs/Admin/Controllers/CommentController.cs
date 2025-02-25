@@ -7,7 +7,7 @@ using MyBlogSite.Core.Dtos.Response;
 namespace Admin.Controllers;
 
 [ApiVersion("1")]
-[Route("comment")]
+[Route("admin/comment")]
 public class CommentController(IPostCommentService postCommentService) : BaseController
 {
     /// <summary>

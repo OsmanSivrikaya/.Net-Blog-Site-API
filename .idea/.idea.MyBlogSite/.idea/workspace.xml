@@ -26,15 +26,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/CommentController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Production.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Test.json" afterDir="false" />
+    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="güncelleme">
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/UserController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/User/UserUpdateDtoValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/User/UserActivationStatusDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/User/UserBanStatusDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/User/UsersForAdminResponseDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/PostCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/PostCommentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.sln" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/CommentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Base.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Base.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/PostTypeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/PostTypeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IBlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IBlogService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/BlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/BlogService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserUpdateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserUpdateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Blog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Blog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +80,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36f346b6c0454bc8a6afa7aed38119fe5bbffcc983298d9bfa4dbd5f49461f/Monitor.CoreCLR.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/487764c4dc815ef1e9090514895a23ed9e2d8eda1f7fd6958ac0fb25e8437/Guid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6af28599e71724c5fc6a617444e2f60b5d57dfdc5be0df4ba43ccfc36977/DefaultHttpContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/79b4b5d07e8c5ac3de172b75667c6bded8e1fa6f42f36d8f6dc2f9e3d568/ArgumentNullException.cs" root0="FORCE_HIGHLIGHTING" />
@@ -91,25 +105,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Admin: http.executor": "Debug",
-    ".NET Launch Settings Profile.FileStorage: http.executor": "Debug",
-    ".NET Launch Settings Profile.MyBlogSite: http.executor": "Debug",
-    ".NET Launch Settings Profile.NotificationConsumer: http.executor": "Debug",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Admin: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.FileStorage: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.MyBlogSite: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.NotificationConsumer: http.executor&quot;: &quot;Debug&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Admin: http">
     <configuration name="Admin: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" />
@@ -430,7 +444,8 @@
       <workItem from="1739867517976" duration="17379000" />
       <workItem from="1740377842375" duration="8774000" />
       <workItem from="1740393839265" duration="3268000" />
-      <workItem from="1740399936446" duration="893000" />
+      <workItem from="1740399936446" duration="4450000" />
+      <workItem from="1740464017619" duration="16351000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -464,7 +479,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740396266796</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Yenilikler &#10;Admin paneli için api eklendi&#10;Comment eklenince bildirim göndermesi için gerekli işlemler yapılmaya devam ediyor">
+      <option name="closed" value="true" />
+      <created>1740401057593</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740401057593</updated>
+    </task>
+    <task id="LOCAL-00006" summary="güncelleme">
+      <option name="closed" value="true" />
+      <created>1740401073533</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740401073533</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,7 +509,9 @@
     <MESSAGE value="signalr hataları düzeltildi." />
     <MESSAGE value="Post comment tablosu login olmadan yorum yapma kaldırıldı.&#10;GetAll endpointi eklendi.&#10;Post Create Validatorler eklendi." />
     <MESSAGE value="post comment&#10;post comment create&#10;post comment update &#10;post comment delete eklendi" />
-    <option name="LAST_COMMIT_MESSAGE" value="post comment&#10;post comment create&#10;post comment update &#10;post comment delete eklendi" />
+    <MESSAGE value="Yenilikler &#10;Admin paneli için api eklendi&#10;Comment eklenince bildirim göndermesi için gerekli işlemler yapılmaya devam ediyor" />
+    <MESSAGE value="güncelleme" />
+    <option name="LAST_COMMIT_MESSAGE" value="güncelleme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -495,6 +528,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs</url>
+          <line>50</line>
+          <properties documentPath="C:\Users\OSIVRIKAYA\RiderProjects\.Net-Blog-Site-API\MyBlogSite.Business\Services\Services\UserService.cs" containingFunctionPresentation="Method 'SetUserBanStatusAsync'">
+            <startOffsets>
+              <option value="1792" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1851" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

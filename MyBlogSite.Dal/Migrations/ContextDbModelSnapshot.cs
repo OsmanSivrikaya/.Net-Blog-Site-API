@@ -42,6 +42,18 @@ namespace MyBlogSite.Dal.Migrations
                         .HasColumnType("nvarchar(4000)")
                         .HasColumnName("blog_description");
 
+                    b.Property<Guid?>("FounderUserId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("founder_user_id");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_active");
+
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_banned");
+
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("nvarchar(4000)")
@@ -406,9 +418,9 @@ namespace MyBlogSite.Dal.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("is_active");
 
-                    b.Property<bool>("IsExecutive")
+                    b.Property<bool>("IsBanned")
                         .HasColumnType("bit")
-                        .HasColumnName("is_executive");
+                        .HasColumnName("is_banned");
 
                     b.Property<string>("Name")
                         .IsRequired()

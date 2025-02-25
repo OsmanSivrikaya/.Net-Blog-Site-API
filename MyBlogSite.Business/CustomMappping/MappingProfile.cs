@@ -1,4 +1,5 @@
 using AutoMapper;
+using MyBlogSite.Core.Dtos.Admin.User;
 using MyBlogSite.Core.Dtos.Comment;
 using MyBlogSite.Core.Dtos.Post;
 using MyBlogSite.Core.Dtos.PostType;
@@ -11,6 +12,16 @@ namespace MyBlogSite.Business.CustomMappping
     {
         public MappingProfile()
         {
+            #region Admin
+
+            #region User
+            
+            CreateMap<User, UsersForAdminResponseDto>().ReverseMap();
+
+            #endregion
+            
+            #endregion
+            
             #region PostType
 
             CreateMap<PostType, PostTypeCreateDto>().ReverseMap();
@@ -28,6 +39,7 @@ namespace MyBlogSite.Business.CustomMappping
                         BlogName = src.Blog.BlogName,
                         Description = src.Blog.Description,
                         Slug = null,
+                        IsBanned = false,
                     }
                     : null))
                 .ReverseMap();

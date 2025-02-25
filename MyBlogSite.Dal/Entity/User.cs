@@ -21,17 +21,14 @@ public class User : BaseEntity
     [Column("password", TypeName = "nvarchar(300)")]
     public required string Password { get; set; }
 
+    [Column("is_banned")] 
+    public required bool IsBanned { get; set; }
+    
     [Column("is_active")] 
     public required bool IsActive { get; set; }
 
     [Column("role")]
     public RoleEnum Role { get; set; }
-
-    /// <summary>
-    /// Blog kurucu olduğunu temsil eder
-    /// </summary>
-    [Column("is_executive")]
-    public bool IsExecutive { get; set; }
     
     [ForeignKey("blog_id")]
     [Column("blog_id")]

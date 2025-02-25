@@ -6,10 +6,10 @@ using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Dtos.PostType;
 using MyBlogSite.Core.Dtos.Response;
 
-namespace MyBlogSite.Controllers.v1;
+namespace Admin.Controllers;
 
 [ApiVersion("1")]
-[Route("post-type")]
+[Route("admin/post-type")]
 [Authorize]
 public class PostTypeController(IPostTypeService postTypeService) : BaseController
 {
