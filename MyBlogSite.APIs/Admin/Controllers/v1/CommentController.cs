@@ -4,7 +4,7 @@ using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Dtos.Comment;
 using MyBlogSite.Core.Dtos.Response;
 
-namespace Admin.Controllers;
+namespace Admin.Controllers.v1;
 
 [ApiVersion("1")]
 [Route("admin/comment")]

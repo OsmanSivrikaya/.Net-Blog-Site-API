@@ -40,6 +40,7 @@ namespace MyBlogSite.Business.CustomMappping
                         Description = src.Blog.Description,
                         Slug = null,
                         IsBanned = false,
+                        IsVisible = true
                     }
                     : null))
                 .ReverseMap();

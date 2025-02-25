@@ -6,7 +6,7 @@ using MyBlogSite.Business.Services.IServices;
 using MyBlogSite.Core.Dtos.PostType;
 using MyBlogSite.Core.Dtos.Response;
 
-namespace Admin.Controllers;
+namespace Admin.Controllers.v1;
 
 [ApiVersion("1")]
 [Route("admin/post-type")]

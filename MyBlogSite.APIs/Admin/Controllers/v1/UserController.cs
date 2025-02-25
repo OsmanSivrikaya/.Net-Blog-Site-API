@@ -7,7 +7,7 @@ using MyBlogSite.Core.Dtos.Admin.User;
 using MyBlogSite.Core.Dtos.Response;
 using MyBlogSite.Core.Dtos.User;
 
-namespace Admin.Controllers;
+namespace Admin.Controllers.v1;
 
 /// <summary>
 /// Kullanıcı işlemlerini yöneten API controller sınıfı.

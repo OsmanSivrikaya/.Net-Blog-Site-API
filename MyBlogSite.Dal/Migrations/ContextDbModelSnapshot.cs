@@ -54,6 +54,10 @@ namespace MyBlogSite.Dal.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("is_banned");
 
+                    b.Property<bool>("IsVisible")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_visible");
+
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("nvarchar(4000)")

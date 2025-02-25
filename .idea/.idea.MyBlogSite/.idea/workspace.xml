@@ -26,27 +26,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="güncelleme">
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/UserController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Validator/User/UserUpdateDtoValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/User/UserActivationStatusDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/User/UserBanStatusDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/User/UsersForAdminResponseDto.cs" afterDir="false" />
+    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="migration güncellemesi">
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/BlogController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/Blog/BlogBanStatusDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/Blog/BlogVisibleStatusDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/CommentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Base.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Base/Base.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Controllers/v1/PostTypeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/PostTypeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/CommentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/PostTypeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/PostTypeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IBlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IBlogService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IUserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/BlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/BlogService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserUpdateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/User/UserUpdateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Enums/NotificationTypeEnum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Enums/NotificationTypeEnum.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Blog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Blog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -445,7 +438,7 @@
       <workItem from="1740377842375" duration="8774000" />
       <workItem from="1740393839265" duration="3268000" />
       <workItem from="1740399936446" duration="4450000" />
-      <workItem from="1740464017619" duration="16351000" />
+      <workItem from="1740464017619" duration="21727000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -495,7 +488,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740401073533</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="admin user kontrolleri&#10;user silme&#10;user'ın blog bağlantısını kaldırma&#10;user güncelleme &#10;user banlama &#10;user get all &#10;get user">
+      <option name="closed" value="true" />
+      <created>1740482958092</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740482958092</updated>
+    </task>
+    <task id="LOCAL-00008" summary="migration güncellemesi">
+      <option name="closed" value="true" />
+      <created>1740482983862</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740482983862</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +520,9 @@
     <MESSAGE value="post comment&#10;post comment create&#10;post comment update &#10;post comment delete eklendi" />
     <MESSAGE value="Yenilikler &#10;Admin paneli için api eklendi&#10;Comment eklenince bildirim göndermesi için gerekli işlemler yapılmaya devam ediyor" />
     <MESSAGE value="güncelleme" />
-    <option name="LAST_COMMIT_MESSAGE" value="güncelleme" />
+    <MESSAGE value="admin user kontrolleri&#10;user silme&#10;user'ın blog bağlantısını kaldırma&#10;user güncelleme &#10;user banlama &#10;user get all &#10;get user" />
+    <MESSAGE value="migration güncellemesi" />
+    <option name="LAST_COMMIT_MESSAGE" value="migration güncellemesi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -528,19 +539,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/MyBlogSite.Business/Services/Services/UserService.cs</url>
-          <line>50</line>
-          <properties documentPath="C:\Users\OSIVRIKAYA\RiderProjects\.Net-Blog-Site-API\MyBlogSite.Business\Services\Services\UserService.cs" containingFunctionPresentation="Method 'SetUserBanStatusAsync'">
-            <startOffsets>
-              <option value="1792" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1851" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -24,4 +24,7 @@ public class Blog : BaseEntity
     
     [Column("is_banned")] 
     public required bool IsBanned { get; set; }
+    
+    [Column("is_visible")] 
+    public required bool IsVisible { get; set; }
 }

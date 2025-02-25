@@ -4,5 +4,6 @@ public enum NotificationTypeEnum
 {
     PostCreate,
     CommentCreate,
-    Like
+    Like,
+    BlogVisibleStatusChanged,
 }
