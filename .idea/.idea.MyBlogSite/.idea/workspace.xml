@@ -26,9 +26,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="">
+    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +94,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.MyBlogSite: http">
+  <component name="RunManager" selected="Publish to folder.Publish MyBlogSite to folder">
     <configuration name="Publish MailConsumer to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/bin/Release/net9.0/publish" target_framework="net9.0" uuid_high="-3364969514172661247" uuid_low="-7771221489439872630" />
       <method v="2" />
@@ -430,7 +429,7 @@
       <workItem from="1740996857530" duration="11096000" />
       <workItem from="1741022388989" duration="2195000" />
       <workItem from="1741024648145" duration="251000" />
-      <workItem from="1741025202989" duration="38000" />
+      <workItem from="1741025202989" duration="1857000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -632,7 +631,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741023376851</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="update">
+      <option name="closed" value="true" />
+      <created>1741025294995</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1741025294995</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

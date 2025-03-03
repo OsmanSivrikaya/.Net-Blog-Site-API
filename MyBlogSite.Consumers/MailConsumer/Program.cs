@@ -29,7 +29,7 @@ if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqS
 
 var app = builder.Build();
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.Run();
 
