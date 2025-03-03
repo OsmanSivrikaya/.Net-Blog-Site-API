@@ -28,6 +28,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -439,7 +440,7 @@
       <workItem from="1740464017619" duration="23468000" />
       <workItem from="1740833785709" duration="3014000" />
       <workItem from="1740981634996" duration="1229000" />
-      <workItem from="1740996857530" duration="7864000" />
+      <workItem from="1740996857530" duration="11096000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -617,7 +618,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741004498708</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="update">
+      <option name="closed" value="true" />
+      <created>1741006102494</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1741006102494</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
