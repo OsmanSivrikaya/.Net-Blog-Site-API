@@ -26,21 +26,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="migration güncellemesi">
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/BlogController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/Blog/BlogBanStatusDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlogSite.Core/Dtos/Admin/Blog/BlogVisibleStatusDto.cs" afterDir="false" />
+    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/CommentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/PostTypeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/PostTypeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Controllers/v1/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/CustomMappping/MappingProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IBlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/IServices/IBlogService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/BlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Business/Services/Services/BlogService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Core/Enums/NotificationTypeEnum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Core/Enums/NotificationTypeEnum.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Blog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Entity/Blog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Dal/Migrations/ContextDbModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +89,7 @@
   &quot;keyToString&quot;: {
     &quot;.NET Launch Settings Profile.Admin: http.executor&quot;: &quot;Debug&quot;,
     &quot;.NET Launch Settings Profile.FileStorage: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.MailConsumer: http.executor&quot;: &quot;Debug&quot;,
     &quot;.NET Launch Settings Profile.MyBlogSite: http.executor&quot;: &quot;Debug&quot;,
     &quot;.NET Launch Settings Profile.NotificationConsumer: http.executor&quot;: &quot;Debug&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -117,7 +105,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Admin: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.NotificationConsumer: http">
     <configuration name="Admin: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -438,7 +426,10 @@
       <workItem from="1740377842375" duration="8774000" />
       <workItem from="1740393839265" duration="3268000" />
       <workItem from="1740399936446" duration="4450000" />
-      <workItem from="1740464017619" duration="21727000" />
+      <workItem from="1740464017619" duration="23468000" />
+      <workItem from="1740833785709" duration="3014000" />
+      <workItem from="1740981634996" duration="1229000" />
+      <workItem from="1740996857530" duration="301000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -504,7 +495,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740482983862</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="admin blog kontrolleri&#10;blog silme eklendi&#10;blog görünürlüğü kaldırma eklendi&#10;blog engelleme eklendi">
+      <option name="closed" value="true" />
+      <created>1740488277501</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740488277501</updated>
+    </task>
+    <task id="LOCAL-00010" summary="migration update">
+      <option name="closed" value="true" />
+      <created>1740488290483</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740488290483</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,6 +519,42 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="ce3aa8a3-0c6e-4159-b10d-ce8e3d2f881e" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="ce3aa8a3-0c6e-4159-b10d-ce8e3d2f881e">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/OSIVRIKAYA/RiderProjects/.Net-Blog-Site-API/MyBlogSite.APIs" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi." />
@@ -522,7 +565,9 @@
     <MESSAGE value="güncelleme" />
     <MESSAGE value="admin user kontrolleri&#10;user silme&#10;user'ın blog bağlantısını kaldırma&#10;user güncelleme &#10;user banlama &#10;user get all &#10;get user" />
     <MESSAGE value="migration güncellemesi" />
-    <option name="LAST_COMMIT_MESSAGE" value="migration güncellemesi" />
+    <MESSAGE value="admin blog kontrolleri&#10;blog silme eklendi&#10;blog görünürlüğü kaldırma eklendi&#10;blog engelleme eklendi" />
+    <MESSAGE value="migration update" />
+    <option name="LAST_COMMIT_MESSAGE" value="migration update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
