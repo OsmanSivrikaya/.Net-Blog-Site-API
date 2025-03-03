@@ -1,0 +1,25 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - main  # Sadece main branch'e push yapıldığında çalışır
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    #Bu adım, GitHub repository’ndeki kodları Actions sanal makinesine indirir.
+    #Bunun sayesinde GitHub Actions içinden dosyalara erişebiliriz.
+    steps:
+      - name: Kodu GitHub'dan Çek
+        uses: actions/checkout@v2
+
+      - name: FTP ile Sunucuya Yükle
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./MyBlogSite.APIs/MyBlogSite  # Buraya hangi proje dizini
+          server-dir: /httpdocs/   # FTP sunucusundaki hedef klasör
