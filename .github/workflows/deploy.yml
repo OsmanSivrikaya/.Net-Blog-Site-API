@@ -1,4 +1,4 @@
-name: FTP Deploy (Published Code)
+name: FTP Deploy (Multiple Projects)
 
 on:
   push:
@@ -14,29 +14,58 @@ jobs:
       - name: Kodu GitHub'dan Çek
         uses: actions/checkout@v2
 
-      # .NET SDK Kurulumu
-      - name: .NET SDK Kurulumu
+      # 📌 .NET 8 SDK Kurulumu (MyBlogSite İçin)
+      - name: .NET 8 SDK Kurulumu
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'  # Kullanılan .NET sürümüne göre değiştirebilirsin
+          dotnet-version: '8.0.x'
 
-      # Projeyi Build ve Publish Et
-      - name: Projeyi Build ve Publish Et
-        run: dotnet publish ./MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj -c Release -o ./publish
+      # 📌 İlk Proje: MyBlogSite (.NET 8)
+      - name: MailConsumer Projesini Build ve Publish Et (.NET 8)
+        run: dotnet publish ./MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj -c Release -o ./publish-myblogsite
 
-      # Web.config içinde ASPNETCORE_ENVIRONMENT Değişkenini Güncelle
-      - name: Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
+      # MyBlogSite İçin web.config Güncelleme
+      - name: MailConsumer Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
         run: |
-          if [ -f "./publish/web.config" ]; then
-            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish/web.config
+          if [ -f "./publish-mailconsumer/web.config" ]; then
+            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish-mailconsumer/web.config
           fi
 
-      # Publish Edilen Kodları FTP'ye Yükle
-      - name: FTP ile Publish Edilen Kodları Yükle
+      # 📌 .NET 9 SDK Kurulumu (NotificationConsumer İçin)
+      - name: .NET 9 SDK Kurulumu
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      # 📌 İkinci Proje: NotificationConsumer (.NET 9)
+      - name: NotificationConsumer Projesini Build ve Publish Et (.NET 9)
+        run: dotnet publish ./MyBlogSite.Consumers/NotificationConsumer/NotificationConsumer.csproj -c Release -o ./publish-notificationconsumer
+
+      # NotificationConsumer İçin web.config Güncelleme
+      - name: NotificationConsumer Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
+        run: |
+          if [ -f "./publish-notificationconsumer/web.config" ]; then
+            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish-notificationconsumer/web.config
+          fi
+
+      # 📌 FTP 1: MailConsumer'ı Yükle (clean: true ile eski dosyaları sil)
+      - name: MailConsumer Kodlarını FTP 1'e Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish/  # Sadece publish edilen kodları yükle
+          local-dir: ./publish-mailconsumer/  # Sadece MailConsumer için publish edilen dosyaları yükle
           server-dir: /httpdocs/  # FTP sunucusundaki hedef klasör
+          clean: true  # Eski dosyaları temizleyerek yükleme yap
+
+      # 📌 FTP 2: NotificationConsumer'ı Yükle (clean: true ile eski dosyaları sil)
+      - name: NotificationConsumer Kodlarını FTP 2'ye Yükle
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./publish-notificationconsumer/  # Sadece NotificationConsumer için publish edilen dosyaları yükle
+          server-dir: /mail-consumer.analizgaraj.com/  # FTP sunucusundaki hedef klasör
+          clean: true  # Eski dosyaları temizleyerek yükleme yap
