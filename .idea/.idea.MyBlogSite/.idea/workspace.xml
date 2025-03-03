@@ -28,7 +28,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,28 +85,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Admin: http.executor": "Debug",
-    ".NET Launch Settings Profile.FileStorage: http.executor": "Debug",
-    ".NET Launch Settings Profile.MailConsumer: http.executor": "Debug",
-    ".NET Launch Settings Profile.MyBlogSite: http.executor": "Debug",
-    ".NET Launch Settings Profile.NotificationConsumer: http.executor": "Debug",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Publish to folder.Publish MailConsumer to folder.executor": "Run",
-    "Publish to folder.Publish MyBlogSite to folder.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Admin: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.FileStorage: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.MailConsumer: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.MyBlogSite: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.NotificationConsumer: http.executor&quot;: &quot;Debug&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Publish to folder.Publish MailConsumer to folder.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to folder.Publish MyBlogSite to folder.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.MyBlogSite: http">
     <configuration name="Publish MailConsumer to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/bin/Release/net9.0/publish" target_framework="net9.0" uuid_high="-3364969514172661247" uuid_low="-7771221489439872630" />
@@ -441,6 +440,7 @@
       <workItem from="1740833785709" duration="3014000" />
       <workItem from="1740981634996" duration="1229000" />
       <workItem from="1740996857530" duration="11096000" />
+      <workItem from="1741022388989" duration="344000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -693,14 +693,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/MyBlogSite.APIs/FileStorage/Controllers/FileStorageController.cs</url>
           <line>16</line>
-          <properties documentPath="C:\Users\OSIVRIKAYA\RiderProjects\.Net-Blog-Site-API\MyBlogSite.APIs\FileStorage\Controllers\FileStorageController.cs" containingFunctionPresentation="Method 'FileUpload'">
-            <startOffsets>
-              <option value="529" />
-            </startOffsets>
-            <endOffsets>
-              <option value="618" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\OSIVRIKAYA\RiderProjects\.Net-Blog-Site-API\MyBlogSite.APIs\FileStorage\Controllers\FileStorageController.cs" containingFunctionPresentation="Method 'FileUpload'" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
