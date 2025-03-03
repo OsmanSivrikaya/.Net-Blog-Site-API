@@ -21,14 +21,18 @@ jobs:
           dotnet-version: '8.0.x'
 
       # 📌 İlk Proje: MyBlogSite (.NET 8)
-      - name: MailConsumer Projesini Build ve Publish Et (.NET 8)
+      - name: MyBlogSite Projesini Build ve Publish Et (.NET 8)
         run: dotnet publish ./MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj -c Release -o ./publish-myblogsite
 
+      # 📌 Publish Klasörü Kontrolü (MyBlogSite)
+      - name: MyBlogSite Publish Klasörü Kontrolü
+        run: ls -la ./publish-myblogsite || echo "MyBlogSite için publish başarısız!"
+
       # MyBlogSite İçin web.config Güncelleme
-      - name: MailConsumer Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
+      - name: MyBlogSite Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
         run: |
-          if [ -f "./publish-mailconsumer/web.config" ]; then
-            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish-mailconsumer/web.config
+          if [ -f "./publish-myblogsite/web.config" ]; then
+            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish-myblogsite/web.config
           fi
 
       # 📌 .NET 9 SDK Kurulumu (NotificationConsumer İçin)
@@ -41,6 +45,10 @@ jobs:
       - name: NotificationConsumer Projesini Build ve Publish Et (.NET 9)
         run: dotnet publish ./MyBlogSite.Consumers/NotificationConsumer/NotificationConsumer.csproj -c Release -o ./publish-notificationconsumer
 
+      # 📌 Publish Klasörü Kontrolü (NotificationConsumer)
+      - name: NotificationConsumer Publish Klasörü Kontrolü
+        run: ls -la ./publish-notificationconsumer || echo "NotificationConsumer için publish başarısız!"
+
       # NotificationConsumer İçin web.config Güncelleme
       - name: NotificationConsumer Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
         run: |
@@ -48,18 +56,18 @@ jobs:
             sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish-notificationconsumer/web.config
           fi
 
-      # 📌 FTP 1: MailConsumer'ı Yükle (clean: true ile eski dosyaları sil)
-      - name: MailConsumer Kodlarını FTP 1'e Yükle
+      # 📌 FTP 1: MyBlogSite'ı Yükle (clean yerine dangerous-clean-slate kullanılıyor)
+      - name: MyBlogSite Kodlarını FTP 1'e Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish-mailconsumer/  # Sadece MailConsumer için publish edilen dosyaları yükle
+          local-dir: ./publish-myblogsite/  # Sadece MyBlogSite için publish edilen dosyaları yükle
           server-dir: /httpdocs/  # FTP sunucusundaki hedef klasör
-          clean: true  # Eski dosyaları temizleyerek yükleme yap
+          dangerous-clean-slate: true  # Eski dosyaları temizleyerek yükleme yap
 
-      # 📌 FTP 2: NotificationConsumer'ı Yükle (clean: true ile eski dosyaları sil)
+      # 📌 FTP 2: NotificationConsumer'ı Yükle (clean yerine dangerous-clean-slate kullanılıyor)
       - name: NotificationConsumer Kodlarını FTP 2'ye Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
@@ -68,4 +76,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish-notificationconsumer/  # Sadece NotificationConsumer için publish edilen dosyaları yükle
           server-dir: /mail-consumer.analizgaraj.com/  # FTP sunucusundaki hedef klasör
-          clean: true  # Eski dosyaları temizleyerek yükleme yap
+          dangerous-clean-slate: true  # Eski dosyaları temizleyerek yükleme yap
