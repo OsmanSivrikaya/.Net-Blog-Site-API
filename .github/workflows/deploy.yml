@@ -3,7 +3,7 @@ name: FTP Deploy
 on:
   push:
     branches:
-      - main  # Sadece main branch'e push yapıldığında çalışır
+      - master  # Sadece main branch'e push yapıldığında çalışır
 
 jobs:
   deploy:
