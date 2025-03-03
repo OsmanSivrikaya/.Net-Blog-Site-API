@@ -26,7 +26,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update" />
+    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,6 +94,7 @@
     ".NET Launch Settings Profile.NotificationConsumer: http.executor": "Debug",
     "DefaultHtmlFileTemplate": "HTML File",
     "Publish to folder.Publish MailConsumer to folder.executor": "Run",
+    "Publish to folder.Publish MyBlogSite to folder.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -107,6 +110,10 @@
   <component name="RunManager" selected=".NET Launch Settings Profile.MyBlogSite: http">
     <configuration name="Publish MailConsumer to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/bin/Release/net9.0/publish" target_framework="net9.0" uuid_high="-3364969514172661247" uuid_low="-7771221489439872630" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Publish MyBlogSite to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
+      <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/bin/Release/net8.0/publish" target_framework="net8.0" uuid_high="-6168443197906793932" uuid_low="-6602753328809139562" />
       <method v="2" />
     </configuration>
     <configuration name="Admin: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
@@ -432,7 +439,7 @@
       <workItem from="1740464017619" duration="23468000" />
       <workItem from="1740833785709" duration="3014000" />
       <workItem from="1740981634996" duration="1229000" />
-      <workItem from="1740996857530" duration="6414000" />
+      <workItem from="1740996857530" duration="7864000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -602,7 +609,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741004274136</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="update">
+      <option name="closed" value="true" />
+      <created>1741004498708</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1741004498708</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

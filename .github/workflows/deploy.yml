@@ -24,17 +24,6 @@ jobs:
       - name: MyBlogSite Projesini Build ve Publish Et (.NET 8)
         run: dotnet publish ./MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj -c Release -o ./publish-myblogsite
 
-      # 📌 Publish Klasörü Kontrolü (MyBlogSite)
-      - name: MyBlogSite Publish Klasörü Kontrolü
-        run: ls -la ./publish-myblogsite || echo "MyBlogSite için publish başarısız!"
-
-      # MyBlogSite İçin web.config Güncelleme
-      - name: MyBlogSite Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
-        run: |
-          if [ -f "./publish-myblogsite/web.config" ]; then
-            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish-myblogsite/web.config
-          fi
-
       # 📌 .NET 9 SDK Kurulumu (NotificationConsumer İçin)
       - name: .NET 9 SDK Kurulumu
         uses: actions/setup-dotnet@v3
@@ -45,35 +34,66 @@ jobs:
       - name: NotificationConsumer Projesini Build ve Publish Et (.NET 9)
         run: dotnet publish ./MyBlogSite.Consumers/NotificationConsumer/NotificationConsumer.csproj -c Release -o ./publish-notificationconsumer
 
-      # 📌 Publish Klasörü Kontrolü (NotificationConsumer)
-      - name: NotificationConsumer Publish Klasörü Kontrolü
-        run: ls -la ./publish-notificationconsumer || echo "NotificationConsumer için publish başarısız!"
-
-      # NotificationConsumer İçin web.config Güncelleme
-      - name: NotificationConsumer Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
+      # 📌 Web.config Oluşturma/Güncelleme (MyBlogSite)
+      - name: MyBlogSite Web.config Güncelleme
         run: |
-          if [ -f "./publish-notificationconsumer/web.config" ]; then
-            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish-notificationconsumer/web.config
-          fi
+          cat > ./publish-myblogsite/web.config <<EOL
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <location path="." inheritInChildApplications="false">
+              <system.webServer>
+                <handlers>
+                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
+                </handlers>
+                <aspNetCore processPath="dotnet" arguments=".\MyBlogSite.dll" stdoutLogEnabled="false" hostingModel="inprocess">
+                  <environmentVariables>
+                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
+                  </environmentVariables>
+                </aspNetCore>
+              </system.webServer>
+            </location>
+          </configuration>
+          EOL
 
-      # 📌 FTP 1: MyBlogSite'ı Yükle (clean yerine dangerous-clean-slate kullanılıyor)
-      - name: MyBlogSite Kodlarını FTP 1'e Yükle
+      # 📌 Web.config Oluşturma/Güncelleme (NotificationConsumer)
+      - name: NotificationConsumer Web.config Güncelleme
+        run: |
+          cat > ./publish-notificationconsumer/web.config <<EOL
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <location path="." inheritInChildApplications="false">
+              <system.webServer>
+                <handlers>
+                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
+                </handlers>
+                <aspNetCore processPath="dotnet" arguments=".\NotificationConsumer.dll" stdoutLogEnabled="false" hostingModel="inprocess">
+                  <environmentVariables>
+                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
+                  </environmentVariables>
+                </aspNetCore>
+              </system.webServer>
+            </location>
+          </configuration>
+          EOL
+
+      # 📌 FTP 1: MyBlogSite'ı Yükle
+      - name: MyBlogSite Kodlarını FTP'ye Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish-myblogsite/  # Sadece MyBlogSite için publish edilen dosyaları yükle
-          server-dir: /httpdocs/  # FTP sunucusundaki hedef klasör
-          dangerous-clean-slate: true  # Eski dosyaları temizleyerek yükleme yap
+          local-dir: ./publish-myblogsite/
+          server-dir: /httpdocs/
+          dangerous-clean-slate: true
 
-      # 📌 FTP 2: NotificationConsumer'ı Yükle (clean yerine dangerous-clean-slate kullanılıyor)
-      - name: NotificationConsumer Kodlarını FTP 2'ye Yükle
+      # 📌 FTP 2: NotificationConsumer'ı Yükle
+      - name: NotificationConsumer Kodlarını FTP'ye Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish-notificationconsumer/  # Sadece NotificationConsumer için publish edilen dosyaları yükle
-          server-dir: /mail-consumer.analizgaraj.com/  # FTP sunucusundaki hedef klasör
-          dangerous-clean-slate: true  # Eski dosyaları temizleyerek yükleme yap
+          local-dir: ./publish-notificationconsumer/
+          server-dir: /mail-consumer.analizgaraj.com/
+          dangerous-clean-slate: true
