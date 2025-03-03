@@ -18,11 +18,11 @@ jobs:
       - name: .NET SDK Kurulumu
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'  # Kullanılan .NET sürümüne göre değiştirebilirsin
+          dotnet-version: '9.0.x'  # Kullanılan .NET sürümüne göre değiştirebilirsin
 
       # Projeyi Build ve Publish Et
       - name: Projeyi Build ve Publish Et
-        run: dotnet publish ./MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj -c Release -o ./publish
+        run: dotnet publish ./MyBlogSite.Consumers/MailConsumers/MailConsumers.csproj -c Release -o ./publish
 
       # Publish Edilen Kodları FTP'ye Yükle
       - name: FTP ile Publish Edilen Kodları Yükle
