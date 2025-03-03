@@ -22,7 +22,7 @@ jobs:
 
       # Projeyi Build ve Publish Et
       - name: Projeyi Build ve Publish Et
-        run: dotnet publish ./MyBlogSite.Consumers/MailConsumers/MailConsumers.csproj -c Release -o ./publish
+        run: dotnet publish ./MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj -c Release -o ./publish
 
       # Publish Edilen Kodları FTP'ye Yükle
       - name: FTP ile Publish Edilen Kodları Yükle
