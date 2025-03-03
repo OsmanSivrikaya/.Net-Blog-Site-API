@@ -24,6 +24,13 @@ jobs:
       - name: Projeyi Build ve Publish Et
         run: dotnet publish ./MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj -c Release -o ./publish
 
+      # Web.config içinde ASPNETCORE_ENVIRONMENT Değişkenini Güncelle
+      - name: Web.config İçine ASPNETCORE_ENVIRONMENT Ekle
+        run: |
+          if [ -f "./publish/web.config" ]; then
+            sed -i 's|</aspNetCore>|<environmentVariables><environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" /></environmentVariables></aspNetCore>|' ./publish/web.config
+          fi
+
       # Publish Edilen Kodları FTP'ye Yükle
       - name: FTP ile Publish Edilen Kodları Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1

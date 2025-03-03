@@ -38,4 +38,17 @@
     <ProjectReference Include="..\Base\Base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="publish\web.config" />
+    <_ContentIncludedByDefault Remove="publish\appsettings.Development.json" />
+    <_ContentIncludedByDefault Remove="publish\appsettings.json" />
+    <_ContentIncludedByDefault Remove="publish\appsettings.Production.json" />
+    <_ContentIncludedByDefault Remove="publish\appsettings.Test.json" />
+    <_ContentIncludedByDefault Remove="publish\Base.deps.json" />
+    <_ContentIncludedByDefault Remove="publish\Base.runtimeconfig.json" />
+    <_ContentIncludedByDefault Remove="publish\MyBlogSite.deps.json" />
+    <_ContentIncludedByDefault Remove="publish\MyBlogSite.runtimeconfig.json" />
+    <_ContentIncludedByDefault Remove="publish\MyBlogSite.staticwebassets.endpoints.json" />
+  </ItemGroup>
+
 </Project>

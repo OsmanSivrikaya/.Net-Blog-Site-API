@@ -26,7 +26,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update" />
+    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Production.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/Admin/appsettings.Test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Production.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.APIs/MyBlogSite/appsettings.Test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Production.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/appsettings.Test.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +116,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.NotificationConsumer: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.MyBlogSite: http">
     <configuration name="Admin: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MyBlogSite.APIs/Admin/Admin.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -427,7 +440,7 @@
       <workItem from="1740464017619" duration="23468000" />
       <workItem from="1740833785709" duration="3014000" />
       <workItem from="1740981634996" duration="1229000" />
-      <workItem from="1740996857530" duration="3530000" />
+      <workItem from="1740996857530" duration="5311000" />
     </task>
     <task id="LOCAL-00001" summary="Signalr consumer eklendi.&#10;Bildirim göndermek için gerekli methodlar eklendi.">
       <option name="closed" value="true" />
@@ -565,7 +578,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741001042370</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="update">
+      <option name="closed" value="true" />
+      <created>1741001430256</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1741001430256</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update">
+      <option name="closed" value="true" />
+      <created>1741001484700</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1741001484700</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

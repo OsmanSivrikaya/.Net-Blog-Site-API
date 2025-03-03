@@ -27,4 +27,17 @@
       <ProjectReference Include="..\..\MyBlogSite.Business\MyBlogSite.Business.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\appsettings.Production.json" />
+      <_ContentIncludedByDefault Remove="publish\appsettings.Test.json" />
+      <_ContentIncludedByDefault Remove="publish\Base.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\Base.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\MailConsumer.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\MailConsumer.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\MailConsumer.staticwebassets.endpoints.json" />
+    </ItemGroup>
+
 </Project>
