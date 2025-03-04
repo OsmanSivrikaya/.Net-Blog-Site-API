@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         builder => builder
-            .WithOrigins("http://127.0.0.1:5500") // Tüm istemcilere izin ver (Güvenlik için prod'da değiştir!)
+            .SetIsOriginAllowed(_ => true) 
             .AllowAnyMethod() // GET, POST, PUT, DELETE gibi tüm HTTP metodlarına izin ver
             .AllowAnyHeader() // Tüm header'lara izin ver
             .AllowCredentials() // Eğer SignalR ile Auth token gönderiyorsan ekleyebilirsin
