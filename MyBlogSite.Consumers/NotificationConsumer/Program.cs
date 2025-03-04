@@ -47,7 +47,7 @@ if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqS
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseCors("AllowAll"); // Burada CORS tanımlandı!
