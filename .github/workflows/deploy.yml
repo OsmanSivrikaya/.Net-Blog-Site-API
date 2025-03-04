@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Kodu GitHub'dan Çek
+      # 📌 Kodu GitHub'dan Çek
       - name: Kodu GitHub'dan Çek
         uses: actions/checkout@v2
 
-      # 📌 .NET 8 SDK Kurulumu (MyBlogSite İçin)
+      # 📌 .NET 8 SDK Kurulumu (MyBlogSite ve Admin İçin)
       - name: .NET 8 SDK Kurulumu
         uses: actions/setup-dotnet@v3
         with:
@@ -24,17 +24,27 @@ jobs:
       - name: MyBlogSite Projesini Build ve Publish Et (.NET 8)
         run: dotnet publish ./MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj -c Release -o ./publish-myblogsite
 
-      # 📌 .NET 9 SDK Kurulumu (NotificationConsumer İçin)
+      # 📌 İkinci Proje: Admin (.NET 8)
+      - name: Admin Projesini Build ve Publish Et (.NET 8)
+        run: dotnet publish ./MyBlogSite.APIs/Admin/Admin.csproj -c Release -o ./publish-admin
+
+      # 📌 .NET 9 SDK Kurulumu (NotificationConsumer ve MailConsumer İçin)
       - name: .NET 9 SDK Kurulumu
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '9.0.x'
 
-      # 📌 İkinci Proje: NotificationConsumer (.NET 9)
+      # 📌 Üçüncü Proje: NotificationConsumer (.NET 9)
       - name: NotificationConsumer Projesini Build ve Publish Et (.NET 9)
         run: dotnet publish ./MyBlogSite.Consumers/NotificationConsumer/NotificationConsumer.csproj -c Release -o ./publish-notificationconsumer
 
-      # 📌 Web.config Oluşturma/Güncelleme (MyBlogSite)
+      # 📌 Dördüncü Proje: MailConsumer (.NET 9)
+      - name: MailConsumer Projesini Build ve Publish Et (.NET 9)
+        run: dotnet publish ./MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj -c Release -o ./publish-mailconsumer
+
+      # 📌 Web.config Güncellemeleri
+
+      # MyBlogSite için Web.config oluştur
       - name: MyBlogSite Web.config Güncelleme
         run: |
           cat > ./publish-myblogsite/web.config <<EOL
@@ -55,7 +65,28 @@ jobs:
           </configuration>
           EOL
 
-      # 📌 Web.config Oluşturma/Güncelleme (NotificationConsumer)
+      # Admin için Web.config oluştur
+      - name: Admin Web.config Güncelleme
+        run: |
+          cat > ./publish-admin/web.config <<EOL
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <location path="." inheritInChildApplications="false">
+              <system.webServer>
+                <handlers>
+                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
+                </handlers>
+                <aspNetCore processPath="dotnet" arguments=".\Admin.dll" stdoutLogEnabled="false" hostingModel="inprocess">
+                  <environmentVariables>
+                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
+                  </environmentVariables>
+                </aspNetCore>
+              </system.webServer>
+            </location>
+          </configuration>
+          EOL
+
+      # NotificationConsumer için Web.config oluştur
       - name: NotificationConsumer Web.config Güncelleme
         run: |
           cat > ./publish-notificationconsumer/web.config <<EOL
@@ -76,7 +107,30 @@ jobs:
           </configuration>
           EOL
 
-      # 📌 FTP 1: MyBlogSite'ı Yükle
+      # MailConsumer için Web.config oluştur
+      - name: MailConsumer Web.config Güncelleme
+        run: |
+          cat > ./publish-mailconsumer/web.config <<EOL
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <location path="." inheritInChildApplications="false">
+              <system.webServer>
+                <handlers>
+                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
+                </handlers>
+                <aspNetCore processPath="dotnet" arguments=".\MailConsumer.dll" stdoutLogEnabled="false" hostingModel="inprocess">
+                  <environmentVariables>
+                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
+                  </environmentVariables>
+                </aspNetCore>
+              </system.webServer>
+            </location>
+          </configuration>
+          EOL
+
+      # 📌 FTP Yükleme İşlemleri
+
+      # MyBlogSite'ı FTP'ye yükle
       - name: MyBlogSite Kodlarını FTP'ye Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
@@ -84,10 +138,21 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish-myblogsite/
-          server-dir: /httpdocs/
+          server-dir: /blog.analizgaraj.com/
           dangerous-clean-slate: true
 
-      # 📌 FTP 2: NotificationConsumer'ı Yükle
+      # Admin'i FTP'ye yükle
+      - name: Admin Kodlarını FTP'ye Yükle
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./publish-admin/
+          server-dir: /admin.analizgaraj.com/
+          dangerous-clean-slate: true
+
+      # NotificationConsumer'ı FTP'ye yükle
       - name: NotificationConsumer Kodlarını FTP'ye Yükle
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
@@ -95,5 +160,16 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish-notificationconsumer/
+          server-dir: /notification-consumer.analizgaraj.com/
+          dangerous-clean-slate: true
+
+      # MailConsumer'ı FTP'ye yükle
+      - name: MailConsumer Kodlarını FTP'ye Yükle
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./publish-mailconsumer/
           server-dir: /mail-consumer.analizgaraj.com/
           dangerous-clean-slate: true
