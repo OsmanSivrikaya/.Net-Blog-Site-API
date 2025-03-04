@@ -139,7 +139,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish-myblogsite/
           server-dir: /blog.analizgaraj.com/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
 
       # Admin'i FTP'ye yükle
       - name: Admin Kodlarını FTP'ye Yükle
@@ -150,7 +150,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish-admin/
           server-dir: /admin.analizgaraj.com/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
 
       # NotificationConsumer'ı FTP'ye yükle
       - name: NotificationConsumer Kodlarını FTP'ye Yükle
@@ -161,7 +161,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish-notificationconsumer/
           server-dir: /notification-consumer.analizgaraj.com/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
 
       # MailConsumer'ı FTP'ye yükle
       - name: MailConsumer Kodlarını FTP'ye Yükle
@@ -172,4 +172,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish-mailconsumer/
           server-dir: /mail-consumer.analizgaraj.com/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
