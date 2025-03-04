@@ -26,9 +26,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyBlogSite/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1cb1c372-7a8a-46b8-b5a0-2ebd5aaf240f" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +92,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Publish to folder.Publish MyBlogSite to folder">
+  <component name="RunManager" selected=".NET Launch Settings Profile.MyBlogSite: http">
     <configuration name="Publish MailConsumer to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/MyBlogSite.Consumers/MailConsumer/bin/Release/net9.0/publish" target_framework="net9.0" uuid_high="-3364969514172661247" uuid_low="-7771221489439872630" />
       <method v="2" />

@@ -70,7 +70,7 @@ using (var scope = app.Services.CreateScope())
 //{
     app.UseSwaggerConfig();
 //}
-app.UseHttpsRedirection();
+//.UseHttpsRedirection();
 // Authentication'u ekliyoruz
 app.UseAuthenticationJWT();
 app.UseAuthorization();

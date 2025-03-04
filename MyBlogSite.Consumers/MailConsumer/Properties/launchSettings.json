@@ -4,13 +4,14 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://127.0.0.1:5005"
+      "applicationUrl": "http://127.0.0.1:7005"
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": false,
+      "applicationUrl": "http://127.0.0.1:7005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -19,7 +20,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "http://127.0.0.1:5005", 
+      "applicationUrl": "http://127.0.0.1:5005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -28,7 +29,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "https://127.0.0.1:6005;http://127.0.0.1:7005", 
+      "applicationUrl": "https://127.0.0.1:7005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
