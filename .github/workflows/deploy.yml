@@ -10,166 +10,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 📌 Kodu GitHub'dan Çek
       - name: Kodu GitHub'dan Çek
         uses: actions/checkout@v2
 
-      # 📌 .NET 8 SDK Kurulumu (MyBlogSite ve Admin İçin)
       - name: .NET 8 SDK Kurulumu
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
-      # 📌 İlk Proje: MyBlogSite (.NET 8)
-      - name: MyBlogSite Projesini Build ve Publish Et (.NET 8)
-        run: dotnet publish ./MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj -c Release -o ./publish-myblogsite
-
-      # 📌 İkinci Proje: Admin (.NET 8)
-      - name: Admin Projesini Build ve Publish Et (.NET 8)
-        run: dotnet publish ./MyBlogSite.APIs/Admin/Admin.csproj -c Release -o ./publish-admin
-
-      # 📌 .NET 9 SDK Kurulumu (NotificationConsumer ve MailConsumer İçin)
       - name: .NET 9 SDK Kurulumu
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '9.0.x'
 
-      # 📌 Üçüncü Proje: NotificationConsumer (.NET 9)
-      - name: NotificationConsumer Projesini Build ve Publish Et (.NET 9)
-        run: dotnet publish ./MyBlogSite.Consumers/NotificationConsumer/NotificationConsumer.csproj -c Release -o ./publish-notificationconsumer
-
-      # 📌 Dördüncü Proje: MailConsumer (.NET 9)
-      - name: MailConsumer Projesini Build ve Publish Et (.NET 9)
-        run: dotnet publish ./MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj -c Release -o ./publish-mailconsumer
-
-      # 📌 Web.config Güncellemeleri
-
-      # MyBlogSite için Web.config oluştur
-      - name: MyBlogSite Web.config Güncelleme
+      - name: Projeleri Build Et
         run: |
-          cat > ./publish-myblogsite/web.config <<EOL
-          <?xml version="1.0" encoding="utf-8"?>
-          <configuration>
-            <location path="." inheritInChildApplications="false">
-              <system.webServer>
-                <handlers>
-                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
-                </handlers>
-                <aspNetCore processPath="dotnet" arguments=".\MyBlogSite.dll" stdoutLogEnabled="false" hostingModel="inprocess">
-                  <environmentVariables>
-                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
-                  </environmentVariables>
-                </aspNetCore>
-              </system.webServer>
-            </location>
-          </configuration>
-          EOL
+          dotnet publish ./MyBlogSite.APIs/MyBlogSite/MyBlogSite.csproj -c Release -o ./publish-myblogsite
+          dotnet publish ./MyBlogSite.APIs/Admin/Admin.csproj -c Release -o ./publish-admin
+          dotnet publish ./MyBlogSite.Consumers/NotificationConsumer/NotificationConsumer.csproj -c Release -o ./publish-notificationconsumer
+          dotnet publish ./MyBlogSite.Consumers/MailConsumer/MailConsumer.csproj -c Release -o ./publish-mailconsumer
 
-      # Admin için Web.config oluştur
-      - name: Admin Web.config Güncelleme
-        run: |
-          cat > ./publish-admin/web.config <<EOL
-          <?xml version="1.0" encoding="utf-8"?>
-          <configuration>
-            <location path="." inheritInChildApplications="false">
-              <system.webServer>
-                <handlers>
-                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
-                </handlers>
-                <aspNetCore processPath="dotnet" arguments=".\Admin.dll" stdoutLogEnabled="false" hostingModel="inprocess">
-                  <environmentVariables>
-                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
-                  </environmentVariables>
-                </aspNetCore>
-              </system.webServer>
-            </location>
-          </configuration>
-          EOL
+  ftp-deploy:
+    needs: deploy  # Build tamamlandıktan sonra başlasın
+    strategy:
+      matrix:
+        service: [myblogsite, admin, notificationconsumer, mailconsumer]
+    runs-on: ubuntu-latest
 
-      # NotificationConsumer için Web.config oluştur
-      - name: NotificationConsumer Web.config Güncelleme
-        run: |
-          cat > ./publish-notificationconsumer/web.config <<EOL
-          <?xml version="1.0" encoding="utf-8"?>
-          <configuration>
-            <location path="." inheritInChildApplications="false">
-              <system.webServer>
-                <handlers>
-                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
-                </handlers>
-                <aspNetCore processPath="dotnet" arguments=".\NotificationConsumer.dll" stdoutLogEnabled="false" hostingModel="inprocess">
-                  <environmentVariables>
-                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
-                  </environmentVariables>
-                </aspNetCore>
-              </system.webServer>
-            </location>
-          </configuration>
-          EOL
+    steps:
+      - name: Kodu GitHub'dan Çek
+        uses: actions/checkout@v2
 
-      # MailConsumer için Web.config oluştur
-      - name: MailConsumer Web.config Güncelleme
-        run: |
-          cat > ./publish-mailconsumer/web.config <<EOL
-          <?xml version="1.0" encoding="utf-8"?>
-          <configuration>
-            <location path="." inheritInChildApplications="false">
-              <system.webServer>
-                <handlers>
-                  <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
-                </handlers>
-                <aspNetCore processPath="dotnet" arguments=".\MailConsumer.dll" stdoutLogEnabled="false" hostingModel="inprocess">
-                  <environmentVariables>
-                    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
-                  </environmentVariables>
-                </aspNetCore>
-              </system.webServer>
-            </location>
-          </configuration>
-          EOL
-
-      # 📌 FTP Yükleme İşlemleri
-
-      # MyBlogSite'ı FTP'ye yükle
-      - name: MyBlogSite Kodlarını FTP'ye Yükle
+      - name: FTP Deploy - ${{ matrix.service }}
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish-myblogsite/
-          server-dir: /blog.analizgaraj.com/
-          dangerous-clean-slate: true
-
-      # Admin'i FTP'ye yükle
-      - name: Admin Kodlarını FTP'ye Yükle
-        uses: SamKirkland/FTP-Deploy-Action@4.3.1
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish-admin/
-          server-dir: /admin.analizgaraj.com/
-          dangerous-clean-slate: true
-
-      # NotificationConsumer'ı FTP'ye yükle
-      - name: NotificationConsumer Kodlarını FTP'ye Yükle
-        uses: SamKirkland/FTP-Deploy-Action@4.3.1
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish-notificationconsumer/
-          server-dir: /notification-consumer.analizgaraj.com/
-          dangerous-clean-slate: true
-
-      # MailConsumer'ı FTP'ye yükle
-      - name: MailConsumer Kodlarını FTP'ye Yükle
-        uses: SamKirkland/FTP-Deploy-Action@4.3.1
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish-mailconsumer/
-          server-dir: /mail-consumer.analizgaraj.com/
+          local-dir: ./publish-${{ matrix.service }}/
+          server-dir: /${{ matrix.service }}.analizgaraj.com/
           dangerous-clean-slate: true
