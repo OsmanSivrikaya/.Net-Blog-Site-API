@@ -12,8 +12,12 @@ public static class MasTransitConfig
             x.AddConsumer<NotificationConsumer>();
             x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.Host(rabbitMqSettings.Url, host =>
+                cfg.Host(new Uri(rabbitMqSettings.Url), h =>
                 {
+                    h.UseSsl(s =>
+                    {
+                        s.Protocol = System.Security.Authentication.SslProtocols.Tls12;
+                    });
                 });
 
                 cfg.ReceiveEndpoint(rabbitMqSettings.SignalrQueueKey, e =>
