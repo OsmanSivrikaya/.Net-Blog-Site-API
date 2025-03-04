@@ -1,4 +1,5 @@
 using Base.Configurations;
+using MassTransit;
 using Microsoft.AspNetCore.SignalR;
 using MyBlogSite.Core.Dtos.Settings;
 using NotificationConsumer;
@@ -46,6 +47,10 @@ if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqS
 #region App
 
 var app = builder.Build();
+
+// RabbitMQ Consumer'ı elle başlat
+var busControl = app.Services.GetRequiredService<IBusControl>();
+await busControl.StartAsync();
 
 //app.UseHttpsRedirection();
 
