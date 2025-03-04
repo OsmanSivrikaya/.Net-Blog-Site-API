@@ -11,11 +11,14 @@ public static class MasTransitConfig
         {
             x.AddConsumer<MailConsumer>();
 
-            // Default Port : 5672
             x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.Host(rabbitMqSettings.Url, host =>
+                cfg.Host(new Uri(rabbitMqSettings.Url), h =>
                 {
+                    h.UseSsl(s =>
+                    {
+                        s.Protocol = System.Security.Authentication.SslProtocols.Tls12;
+                    });
                 });
 
                 cfg.ReceiveEndpoint(rabbitMqSettings.MailQueueKey, e =>
@@ -24,7 +27,7 @@ public static class MasTransitConfig
                 });
             });
         });
-        
+
         return services;
     }
 }
