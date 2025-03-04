@@ -30,10 +30,6 @@ if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqS
 #region App
 
 var app = builder.Build();
-// RabbitMQ Consumer'ı elle başlat
-var busControl = app.Services.GetRequiredService<IBusControl>();
-await busControl.StartAsync();
-
 //app.UseHttpsRedirection();
 
 app.Run();

@@ -14,10 +14,7 @@ public static class MasTransitConfig
             {
                 cfg.Host(new Uri(rabbitMqSettings.Url), h =>
                 {
-                    h.UseSsl(s =>
-                    {
-                        s.Protocol = System.Security.Authentication.SslProtocols.Tls12;
-                    });
+                    h.Heartbeat(60);
                 });
 
                 cfg.ReceiveEndpoint(rabbitMqSettings.SignalrQueueKey, e =>
