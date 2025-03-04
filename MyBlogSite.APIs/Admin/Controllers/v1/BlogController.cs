@@ -14,7 +14,7 @@ public class BlogController(IBlogService blogService) : BaseController
 {
     /// <summary>
     /// Blog engellemek için kullanılır.
-    /// Dikkat blog engellendiğinde tüm kullanıcılarda engellenir.
+    /// Dikkat blog engellendiğinde tüm kullanıcılarda engellenir
     /// </summary>
     /// <param name="blogBanStatusDto"></param>
     /// <returns></returns>
