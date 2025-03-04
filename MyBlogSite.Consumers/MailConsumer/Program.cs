@@ -1,4 +1,6 @@
+using MailConsumer;
 using MailConsumer.Configurations;
+using MassTransit;
 using MyBlogSite.Core.Dtos.Settings;
 using MyBlogSite.Core.Producers;
 using MyBlogSite.Core.Producers.Interface;
@@ -28,6 +30,9 @@ if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqS
 #region App
 
 var app = builder.Build();
+// RabbitMQ Consumer'ı elle başlat
+var busControl = app.Services.GetRequiredService<IBusControl>();
+await busControl.StartAsync();
 
 //app.UseHttpsRedirection();
 
