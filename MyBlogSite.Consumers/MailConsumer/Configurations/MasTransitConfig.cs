@@ -15,6 +15,7 @@ public static class MasTransitConfig
             {
                 cfg.Host(new Uri(rabbitMqSettings.Url), h =>
                 {
+                    h.Heartbeat(60);
                 });
 
                 cfg.ReceiveEndpoint(rabbitMqSettings.MailQueueKey, e =>
@@ -23,6 +24,9 @@ public static class MasTransitConfig
                 });
             });
         });
+
+        // Hosted Service olarak ekle
+        services.AddHostedService<RabbitMqConsumerHostedService>();
 
         return services;
     }
