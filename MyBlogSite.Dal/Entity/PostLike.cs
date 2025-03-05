@@ -5,7 +5,7 @@ namespace MyBlogSite.Dal.Entity
 {
     public class PostLike : BaseEntity
     {
-        [Column("email", TypeName = "nvarchar(255)")]
+        [Column("email", TypeName = "varchar(255)")]
         public required string Email { get; set; }
         
         [ForeignKey("post_id")]

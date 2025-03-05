@@ -6,19 +6,19 @@ namespace MyBlogSite.Dal.Entity;
 
 public class User : BaseEntity
 {
-    [Column("name", TypeName = "nvarchar(100)")]
+    [Column("name", TypeName = "varchar(100)")]
     public required string Name { get; set; }
     
-    [Column("surname", TypeName = "nvarchar(100)")]
+    [Column("surname", TypeName = "varchar(100)")]
     public required string Surname { get; set; }
     
-    [Column("username", TypeName = "nvarchar(100)")]
+    [Column("username", TypeName = "varchar(100)")]
     public required string Username { get; set; }
 
-    [Column("email", TypeName = "nvarchar(200)")] 
+    [Column("email", TypeName = "varchar(200)")] 
     public required string Email { get; set; }
 
-    [Column("password", TypeName = "nvarchar(300)")]
+    [Column("password", TypeName = "varchar(300)")]
     public required string Password { get; set; }
 
     [Column("is_banned")] 
