@@ -13,10 +13,7 @@ public static class MasTransitConfig
 
             x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.Host(new Uri(rabbitMqSettings.Url), h =>
-                {
-                    h.Heartbeat(60);
-                });
+                cfg.Host(new Uri(rabbitMqSettings.Url));
 
                 cfg.ReceiveEndpoint(rabbitMqSettings.MailQueueKey, e =>
                 {
