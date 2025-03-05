@@ -18,7 +18,7 @@ namespace Base.Configurations
             // Bağlantı dizesini al
             var connectionString = configuration["SQL_CONNECTION"];
             // DbContext'i ekleyin
-            services.AddDbContext<ContextDb>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ContextDb>(options => options.UseNpgsql(connectionString));
         }
     }
 }

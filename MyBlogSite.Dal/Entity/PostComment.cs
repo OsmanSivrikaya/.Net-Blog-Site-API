@@ -31,7 +31,7 @@ namespace MyBlogSite.Dal.Entity
         /// <summary>
         /// Yorum içeriği
         /// </summary>
-        [Column("content", TypeName = "nvarchar(4000)")]
+        [Column("content", TypeName = "varchar(4000)")]
         public required string Content { get; set; }
         
         [Column("is_deleted")]

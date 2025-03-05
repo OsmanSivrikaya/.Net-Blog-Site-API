@@ -13,19 +13,19 @@ public class Post : BaseEntity
     /// <summary>
     /// Post Başlık
     /// </summary>
-    [Column("title", TypeName = "nvarchar(255)")]
+    [Column("title", TypeName = "varchar(255)")]
     public required string Title { get; set; }
     
     /// <summary>
     /// Post İçerik
     /// </summary>
-    [Column("content", TypeName = "nvarchar(4000)")]
+    [Column("content", TypeName = "varchar(4000)")]
     public required string Content { get; set; }
 
     /// <summary>
     /// Post Uniq İsimlendirme
     /// </summary>
-    [Column("slag", TypeName = "nvarchar(4000)")]
+    [Column("slag", TypeName = "varchar(4000)")]
     public required string Slug { get; set; }
 
     [ForeignKey("type_id")]

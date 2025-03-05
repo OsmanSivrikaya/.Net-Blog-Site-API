@@ -6,7 +6,7 @@ namespace MyBlogSite.Dal.Entity;
 
 public class Tag : BaseEntity
 {
-    [Column("content", TypeName = "nvarchar(400)")]
+    [Column("content", TypeName = "varchar(400)")]
     public required string TagName { get; set; }
     
     [Column("tag_status")]

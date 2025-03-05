@@ -2,18 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBlogSite.Dal;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace MyBlogSite.Dal.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    [Migration("20250224081830_post_comment_entity_update")]
-    partial class post_comment_entity_update
+    [Migration("20250305084326_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,37 +21,53 @@ namespace MyBlogSite.Dal.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("MyBlogSite.Dal.Entity.Blog", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<string>("BlogName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(150)")
+                        .HasColumnType("varchar(150)")
                         .HasColumnName("blog_name");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("blog_description");
+
+                    b.Property<Guid?>("FounderUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("founder_user_id");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_active");
+
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_banned");
+
+                    b.Property<bool>("IsVisible")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_visible");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("slag");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.HasKey("Id");
@@ -63,39 +79,39 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
 
                     b.Property<bool>("IsRead")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("is_read");
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("message");
 
                     b.Property<string>("PostSlag")
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("post_slag");
 
                     b.Property<int>("Type")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("user_id");
 
                     b.HasKey("Id");
@@ -107,46 +123,46 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<Guid>("BlogId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("blog_id");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("content");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<bool>("IsVisible")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("is_visible");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("slag");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("title");
 
                     b.Property<Guid>("TypeId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("type_id");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("user_id");
 
                     b.HasKey("Id");
@@ -164,37 +180,43 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("content");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_deleted");
+
                     b.Property<Guid?>("ParentCommentId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("parent_comment_id");
 
                     b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("user_id");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("post_comments", (string)null);
                 });
@@ -203,43 +225,43 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<string>("FileDirectory")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("file_directory");
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("file_name");
 
                     b.Property<string>("FileType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("file_type");
 
                     b.Property<string>("FileUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("file_url");
 
                     b.Property<bool>("IsMainFile")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("is_main_file");
 
                     b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.HasKey("Id");
@@ -253,24 +275,24 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("email");
 
                     b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.HasKey("Id");
@@ -284,23 +306,23 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
                     b.Property<Guid>("TagId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("tag_id");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.HasKey("Id");
@@ -316,33 +338,33 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("is_active");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnType("varchar(4000)")
                         .HasColumnName("slag");
 
                     b.Property<string>("TypeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("type_name");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.HasKey("Id");
@@ -354,24 +376,24 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<string>("TagName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(400)")
+                        .HasColumnType("varchar(400)")
                         .HasColumnName("content");
 
                     b.Property<int>("TagStatus")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnName("tag_status");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.HasKey("Id");
@@ -383,56 +405,56 @@ namespace MyBlogSite.Dal.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<Guid?>("BlogId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("blog_id");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("email");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("is_active");
 
-                    b.Property<bool>("IsExecutive")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_executive");
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_banned");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("name");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
+                        .HasColumnType("varchar(300)")
                         .HasColumnName("password");
 
                     b.Property<int>("Role")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnName("role");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("surname");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_date");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("username");
 
                     b.HasKey("Id");
@@ -471,13 +493,19 @@ namespace MyBlogSite.Dal.Migrations
 
             modelBuilder.Entity("MyBlogSite.Dal.Entity.PostComment", b =>
                 {
-                    b.HasOne("MyBlogSite.Dal.Entity.Post", "Post")
+                    b.HasOne("MyBlogSite.Dal.Entity.Post", null)
                         .WithMany("BlogComments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Post");
+                    b.HasOne("MyBlogSite.Dal.Entity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyBlogSite.Dal.Entity.PostFile", b =>

@@ -5,13 +5,13 @@ namespace MyBlogSite.Dal.Entity;
 
 public class Blog : BaseEntity
 {
-    [Column("blog_name", TypeName = "nvarchar(150)")]
+    [Column("blog_name", TypeName = "varchar(150)")]
     public required string BlogName { get; set; }
 
-    [Column("slag", TypeName = "nvarchar(4000)")]
+    [Column("slag", TypeName = "varchar(4000)")]
     public required string Slug { get; set; }
 
-    [Column("blog_description", TypeName = "nvarchar(4000)")]
+    [Column("blog_description", TypeName = "varchar(4000)")]
     public string? Description { get; set; }
     public List<User> Users { get; set; }
     

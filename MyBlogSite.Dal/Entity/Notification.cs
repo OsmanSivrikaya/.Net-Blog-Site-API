@@ -17,14 +17,14 @@ public class Notification : BaseEntity
     /// (Slug, post başlığından üretilmiş URL dostu bir metindir.)
     /// Örn: "ilk-blog-yazim"
     /// </summary>
-    [Column("post_slag", TypeName = "nvarchar(4000)")]
+    [Column("post_slag", TypeName = "varchar(4000)")]
     public string? PostSlag { get; set; }
 
     /// <summary>
     /// Kullanıcılara iletilecek bildirim mesajı.
     /// Örn: "Yeni bir yorum aldı" veya "Takip ettiğiniz kişi yeni bir post paylaştı"
     /// </summary>
-    [Column("message", TypeName = "nvarchar(4000)")]
+    [Column("message", TypeName = "varchar(4000)")]
     public string Message { get; set; } = string.Empty;
 
     /// <summary>

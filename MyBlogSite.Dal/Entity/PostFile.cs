@@ -11,16 +11,16 @@ public class PostFile : BaseEntity
     
     public Post? Post { get; set; }
     
-    [Column("file_name", TypeName = "nvarchar(4000)")]
+    [Column("file_name", TypeName = "varchar(4000)")]
     public required string FileName { get; set; }
     
-    [Column("file_type", TypeName = "nvarchar(4000)")]
+    [Column("file_type", TypeName = "varchar(4000)")]
     public required string FileType { get; set; }
     
-    [Column("file_url", TypeName = "nvarchar(4000)")]
+    [Column("file_url", TypeName = "varchar(4000)")]
     public required string FileUrl { get; set; }
     
-    [Column("file_directory", TypeName = "nvarchar(4000)")]
+    [Column("file_directory", TypeName = "varchar(4000)")]
     public required string FileDirectory { get; set; }
     
     [Column("is_main_file")]
