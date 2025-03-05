@@ -17,6 +17,12 @@ jobs:
         run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u osmansivrikaya --password-stdin
 
       # 🔹 MyBlogSite Docker Image Build & Push
+      - name: Build and Push Base Docker Image
+        run: |
+          docker build -t osmansivrikaya/base:latest -f ./MyBlogSite.APIs/Base/Dockerfile .
+          docker push osmansivrikaya/base:latest
+          
+      # 🔹 MyBlogSite Docker Image Build & Push
       - name: Build and Push MyBlogSite Docker Image
         run: |
           docker build -t osmansivrikaya/myblogsite:latest -f ./MyBlogSite.APIs/MyBlogSite/Dockerfile .
