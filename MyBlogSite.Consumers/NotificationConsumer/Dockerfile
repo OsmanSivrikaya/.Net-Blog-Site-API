@@ -1,5 +1,5 @@
 ﻿# Temel imaj olarak .NET SDK kullan
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Çalışma dizinini ayarla
 WORKDIR /app
@@ -13,7 +13,7 @@ COPY . ./
 RUN dotnet publish -c Release -o /out
 
 # Çalıştırma için temel imaj olarak .NET Runtime kullans
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 
 # Çalışma dizinini ayarlan
 WORKDIR /app
@@ -22,4 +22,4 @@ WORKDIR /app
 COPY --from=build /out .
 
 # Uygulamayı çalıştırs
-ENTRYPOINT ["dotnet", "MyBlogSite.dll"]
+ENTRYPOINT ["dotnet", "NotificationConsumer.dll"]

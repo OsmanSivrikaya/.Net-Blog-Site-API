@@ -25,9 +25,6 @@ public static class MasTransitConfig
             });
         });
 
-        // Hosted Service olarak ekle
-        services.AddHostedService<RabbitMqConsumerHostedService>();
-
         return services;
     }
 }

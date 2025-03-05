@@ -22,4 +22,4 @@ WORKDIR /app
 COPY --from=build /out .
 
 # Uygulamayı çalıştırs
-ENTRYPOINT ["dotnet", "MyBlogSite.dll"]
+ENTRYPOINT ["dotnet", "Admin.dll"]

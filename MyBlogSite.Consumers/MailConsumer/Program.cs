@@ -32,18 +32,6 @@ if (rabbitMqSettings != null) builder.Services.AddMassTransitConsumers(rabbitMqS
 var app = builder.Build();
 //app.UseHttpsRedirection();
 
-app.Lifetime.ApplicationStarted.Register(() =>
-{
-    var busControl = app.Services.GetRequiredService<IBusControl>();
-    busControl.StartAsync();
-});
-
-app.Lifetime.ApplicationStopped.Register(() =>
-{
-    var busControl = app.Services.GetRequiredService<IBusControl>();
-    busControl.StopAsync();
-});
-
 app.Run();
 
 #endregion

@@ -1,0 +1,41 @@
+name: Docker Image CI & Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u osmansivrikaya --password-stdin
+
+      # 🔹 MyBlogSite Docker Image Build & Push
+      - name: Build and Push MyBlogSite Docker Image
+        run: |
+          docker build -t osmansivrikaya/myblogsite:latest -f ./MyBlogSite.APIs/MyBlogSite/Dockerfile .
+          docker push osmansivrikaya/myblogsite:latest
+
+      # 🔹 Admin Docker Image Build & Push
+      - name: Build and Push Admin Docker Image
+        run: |
+          docker build -t osmansivrikaya/admin:latest -f ./MyBlogSite.APIs/Admin/Dockerfile .
+          docker push osmansivrikaya/admin:latest
+
+      # 🔹 NotificationConsumer Docker Image Build & Push
+      - name: Build and Push NotificationConsumer Docker Image
+        run: |
+          docker build -t osmansivrikaya/notificationconsumer:latest -f ./MyBlogSite.Consumers/NotificationConsumer/Dockerfile .
+          docker push osmansivrikaya/notificationconsumer:latest
+
+      # 🔹 MailConsumer Docker Image Build & Push
+      - name: Build and Push MailConsumer Docker Image
+        run: |
+          docker build -t osmansivrikaya/mailconsumer:latest -f ./MyBlogSite.Consumers/MailConsumer/Dockerfile .
+          docker push osmansivrikaya/mailconsumer:latest
