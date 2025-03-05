@@ -1,20 +1,20 @@
-﻿# Base API Dockerfile'ı
-FROM mcr.microsoft.com/dotnet/sdk:8.0 as base
-WORKDIR /app
-EXPOSE 5000
+﻿# 📌 Build aşaması için .NET SDK 8 kullan
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 
-COPY . . 
+# 📌 Proje dosyasını ve bağımlılıkları kopyala
+COPY MyBlogSite.APIs/Base/*.csproj MyBlogSite.APIs/Base/
+RUN dotnet restore MyBlogSite.APIs/Base/Base.csproj
 
-WORKDIR /app/MyBlogSite.APIs/Base
+# 📌 Kodları kopyala ve publish et
+COPY . .
+WORKDIR /src/MyBlogSite.APIs/Base
+RUN dotnet publish -c Release -o /app
 
-RUN dotnet restore
-
-RUN dotnet publish --no-restore -c Release -o /app/Base
-
+# 📌 Runtime için .NET 8 kullan
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-
-FROM runtime AS final
 WORKDIR /app
-COPY --from=base /app/Base .
+COPY --from=build /app . 
 
+# 📌 Çalıştırma komutu
 ENTRYPOINT ["dotnet", "Base.dll"]
